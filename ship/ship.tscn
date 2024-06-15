@@ -1,13 +1,33 @@
-[gd_scene load_steps=15 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=20 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_siafs"]
+[ext_resource type="Shader" path="res://shaders/thruster.gdshader" id="3_r6kkl"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
-[ext_resource type="PackedScene" path="res://ship/inventory.tscn" id="15_6vfc2"]
+[ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
 [ext_resource type="Script" path="res://items/item_data.gd" id="16_yh6yx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mwtnv"]
-radius = 35.0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b5mpe"]
+noise_type = 3
+frequency = 0.0396
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fwmy5"]
+width = 100
+height = 400
+seamless = true
+seamless_blend_skirt = 0.112
+noise = SubResource("FastNoiseLite_b5mpe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7pdm"]
+shader = ExtResource("3_r6kkl")
+shader_parameter/noise = SubResource("NoiseTexture2D_fwmy5")
+
+[sub_resource type="Gradient" id="Gradient_ydrpb"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccts1"]
+gradient = SubResource("Gradient_ydrpb")
+fill_to = Vector2(0, 1)
 
 [sub_resource type="GDScript" id="GDScript_bv84j"]
 script/source = "extends Area2D
@@ -79,19 +99,19 @@ contact_monitor = true
 script = ExtResource("1_keua4")
 acceleration = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_mwtnv")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
+scale = Vector2(1.3, 1.3)
 texture = ExtResource("2_siafs")
 region_enabled = true
 region_rect = Rect2(0, 903, 93, 93)
 
 [node name="Thrust" type="Sprite2D" parent="Sprite2D"]
-texture = ExtResource("2_siafs")
+material = SubResource("ShaderMaterial_a7pdm")
+position = Vector2(-0.323454, -11.4182)
+scale = Vector2(0.297569, 1)
+texture = SubResource("GradientTexture2D_ccts1")
 offset = Vector2(0, -45)
-region_enabled = true
 region_rect = Rect2(911, 1074.35, 16, 41.6495)
 
 [node name="FiringPositions" type="Node2D" parent="."]
@@ -111,7 +131,9 @@ collision_mask = 4
 script = SubResource("GDScript_bv84j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MatterMagnet"]
+position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_ytji8")
+debug_color = Color(0, 0.6, 0.701961, 0.0705882)
 
 [node name="Inventory" parent="." instance=ExtResource("15_6vfc2")]
 
@@ -132,6 +154,10 @@ data = SubResource("Resource_ekcse")
 [node name="Invincibility" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.3, 1.3)
+polygon = PackedVector2Array(-24, -41, -11, -37, -18, -10, -15, -9, -12, -17, 12, -17, 15, -10, 18, -10, 11, -36, 24, -41, 47, 17, 30, 42, 11, 34, 9, 24, -9, 24, -12, 34, -29, 42, -47, 17)
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]
 [connection signal="matter_picked_up" from="MatterMagnet" to="." method="_on_matter_magnet_matter_picked_up"]
