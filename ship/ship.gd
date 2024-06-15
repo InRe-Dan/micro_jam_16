@@ -95,6 +95,7 @@ func damage(dmg: int) -> void:
 	if health <= 0:
 		die()
 
+
 ## Ship collided with a body
 func _on_collision(body: Node2D) -> void:
 	if not body is Hazard:
