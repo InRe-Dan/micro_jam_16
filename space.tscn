@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=12 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
 [ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
 [ext_resource type="Texture2D" uid="uid://27jl7kbs8d31" path="res://assets/stars.png" id="2_0sivs"]
 [ext_resource type="AudioStream" uid="uid://c0osdp1v3v6lq" path="res://assets/music/Oceana/Oceana - 1.wav" id="2_eo38j"]
 [ext_resource type="Script" path="res://music_player.gd" id="3_i86ay"]
+[ext_resource type="Texture2D" uid="uid://bgpq8x6y4skop" path="res://assets/planets.png" id="6_tijwg"]
 [ext_resource type="PackedScene" uid="uid://dgxvroecovain" path="res://game_ui/game_ui.tscn" id="7_j5bfe"]
 [ext_resource type="PackedScene" uid="uid://qx5pray01i62" path="res://objective/objective.tscn" id="7_mivk0"]
 [ext_resource type="PackedScene" uid="uid://dfpnr627xmogp" path="res://objective/pointer.tscn" id="9_1u8bp"]
@@ -30,31 +31,45 @@ braking_strength = 1.0
 scroll_base_scale = Vector2(0.8, 0.8)
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="StarfieldBackground"]
+[node name="Stars" type="ParallaxLayer" parent="StarfieldBackground"]
 motion_scale = Vector2(0.2, 0.2)
 
-[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Stars"]
+scale = Vector2(3, 3)
 texture = ExtResource("2_0sivs")
 region_enabled = true
 region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="StarfieldBackground"]
+[node name="Stars2" type="ParallaxLayer" parent="StarfieldBackground"]
 motion_scale = Vector2(0.17, 0.17)
 motion_offset = Vector2(164, 85)
 
-[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer2"]
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Stars2"]
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_0sivs")
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
+
+[node name="Stars3" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.15, 0.15)
+motion_offset = Vector2(73, 356)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Stars3"]
 texture_repeat = 2
 texture = ExtResource("2_0sivs")
 region_enabled = true
 region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="StarfieldBackground"]
-motion_scale = Vector2(0.15, 0.15)
+[node name="Planets" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.08, 0.08)
 motion_offset = Vector2(73, 356)
 
-[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer3"]
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Planets"]
+modulate = Color(0.681896, 0.681896, 0.681896, 1)
 texture_repeat = 2
-texture = ExtResource("2_0sivs")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_tijwg")
 region_enabled = true
 region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
