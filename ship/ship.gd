@@ -28,8 +28,11 @@ class_name Ship extends RigidBody2D
 
 ## Current health of the ship
 @onready var health: float = maximum_health
+## Current fuel
 @onready var fuel : float = max_fuel
+
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var iframe_timer: Timer = $Invincibility
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
@@ -86,6 +89,8 @@ func die() -> void:
 
 ## Makes the ship take damage
 func damage(dmg: int) -> void:
+	if not iframe_timer.is_stopped(): return
+	iframe_timer.start()
 	health -= dmg
 	if health <= 0:
 		die()
