@@ -4,6 +4,7 @@ class_name Ship extends RigidBody2D
 @export_category("Base stats")
 ## Maximum health of the ship
 @export_range(1, 1000, 100) var maximum_health: int = 100
+@export var max_ammo : int = 100
 
 @export_category("Movement")
 ## Rate at which the ship gains velocity while thrusting
@@ -32,6 +33,7 @@ class_name Ship extends RigidBody2D
 @onready var fuel : float = max_fuel
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var ammo : int = max_ammo
 @onready var iframe_timer: Timer = $Invincibility
 
 ## Ship's current rotational velocity
@@ -63,14 +65,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("angular_brake") and fuel > 0:
 		angular_velocity = lerpf(angular_velocity, 0.0, angle_braking_strength * delta)
 		fuel_consumed_this_frame += brake_burn * delta
-	else:	
+	else:
 		var rotation_input = Input.get_axis("rotate_left", "rotate_right")
-		if rotation_input:
+		if rotation_input and fuel > 0:
 			angular_velocity += (rotation_input * torque) * delta
 			fuel_consumed_this_frame += rotation_burn * delta
 	
-	if Input.is_action_just_pressed("fire"):
-		$Gun.use()
+	if Input.is_action_pressed("fire"):
+		$Inventory.use()
 	
 	linear_velocity.limit_length(terminal_velocity)
 	angular_velocity = clamp(angular_velocity, -terminal_rotational_velocity, terminal_rotational_velocity)
@@ -86,6 +88,8 @@ func die() -> void:
 	died.emit()
 	queue_free()
 
+func get_inventory() -> Inventory:
+	return $Inventory
 
 ## Makes the ship take damage
 func damage(dmg: int) -> void:
@@ -102,7 +106,8 @@ func _on_collision(body: Node2D) -> void:
 		return
 	damage(10)
 
+func give_matter(amount : int) -> void:
+	matter += amount
 
 func _on_matter_magnet_matter_picked_up() -> void:
-	matter += 1
-	print(matter)
+	give_matter(1)

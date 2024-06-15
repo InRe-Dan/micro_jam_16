@@ -1,7 +1,6 @@
 class_name Bullet extends Area2D
 
-## Bullet's damage
-@export_range(0, 10, 1) var damage: int = 1
+var damage: int = 1
 
 ## Bullet's velocity
 @export_range(1.0, 50.0, 0.1) var velocity: float = 5.0
