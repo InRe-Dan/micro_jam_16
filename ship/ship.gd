@@ -32,7 +32,8 @@ class_name Ship extends RigidBody2D
 ## Current fuel
 @onready var fuel : float = max_fuel
 
-@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var thrust_sprite: Sprite2D = sprite.get_node("Thrust")
 @onready var ammo : int = max_ammo
 @onready var iframe_timer: Timer = $Invincibility
 
@@ -54,12 +55,12 @@ func _physics_process(delta: float) -> void:
 		fuel_consumed_this_frame += brake_burn * delta
 
 	if Input.is_action_pressed("thrust") and fuel > 0:
-		sprite.play("thrust")
+		thrust_sprite.visible = true
 		var direction: Vector2 = -transform.y.normalized()
 		linear_velocity += (direction * acceleration) * delta
 		fuel_consumed_this_frame += thruster_burn * delta
 	else:
-		sprite.play("idle")
+		thrust_sprite.visible = false
 	
 	# Check for spin or angle brakes
 	if Input.is_action_pressed("angular_brake") and fuel > 0:

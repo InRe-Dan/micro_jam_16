@@ -80,7 +80,7 @@ alignment = 1
 position = Vector2(359, 72)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.35, 0.35)
 script = ExtResource("10_pi56q")
 
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

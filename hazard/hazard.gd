@@ -5,7 +5,7 @@ class_name Hazard extends Node2D
 @export_range(1, 10, 1) var health: int = 3
 
 ## Distance at which the hazard cleans up
-var despawn_distance: float = 4e7
+var despawn_distance: float = 3e7
 
 signal cleaned
 

@@ -1,6 +1,6 @@
 class_name MatterFragment extends Area2D
 
-@export var despawn_distance: float = 6e7
+@export var despawn_distance: float = 3e7
 
 var velocity : Vector2
 var angular_velocity : float
