@@ -100,6 +100,8 @@ func _on_collision(body: Node2D) -> void:
 		return
 	damage(10)
 
+func give_matter(amount : int) -> void:
+	matter += amount
 
 func _on_matter_magnet_matter_picked_up() -> void:
-	matter += 1
+	give_matter(1)
