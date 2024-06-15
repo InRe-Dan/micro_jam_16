@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=8 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://Ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
+
+[sub_resource type="Gradient" id="Gradient_f7o4v"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.161972)
+colors = PackedColorArray(0.282353, 0.317647, 0.419608, 0.27451)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w8jum"]
+gradient = SubResource("Gradient_f7o4v")
+height = 256
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_qckpf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_omyl5"]
+gradient = SubResource("Gradient_qckpf")
+height = 256
 
 [node name="Ship" type="RigidBody2D"]
 collision_layer = 0
@@ -25,5 +44,17 @@ zoom = Vector2(0.5, 0.5)
 [node name="Gun" parent="." instance=ExtResource("3_v0byf")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = 107.0
+offset_top = -155.0
+offset_right = 147.0
+offset_bottom = 94.0
+max_value = 1.0
+step = 0.0
+value = 0.5
+fill_mode = 3
+texture_over = SubResource("GradientTexture2D_w8jum")
+texture_progress = SubResource("GradientTexture2D_omyl5")
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]
