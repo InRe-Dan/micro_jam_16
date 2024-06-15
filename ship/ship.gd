@@ -30,7 +30,6 @@ var rotational_velocity: float = 0.0
 
 @onready var camera: Camera2D = $Camera2D
 
-
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	# Check for thrust or brakes
@@ -75,3 +74,9 @@ func _on_collision(body: PhysicsBody2D) -> void:
 		return
 		
 	damage(10)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("scroll_up"):
+		camera.zoom += Vector2.ONE * 0.1
+	elif event.is_action_pressed("scroll_down"):
+		camera.zoom += Vector2.ONE * 0.1

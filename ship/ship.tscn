@@ -14,14 +14,16 @@ contact_monitor = true
 script = ExtResource("1_keua4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_stx34")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -70, -30, 0, -10, 40, 10, 40, 30, 0)
+polygon = PackedVector2Array(0, -153, -65, 0, -31, 57, -54, 78, -1, 93, 46, 80, 21, 57, 62, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
 [node name="Gun" parent="." instance=ExtResource("3_v0byf")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]
