@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnbmyoai8l0qd"]
+
+[ext_resource type="Script" path="res://game_ui/hotbar.gd" id="1_0ukkw"]
+
+[node name="Hotbar" type="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+offset_left = 440.0
+offset_top = 536.0
+offset_right = 740.0
+offset_bottom = 576.0
+script = ExtResource("1_0ukkw")
