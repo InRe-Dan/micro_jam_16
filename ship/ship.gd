@@ -1,6 +1,11 @@
 # Player controlled ship
 class_name Ship extends RigidBody2D
 
+@export_category("Base stats")
+## Maximum health of the ship
+@export_range(1, 1000, 100) var maximum_health: int = 100
+
+@export_category("Movement")
 ## Rate at which the ship gains velocity while thrusting
 @export_range(1, 100, 1) var acceleration: int = 60
 ## Rate at which the ship gains rotational velocity while turning
@@ -13,38 +18,58 @@ class_name Ship extends RigidBody2D
 @export_range(0.0, 1.0, 0.1) var braking_strength: float = 0.5
 ## Angular braking strength
 @export_range(0.0, 10.0, 0.1) var angle_braking_strength: float = 6.0
-## Maximum health of the ship
-@export_range(1, 1000, 100) var maximum_health: int = 100
+
+@export_category("Fuel Consumption")
+@export var max_fuel : float = 100
+@export var passive_burn : float = 0.5
+@export var thruster_burn : float = 3.0
+@export var brake_burn : float = 0.5
+@export var rotation_burn : float = 1.0
 
 ## Current health of the ship
 @onready var health: float = maximum_health
+@onready var fuel : float = max_fuel
 @onready var camera: Camera2D = $Camera2D
 @onready var health_bar : TextureProgressBar = $HealthBar
+@onready var fuel_bar : TextureProgressBar = $FuelBar
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
+var fuel_consumed_this_frame : float = 0
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	fuel_consumed_this_frame += passive_burn * delta
 	# Check for thrust or brakes
 	if Input.is_action_pressed("brake"):
 		linear_velocity = linear_velocity.lerp(Vector2.ZERO, braking_strength * delta)
+		fuel_consumed_this_frame += brake_burn * delta
 	elif Input.is_action_pressed("thrust"):
 		var direction: Vector2 = -transform.y.normalized()
 		linear_velocity += (direction * acceleration) * delta
+		fuel_consumed_this_frame += thruster_burn * delta
 	
 	# Check for spin or angle brakes
 	if Input.is_action_pressed("angular_brake"):
 		angular_velocity = lerpf(angular_velocity, 0.0, angle_braking_strength * delta)
+		fuel_consumed_this_frame += brake_burn * delta
 	else:	
 		var rotation_input = Input.get_axis("rotate_left", "rotate_right")
-		angular_velocity += (rotation_input * torque) * delta
+		if rotation_input:
+			angular_velocity += (rotation_input * torque) * delta
+			fuel_consumed_this_frame += rotation_burn * delta
 	
 	if Input.is_action_just_pressed("fire"):
 		$Gun.use()
 	
 	linear_velocity.limit_length(terminal_velocity)
 	angular_velocity = clamp(angular_velocity, -terminal_rotational_velocity, terminal_rotational_velocity)
+	
+	fuel -= fuel_consumed_this_frame
+	print(fuel_consumed_this_frame / delta)
+	fuel = clamp(fuel, 0, max_fuel)
+	fuel_bar.value = fuel / max_fuel
+	fuel_consumed_this_frame = 0
 
 
 ## Ship dies
