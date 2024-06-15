@@ -1,11 +1,13 @@
 ## Manages the spawning and despawning of asteroids
 extends Node
 
+signal cleanup
+
 ## Maximum amount of active asteroids
 @export_range(1, 128, 1) var active_count: int = 32
 
 ## Minimum distance to spawn from the player
-@export_range(2500, 10000, 1) var min_dist: float = 0
+@export_range(2500, 10000, 1) var min_dist: float = 2500
 ## Maximum distance to spawn from the player
 @export_range(3000, 10000, 1) var max_dist : float = 5000
 
@@ -16,14 +18,16 @@ extends Node
 @export_range(0.0, 10.0, 0.1) var angular_velocity_scale: float = 2.0
 
 var asteroid_scene: PackedScene = preload("res://asteroid/asteroid.tscn")
-@onready var cleanup_timer: Timer = $CleanupCycle
 
 @onready var ship: Ship = get_tree().get_first_node_in_group("player")
 var stopped = false
 
+
 func stop() -> void:
 	stopped = true
 
+
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(active_count):
 		spawn_asteroid()
@@ -53,6 +57,5 @@ func spawn_asteroid() -> void:
 	asteroid.angular_velocity = randf_range(-angular_velocity_scale, angular_velocity_scale)
 	asteroid.ship = ship
 	asteroid.cleanup.connect(_on_asteroid_cleanedup)
-	asteroid.subscribe_to_cleanup(cleanup_timer)
 	
 	add_child(asteroid)

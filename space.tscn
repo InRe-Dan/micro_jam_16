@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=10 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
 [ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
 [ext_resource type="Texture2D" uid="uid://27jl7kbs8d31" path="res://assets/stars.png" id="2_0sivs"]
 [ext_resource type="AudioStream" uid="uid://c0osdp1v3v6lq" path="res://assets/music/Oceana/Oceana - 1.wav" id="2_eo38j"]
-[ext_resource type="PackedScene" uid="uid://15nw6rx5kmj4" path="res://asteroid/asteroid_manager.tscn" id="3_0l84n"]
 [ext_resource type="Script" path="res://music_player.gd" id="3_i86ay"]
 [ext_resource type="PackedScene" uid="uid://dgxvroecovain" path="res://game_ui/game_ui.tscn" id="7_j5bfe"]
 [ext_resource type="PackedScene" uid="uid://qx5pray01i62" path="res://objective/objective.tscn" id="7_mivk0"]
@@ -57,8 +56,6 @@ texture_repeat = 2
 texture = ExtResource("2_0sivs")
 region_enabled = true
 region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
-
-[node name="AsteroidManager" parent="." instance=ExtResource("3_0l84n")]
 
 [node name="Objective" parent="." instance=ExtResource("7_mivk0")]
 position = Vector2(1611, -862)

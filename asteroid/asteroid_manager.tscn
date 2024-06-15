@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://15nw6rx5kmj4"]
 
-[ext_resource type="Script" path="res://asteroid/asteroid_manager.gd" id="1_2jo3x"]
+[ext_resource type="Script" path="res://singletons/asteroid_manager.gd" id="1_36vfu"]
 
 [node name="AsteroidManager" type="Node"]
-script = ExtResource("1_2jo3x")
+script = ExtResource("1_36vfu")
 min_dist = 3000.0
 velocity_scale = 300
 angular_velocity_scale = 0.5

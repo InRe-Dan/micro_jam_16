@@ -12,15 +12,16 @@ var matter_scene : PackedScene = preload("res://asteroid/matter_fragment.tscn")
 
 signal cleanup
 
+
+## Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	AsteroidManager.cleanup.connect(_on_cleanup_check)
+
+
 ## Called every clean-up cycle
 func _on_cleanup_check() -> void:
 	if get_viewport().get_camera_2d().global_position.distance_squared_to(global_position) > despawn_distance:
 		clean()
-
-
-## Subscribes this asteroid to the manager's clean-up cycle
-func subscribe_to_cleanup(timer: Timer) -> void:
-	timer.timeout.connect(_on_cleanup_check)
 
 
 ## Asteroid took damage

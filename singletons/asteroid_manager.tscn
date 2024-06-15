@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjrkwwcupre8y"]
+
+[ext_resource type="Script" path="res://singletons/asteroid_manager.gd" id="1_ucliy"]
+
+[node name="AsteroidCleanup" type="Timer"]
+wait_time = 0.5
+autostart = true
+script = ExtResource("1_ucliy")
