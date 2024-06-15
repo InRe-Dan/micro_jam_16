@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://1xinktli5xpy"
+path="res://.godot/imported/Oceana Tension - 1.wav-18c6d9fb700ff38db916e1179b590210.sample"
+
+[deps]
+
+source_file="res://assets/music/Oceana/Oceana Tension - 1.wav"
+dest_files=["res://.godot/imported/Oceana Tension - 1.wav-18c6d9fb700ff38db916e1179b590210.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

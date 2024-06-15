@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://da7femw6odh8s"
+path="res://.godot/imported/Ochre Tension - 1.wav-8bb4d6878ee483057ea7461693e1a6ed.sample"
+
+[deps]
+
+source_file="res://assets/music/Ochre/Ochre Tension - 1.wav"
+dest_files=["res://.godot/imported/Ochre Tension - 1.wav-8bb4d6878ee483057ea7461693e1a6ed.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

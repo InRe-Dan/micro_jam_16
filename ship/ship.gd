@@ -19,6 +19,12 @@ class_name Ship extends RigidBody2D
 ## Angular braking strength
 @export_range(0.0, 10.0, 0.1) var angle_braking_strength: float = 6.0
 
+## Maximum health of the ship
+@export_range(1, 1000, 100) var maximum_health: int = 100
+
+## Current health of the ship
+@onready var health: float = maximum_health
+
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
 
@@ -43,8 +49,29 @@ func _physics_process(delta: float) -> void:
 	
 	linear_velocity.limit_length(terminal_velocity)
 	angular_velocity = clamp(angular_velocity, -terminal_rotational_velocity, terminal_rotational_velocity)
-	
+
+
+## Ship dies
+func die() -> void:
+	print("died!")
+	queue_free()
+
+
+## Makes the ship take damage
+func damage(dmg: int) -> void:
+	health -= dmg
+	if health <= 0:
+		die()
+
 	
 ## Returns the current viewport
 func get_view() -> Rect2:
 	return Rect2(position, camera.get_viewport().get_visible_rect().size)
+
+
+## Ship collided with a body
+func _on_collision(body: PhysicsBody2D) -> void:
+	if not body is Asteroid:
+		return
+		
+	damage(10)
