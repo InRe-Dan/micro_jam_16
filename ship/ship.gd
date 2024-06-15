@@ -30,8 +30,7 @@ class_name Ship extends RigidBody2D
 @onready var health: float = maximum_health
 @onready var fuel : float = max_fuel
 @onready var camera: Camera2D = $Camera2D
-@onready var health_bar : TextureProgressBar = $HealthBar
-@onready var fuel_bar : TextureProgressBar = $FuelBar
+@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
@@ -46,10 +45,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("brake"):
 		linear_velocity = linear_velocity.lerp(Vector2.ZERO, braking_strength * delta)
 		fuel_consumed_this_frame += brake_burn * delta
-	elif Input.is_action_pressed("thrust"):
+
+	if Input.is_action_pressed("thrust"):
+		sprite.play("thrust")
 		var direction: Vector2 = -transform.y.normalized()
 		linear_velocity += (direction * acceleration) * delta
 		fuel_consumed_this_frame += thruster_burn * delta
+	else:
+		sprite.play("idle")
 	
 	# Check for spin or angle brakes
 	if Input.is_action_pressed("angular_brake"):

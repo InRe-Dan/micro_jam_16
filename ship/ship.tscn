@@ -1,8 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=15 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://Ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
+[ext_resource type="Texture2D" uid="uid://bm6ifeow38aad" path="res://assets/ship_frames/frame_0000.png" id="4_xwru5"]
+[ext_resource type="Texture2D" uid="uid://brlmpxt3iht2y" path="res://assets/ship_frames/frame_0001.png" id="5_l2oug"]
+[ext_resource type="Texture2D" uid="uid://bomt80yahjyf5" path="res://assets/ship_frames/frame_0002.png" id="6_i65wo"]
+[ext_resource type="Texture2D" uid="uid://c8w2g3qnq0h5v" path="res://assets/ship_frames/frame_0003.png" id="7_k3rib"]
+[ext_resource type="Texture2D" uid="uid://cdr0uwjlkurx6" path="res://assets/ship_frames/frame_0004.png" id="8_u2lj0"]
+[ext_resource type="Texture2D" uid="uid://wpjmpmmurfoq" path="res://assets/ship_frames/frame_0005.png" id="9_ejdga"]
+[ext_resource type="Texture2D" uid="uid://c0eokjuly2jvr" path="res://assets/ship_frames/frame_0006.png" id="10_5nj5d"]
+[ext_resource type="Texture2D" uid="uid://dxp0jj1guepqj" path="res://assets/ship_frames/frame_0007.png" id="11_jnoa6"]
+[ext_resource type="Texture2D" uid="uid://c2s4cykfyfpac" path="res://assets/ship_frames/frame_0008.png" id="12_qg6g6"]
+[ext_resource type="Texture2D" uid="uid://cjd4htvxy0vtp" path="res://assets/ship_frames/frame_0009.png" id="13_3k23i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqvmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_stx34")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xwru5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l2oug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i65wo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k3rib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_u2lj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ejdga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5nj5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jnoa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qg6g6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3k23i")
+}],
+"loop": true,
+"name": &"thrust",
+"speed": 20.0
+}]
 
 [node name="Ship" type="RigidBody2D" groups=["player"]]
 collision_layer = 0
@@ -12,9 +68,6 @@ gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_keua4")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_stx34")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -153, -65, 0, -31, 57, -54, 78, -1, 93, 46, 80, 21, 57, 62, 0)
@@ -26,6 +79,8 @@ zoom = Vector2(0.5, 0.5)
 firing_positions = [NodePath("../FiringPositions/Marker2D"), NodePath("../FiringPositions/Marker2D2")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pqvmb")
+animation = &"idle"
 
 [node name="FiringPositions" type="Node2D" parent="."]
 
