@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=16 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://Ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
@@ -60,8 +60,10 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytji8"]
+radius = 509.025
+
 [node name="Ship" type="RigidBody2D" groups=["player"]]
-collision_layer = 0
 collision_mask = 2
 mass = 1000.0
 gravity_scale = 0.0
@@ -87,5 +89,12 @@ position = Vector2(-50, -36)
 
 [node name="Marker2D2" type="Marker2D" parent="FiringPositions"]
 position = Vector2(55, -36)
+
+[node name="MatterMagnet" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MatterMagnet"]
+shape = SubResource("CircleShape2D_ytji8")
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]

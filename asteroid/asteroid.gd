@@ -3,13 +3,14 @@ class_name Asteroid extends RigidBody2D
 
 ## Health of the asteroid
 @export_range(1, 10, 1) var health: int = 3
-
 ## Distance at which the asteroid cleans up
-var despawn_distance: int = 6000
-
-signal cleanup
+@export var despawn_distance: int = 6000
+@export var matter_spawn_distribution : Curve
 
 var ship: Ship
+var matter_scene : PackedScene = preload("res://asteroid/matter_fragment.tscn")
+
+signal cleanup
 
 ## Called every clean-up cycle
 func _on_cleanup_check() -> void:
@@ -31,6 +32,14 @@ func damage(dmg: int) -> void:
 
 ## Destroys the asteroid
 func destroy() -> void:
+	for i in range(matter_spawn_distribution.sample(randf())):
+		var matter : MatterFragment = matter_scene.instantiate()
+		add_sibling(matter)
+		var direction = Vector2.from_angle(TAU * randf())
+		matter.global_position = global_position + direction * (30 + randf() * 60)
+		matter.rotation = randf() * TAU
+		matter.velocity = direction * (30 + randf() * 50)
+		matter.angular_velocity = (randf() - 0.5) * 0.5
 	clean()
 
 
