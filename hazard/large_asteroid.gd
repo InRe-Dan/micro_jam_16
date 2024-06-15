@@ -12,6 +12,7 @@ var asteroid_scene : PackedScene = preload("res://hazard/asteroid.tscn")
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	if not asteroid_spawn_distribution: push_error("No spawn curve assigned")
 	self.angular_velocity = randf_range(-angular_velocity_scale, angular_velocity_scale)
 

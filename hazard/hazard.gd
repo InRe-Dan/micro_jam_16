@@ -7,7 +7,7 @@ class_name Hazard extends Node2D
 ## Distance at which the hazard cleans up
 var despawn_distance: float = 4e7
 
-signal cleanup
+signal cleaned
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -20,7 +20,7 @@ func _on_cleanup_check() -> void:
 	var ship: Ship = get_tree().get_first_node_in_group("player") as Ship
 	if not ship or not is_instance_valid(ship):
 		return
-		
+	
 	if position.distance_squared_to(ship.position) > despawn_distance:
 		clean()
 
@@ -39,5 +39,5 @@ func destroy() -> void:
 
 ## Removes this hazard
 func clean() -> void:
-	cleanup.emit()
+	cleaned.emit()
 	queue_free()
