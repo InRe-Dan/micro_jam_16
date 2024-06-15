@@ -37,10 +37,9 @@ func update(init_item : Item = null) -> void:
 	if item.unlocked and has_node("Buy"):
 		$Buy.queue_free()
 
-
-
 func _on_buy_pressed() -> void:
 	var player : Ship = get_tree().get_first_node_in_group("player")
 	if player.matter > item.data.initial_price:
+		player.matter -= item.data.initial_price
 		$Buy.queue_free()
 		item.unlocked = true

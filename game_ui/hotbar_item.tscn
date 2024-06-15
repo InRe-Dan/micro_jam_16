@@ -39,6 +39,7 @@ text = "Item Name"
 horizontal_alignment = 1
 
 [node name="Durability" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -36.0
 offset_top = 60.0
