@@ -7,7 +7,7 @@ class_name Ship extends RigidBody2D
 
 @export_category("Movement")
 ## Rate at which the ship gains velocity while thrusting
-@export_range(1, 100, 1) var acceleration: int = 60
+@export_range(1, 500, 1) var acceleration: int = 60
 ## Rate at which the ship gains rotational velocity while turning
 @export_range(0.1, 10.0, 0.1) var torque: float = 1.2
 ## Maximum velocity the ship is able to reach
@@ -37,6 +37,8 @@ var rotational_velocity: float = 0.0
 var fuel_consumed_this_frame : float = 0
 ## Measured in units per second
 var fuel_consumption : float = 0
+
+signal died
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -78,7 +80,7 @@ func _physics_process(delta: float) -> void:
 
 ## Ship dies
 func die() -> void:
-	print("died!")
+	died.emit()
 	queue_free()
 
 

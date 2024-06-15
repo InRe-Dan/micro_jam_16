@@ -68,6 +68,7 @@ gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_keua4")
+acceleration = 100
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -153, -65, 0, -31, 57, -54, 78, -1, 93, 46, 80, 21, 57, 62, 0)

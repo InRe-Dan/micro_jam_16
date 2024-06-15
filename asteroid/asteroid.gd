@@ -11,10 +11,8 @@ signal cleanup
 
 var ship: Ship
 
-
 ## Called every clean-up cycle
 func _on_cleanup_check() -> void:
-
 	if get_viewport().get_camera_2d().global_position.distance_to(global_position) > despawn_distance:
 		clean()
 
