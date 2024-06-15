@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjrkwwcupre8y"]
+[gd_scene load_steps=15 format=3 uid="uid://cjrkwwcupre8y"]
 
 [ext_resource type="Script" path="res://singletons/hazard_manager.gd" id="1_ucliy"]
 [ext_resource type="PackedScene" uid="uid://c7htls8lgsumu" path="res://hazard/asteroid.tscn" id="2_liwsa"]
 [ext_resource type="Script" path="res://hazard/spawn_weight.gd" id="3_yinwi"]
 [ext_resource type="PackedScene" uid="uid://cpcwk68xjoy2p" path="res://hazard/large_asteroid.tscn" id="5_lku6y"]
+[ext_resource type="PackedScene" uid="uid://ccnxdjyej4ci3" path="res://hazard/crate.tscn" id="6_4ukx4"]
 [ext_resource type="PackedScene" uid="uid://bf76jbrkee5kn" path="res://hazard/mine.tscn" id="6_82c7q"]
 
 [sub_resource type="Curve" id="Curve_rnbry"]
@@ -36,10 +37,20 @@ script = ExtResource("3_yinwi")
 hazard = ExtResource("6_82c7q")
 weight = SubResource("Curve_sl62k")
 
+[sub_resource type="Curve" id="Curve_pl3ev"]
+max_value = 1000.0
+_data = [Vector2(0, 50), 0.0, 0.0, 0, 0, Vector2(1, 150), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_3hqjk"]
+script = ExtResource("3_yinwi")
+hazard = ExtResource("6_4ukx4")
+weight = SubResource("Curve_pl3ev")
+
 [node name="AsteroidCleanup" type="Timer"]
 wait_time = 0.5
 autostart = true
 script = ExtResource("1_ucliy")
-spawn_weights = Array[ExtResource("3_yinwi")]([SubResource("Resource_k257e"), SubResource("Resource_pi14b"), SubResource("Resource_nvd00")])
+spawn_weights = Array[ExtResource("3_yinwi")]([SubResource("Resource_k257e"), SubResource("Resource_pi14b"), SubResource("Resource_nvd00"), SubResource("Resource_3hqjk")])
 
 [connection signal="timeout" from="." to="." method="_on_timeout"]

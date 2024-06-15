@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj3dv0s1cldrw"]
+
+[ext_resource type="Script" path="res://hazard/turret_asteroid.gd" id="1_mxif8"]
+[ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_jiplw"]
+
+[node name="TurretAsteroid" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+mass = 40000.0
+gravity_scale = 0.0
+script = ExtResource("1_mxif8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_jiplw")
+region_enabled = true
+region_rect = Rect2(769, 2, 101, 83)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(3.5, 3.5)
+polygon = PackedVector2Array(-33, -40, -48, 9, -21, 39, 10, 28, 33, 31, 48, -2, 23, -40)

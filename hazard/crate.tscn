@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccnxdjyej4ci3"]
+
+[ext_resource type="Script" path="res://hazard/asteroid.gd" id="1_r81ov"]
+[ext_resource type="Texture2D" uid="uid://d1r78k04jncsu" path="res://assets/sheet2.svg" id="2_5jwwn"]
+
+[sub_resource type="Curve" id="Curve_gwt70"]
+min_value = 15.0
+max_value = 25.0
+_data = [Vector2(0, 15), 0.0, 0.0, 0, 0, Vector2(1, 25), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwkd6"]
+size = Vector2(75, 75)
+
+[node name="Crate" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+mass = 3000.0
+gravity_scale = 0.0
+script = ExtResource("1_r81ov")
+angular_velocity_scale = 2.0
+matter_spawn_distribution = SubResource("Curve_gwt70")
+health = 12
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.571433, 0.7, 0.497, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("2_5jwwn")
+region_enabled = true
+region_rect = Rect2(354, 470, 84, 84)
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_qwkd6")
