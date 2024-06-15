@@ -6,6 +6,9 @@ signal cleanup
 ## Maximum amount of active hazards
 @export_range(1, 128, 1) var active_count: int = 64
 
+## Spawn weights of hazards
+@export var spawn_weights: Array[SpawnWeight] = []
+
 ## Minimum distance to spawn from the player
 @export_range(2000, 10000, 1) var min_dist: float = 2500
 ## Maximum distance to spawn from the player
@@ -13,12 +16,6 @@ signal cleanup
 
 ## Spawn velocity scale
 @export_range(0, 5000, 10) var velocity_scale: int = 100
-
-## Spawn chance for large asteroid
-@export_range(0.0, 1.0, 0.1) var large_spawn_chance: float = 0.2
-
-## Spawn chance for mine
-@export_range(0.0, 1.0, 0.1) var mine_spawn_chance: float = 0.05
 
 var asteroid_scene: PackedScene = preload("res://hazard/asteroid.tscn")
 var large_asteroid_scene: PackedScene = preload("res://hazard/large_asteroid.tscn")
@@ -39,7 +36,6 @@ func _ready() -> void:
 	ship.died.connect(stop)
 
 
-
 ## Called when an hazard is freed
 func _on_hazard_cleanedup() -> void:
 	# Spawn a new hazard in place of the old one
@@ -49,16 +45,27 @@ func _on_hazard_cleanedup() -> void:
 ## Creates a new random hazard
 func create_new_hazard() -> void:
 	if stopped: return
-
-	var spawn_choice = randf()
+	
+	# Cache spawn weights
+	var total_weight: float = 0.0
+	var weights_sampled: Array[Dictionary] = []
+	for spawn_weight: SpawnWeight in spawn_weights:
+		var weight: float = spawn_weight.weight.sample(0)
+		total_weight += weight
+		weights_sampled.append({
+			"scene": spawn_weight.hazard,
+			"weight": weight
+		})
+	
+	# Choose random hazard from cache
+	var spawn_choice = randf_range(0, total_weight)
 	var hazard: Hazard
-	spawn_choice = 0.00
-	if spawn_choice <= mine_spawn_chance:
-		hazard = mine_scene.instantiate() as Mine
-	elif spawn_choice <= large_spawn_chance + mine_spawn_chance:
-		hazard = large_asteroid_scene.instantiate() as LargeAsteroid
-	else:
-		hazard = asteroid_scene.instantiate() as Asteroid
+	var cumulative_weight: float = 0.0
+	for spawn_weight: Dictionary in weights_sampled:
+		cumulative_weight += spawn_weight["weight"]
+		if spawn_choice <= cumulative_weight:
+			hazard = spawn_weight["scene"].instantiate() as Hazard
+			break
 	
 	call_deferred("spawn_hazard", hazard)
 	hazard.cleaned.connect(_on_hazard_cleanedup)
