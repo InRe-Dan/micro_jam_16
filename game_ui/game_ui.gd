@@ -9,7 +9,6 @@ func _ready() -> void:
 		queue.append_array(control.get_children())
 		control.focus_mode = control.FOCUS_NONE
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
