@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgxvroecovain"]
+
+[ext_resource type="Script" path="res://game_ui/game_ui.gd" id="1_e52c0"]
+[ext_resource type="Script" path="res://game_ui/stats.gd" id="2_j0vfl"]
+
+[sub_resource type="Gradient" id="Gradient_nlddr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.490196, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_we3ff"]
+gradient = SubResource("Gradient_nlddr")
+width = 180
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_qckpf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.7, 0.063, 0.063, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ydbso"]
+gradient = SubResource("Gradient_qckpf")
+width = 180
+height = 32
+
+[node name="GameUI" type="TabContainer"]
+custom_minimum_size = Vector2(300, 200)
+offset_right = 158.0
+offset_bottom = 148.0
+script = ExtResource("1_e52c0")
+
+[node name="Stats" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stats" type="VBoxContainer" parent="Stats/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_j0vfl")
+
+[node name="FuelBar" type="TextureProgressBar" parent="Stats/MarginContainer/Stats"]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_progress = SubResource("GradientTexture2D_we3ff")
+
+[node name="Label" type="Label" parent="Stats/MarginContainer/Stats/FuelBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 42.0
+offset_bottom = 27.0
+text = "Fuel
+"
+
+[node name="HealthBar" type="TextureProgressBar" parent="Stats/MarginContainer/Stats"]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_progress = SubResource("GradientTexture2D_ydbso")
+
+[node name="Label" type="Label" parent="Stats/MarginContainer/Stats/HealthBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 54.0
+offset_bottom = 27.0
+text = "Health
+"
+
+[node name="Burn" type="Label" parent="Stats/MarginContainer/Stats"]
+layout_mode = 2
+
+[node name="Shop?" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Debug" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 2

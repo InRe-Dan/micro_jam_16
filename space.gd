@@ -1,5 +1,5 @@
 ## Main script
-extends Node
+extends Node2D
 
 @onready var ship: Ship = $Ship
 

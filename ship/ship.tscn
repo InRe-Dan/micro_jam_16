@@ -1,48 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=4 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://Ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
 
-[sub_resource type="Gradient" id="Gradient_sve53"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.161972)
-colors = PackedColorArray(0.282353, 0.317647, 0.419608, 0.27451)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fs1dn"]
-gradient = SubResource("Gradient_sve53")
-height = 256
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_nlddr"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0.490196, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nmofy"]
-gradient = SubResource("Gradient_nlddr")
-height = 256
-
-[sub_resource type="Gradient" id="Gradient_f7o4v"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.161972)
-colors = PackedColorArray(0.282353, 0.317647, 0.419608, 0.27451)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_w8jum"]
-gradient = SubResource("Gradient_f7o4v")
-height = 256
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_qckpf"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.7, 0.063, 0.063, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_omyl5"]
-gradient = SubResource("Gradient_qckpf")
-height = 256
-
-[node name="Ship" type="RigidBody2D"]
+[node name="Ship" type="RigidBody2D" groups=["player"]]
 collision_layer = 0
 collision_mask = 2
 mass = 1000.0
@@ -64,30 +26,6 @@ zoom = Vector2(0.5, 0.5)
 firing_positions = [NodePath("../FiringPositions/Marker2D"), NodePath("../FiringPositions/Marker2D2")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-
-[node name="FuelBar" type="TextureProgressBar" parent="."]
-offset_left = 190.0
-offset_top = -155.0
-offset_right = 254.0
-offset_bottom = 101.0
-max_value = 1.0
-step = 0.0
-value = 1.0
-fill_mode = 3
-texture_over = SubResource("GradientTexture2D_fs1dn")
-texture_progress = SubResource("GradientTexture2D_nmofy")
-
-[node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = 107.0
-offset_top = -155.0
-offset_right = 147.0
-offset_bottom = 94.0
-max_value = 1.0
-step = 0.0
-value = 1.0
-fill_mode = 3
-texture_over = SubResource("GradientTexture2D_w8jum")
-texture_progress = SubResource("GradientTexture2D_omyl5")
 
 [node name="FiringPositions" type="Node2D" parent="."]
 

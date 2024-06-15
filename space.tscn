@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=8 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
 [ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
@@ -6,8 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://c0osdp1v3v6lq" path="res://assets/music/Oceana/Oceana - 1.wav" id="2_eo38j"]
 [ext_resource type="PackedScene" uid="uid://15nw6rx5kmj4" path="res://asteroid/asteroid_manager.tscn" id="3_0l84n"]
 [ext_resource type="Script" path="res://music_player.gd" id="3_i86ay"]
+[ext_resource type="PackedScene" uid="uid://dgxvroecovain" path="res://game_ui/game_ui.tscn" id="7_j5bfe"]
 
-[node name="Space" type="Node"]
+[node name="Space" type="Node2D"]
 script = ExtResource("1_bj1jb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -19,6 +20,18 @@ script = ExtResource("3_i86ay")
 [node name="BulletCollection" type="Node" parent="."]
 
 [node name="Ship" parent="." instance=ExtResource("1_38olg")]
+maximum_health = 100
+acceleration = 60
+torque = 1.2
+terminal_velocity = 4.0
+terminal_rotational_velocity = 4.0
+braking_strength = 0.5
+angle_braking_strength = 6.0
+max_fuel = 100.0
+passive_burn = 0.5
+thruster_burn = 3.0
+brake_burn = 0.5
+rotation_burn = 1.0
 
 [node name="StarfieldBackground" type="ParallaxBackground" parent="."]
 scroll_base_scale = Vector2(0.8, 0.8)
@@ -53,5 +66,13 @@ region_enabled = true
 region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
 [node name="AsteroidManager" parent="." instance=ExtResource("3_0l84n")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("7_j5bfe")]
+offset_left = 4.0
+offset_top = 444.0
+offset_right = 304.0
+offset_bottom = 644.0
 
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

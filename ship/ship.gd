@@ -36,6 +36,8 @@ class_name Ship extends RigidBody2D
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
 var fuel_consumed_this_frame : float = 0
+## Measured in units per second
+var fuel_consumption : float = 0
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -66,9 +68,8 @@ func _physics_process(delta: float) -> void:
 	angular_velocity = clamp(angular_velocity, -terminal_rotational_velocity, terminal_rotational_velocity)
 	
 	fuel -= fuel_consumed_this_frame
-	print(fuel_consumed_this_frame / delta)
 	fuel = clamp(fuel, 0, max_fuel)
-	fuel_bar.value = fuel / max_fuel
+	fuel_consumption = fuel_consumed_this_frame / delta
 	fuel_consumed_this_frame = 0
 
 
@@ -83,7 +84,6 @@ func damage(dmg: int) -> void:
 	health -= dmg
 	if health <= 0:
 		die()
-	health_bar.value = health / maximum_health
 
 	
 ## Returns the current viewport
