@@ -22,13 +22,10 @@ func use() -> void:
 		fire()
 
 func get_ammo_info() -> String:
-	push_error("Unimplemented Item Method!")
-	# Shut up, editor.
-	return "100%"
-	
-## Called by UI nodes when the "Buy" button is used.
-func buy_ammo() -> void:
-	push_error("Unimplemented Item Method!")
+	return "420/69"
+
+func buy_ammo() -> bool:
+	return true
 
 
 ## Called when the node enters the scene tree for the first time.

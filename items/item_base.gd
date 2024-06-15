@@ -1,6 +1,10 @@
 class_name Item extends Node2D
 
-## Uses this item. Must check for item durability
+@export var data : ItemData
+@export var unlocked : bool = false
+var selected : bool = false
+
+## Uses this item. Must check for item durability.
 func use() -> void:
 	push_error("Unimplemented Item Method!")
 	
@@ -12,5 +16,7 @@ func get_ammo_info() -> String:
 	return "100%"
 	
 ## Called by UI nodes when the "Buy" button is used.
-func buy_ammo() -> void:
+## Returns false if ammo is at capacity, preventing overstocking.
+func buy_ammo() -> bool:
 	push_error("Unimplemented Item Method!")
+	return false

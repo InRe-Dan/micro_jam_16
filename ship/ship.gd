@@ -83,6 +83,8 @@ func die() -> void:
 	died.emit()
 	queue_free()
 
+func get_inventory() -> Inventory:
+	return $Inventory
 
 ## Makes the ship take damage
 func damage(dmg: int) -> void:

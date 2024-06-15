@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=25 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://Ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cjd4htvxy0vtp" path="res://assets/ship_frames/frame_0009.png" id="13_3k23i"]
 [ext_resource type="Script" path="res://ship/matter_magnet.gd" id="14_ai1tn"]
 [ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
+[ext_resource type="Script" path="res://items/item_data.gd" id="16_yh6yx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqvmb"]
 animations = [{
@@ -65,6 +66,40 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ytji8"]
 radius = 509.025
 
+[sub_resource type="Gradient" id="Gradient_glnpe"]
+offsets = PackedFloat32Array(0, 0.324561, 0.570175, 0.666667)
+colors = PackedColorArray(1, 0, 0, 1, 0.909091, 0, 0, 0.909091, 0.730838, 0, 0, 0.730838, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s5m8h"]
+gradient = SubResource("Gradient_glnpe")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Resource" id="Resource_a51pt"]
+script = ExtResource("16_yh6yx")
+name = "Dual Blaster"
+description = "Ol' reliable"
+initial_price = 1
+restock_price = 1
+icon = SubResource("GradientTexture2D_s5m8h")
+
+[sub_resource type="Gradient" id="Gradient_68t5l"]
+offsets = PackedFloat32Array(0, 0.258772, 0.473684, 0.587719, 0.70614)
+colors = PackedColorArray(1, 1, 0, 1, 0.903409, 0.903409, 0, 0.903409, 0.795309, 0.795309, 0, 0.795309, 0.526307, 0.526307, 0, 0.526307, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gon4l"]
+gradient = SubResource("Gradient_68t5l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Resource" id="Resource_ekcse"]
+script = ExtResource("16_yh6yx")
+name = "Chain Blaster"
+description = "RapidWeaker rapid-fire laser shots"
+initial_price = 20
+restock_price = 3
+icon = SubResource("GradientTexture2D_gon4l")
+
 [node name="Ship" type="RigidBody2D" groups=["player"]]
 collision_mask = 2
 mass = 1000.0
@@ -108,12 +143,38 @@ fire_delay = 0.333
 starting_ammo = 20
 ammo_per_purchase = 5
 firing_positions = [NodePath("../../FiringPositions/Left"), NodePath("../../FiringPositions/Right")]
+data = SubResource("Resource_a51pt")
+unlocked = true
 
 [node name="Laser" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
-fire_delay = 0.01
+fire_delay = 0.1
 starting_ammo = 100
 ammo_per_purchase = 100
 firing_positions = [NodePath("../../FiringPositions/Center")]
+data = SubResource("Resource_ekcse")
+
+[node name="Laser2" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+fire_delay = 0.1
+starting_ammo = 100
+ammo_per_purchase = 100
+firing_positions = [NodePath("../../FiringPositions/Center")]
+data = SubResource("Resource_ekcse")
+unlocked = true
+
+[node name="Laser3" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+fire_delay = 0.1
+starting_ammo = 100
+ammo_per_purchase = 100
+firing_positions = [NodePath("../../FiringPositions/Center")]
+data = SubResource("Resource_ekcse")
+
+[node name="Laser4" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+fire_delay = 0.1
+starting_ammo = 100
+ammo_per_purchase = 100
+firing_positions = [NodePath("../../FiringPositions/Center")]
+data = SubResource("Resource_ekcse")
+unlocked = true
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]
 [connection signal="matter_picked_up" from="MatterMagnet" to="." method="_on_matter_magnet_matter_picked_up"]
