@@ -1,0 +1,150 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfynuy11tald8"]
+
+[ext_resource type="Script" path="res://game_ui/upgradebar.gd" id="1_yrgsq"]
+[ext_resource type="Script" path="res://game_ui/hell_button.gd" id="2_r00mx"]
+
+[sub_resource type="Gradient" id="Gradient_2xycw"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.42, 0.768, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i75bb"]
+gradient = SubResource("Gradient_2xycw")
+width = 15
+height = 23
+fill = 2
+fill_from = Vector2(0.492308, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ff501"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.433333, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mp0ul"]
+gradient = SubResource("Gradient_ff501")
+width = 15
+height = 23
+fill = 2
+fill_from = Vector2(0.492308, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_b3s44"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x3vv6"]
+gradient = SubResource("Gradient_b3s44")
+width = 15
+height = 23
+fill = 2
+fill_from = Vector2(0.492308, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_j7ggr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.433333, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k8cv3"]
+gradient = SubResource("Gradient_j7ggr")
+width = 15
+height = 23
+fill = 2
+fill_from = Vector2(0.492308, 0.5)
+fill_to = Vector2(0, 1)
+
+[node name="Upgradebar" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -846.0
+offset_bottom = -595.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_yrgsq")
+upgraded_texture = SubResource("GradientTexture2D_i75bb")
+buy_texture = SubResource("GradientTexture2D_mp0ul")
+hidden_texture = SubResource("GradientTexture2D_x3vv6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Health"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button1" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="Button4" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="Button5" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="Button6" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="Button7" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="Button8" type="Button" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("GradientTexture2D_k8cv3")
+icon_alignment = 1
+script = ExtResource("2_r00mx")
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
