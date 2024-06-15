@@ -22,10 +22,10 @@ class_name Ship extends RigidBody2D
 
 @export_category("Fuel Consumption")
 @export var max_fuel : float = 100
-@export var passive_burn : float = 0.5
-@export var thruster_burn : float = 3.0
-@export var brake_burn : float = 0.5
-@export var rotation_burn : float = 1.0
+@export var passive_burn : float = 0.2
+@export var thruster_burn : float = 2.4
+@export var brake_burn : float = 0.4
+@export var rotation_burn : float = 0.8
 
 ## Current health of the ship
 @onready var health: float = maximum_health

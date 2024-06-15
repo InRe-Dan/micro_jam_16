@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://qx5pray01i62" path="res://objective/objective.tscn" id="7_mivk0"]
 [ext_resource type="PackedScene" uid="uid://dfpnr627xmogp" path="res://objective/pointer.tscn" id="9_1u8bp"]
 [ext_resource type="Script" path="res://camera.gd" id="10_pi56q"]
-[ext_resource type="PackedScene" uid="uid://bnbmyoai8l0qd" path="res://game_ui/hotbar.tscn" id="11_auq1p"]
+[ext_resource type="PackedScene" path="res://game_ui/hotbar.tscn" id="11_auq1p"]
 
 [node name="Space" type="Node2D" groups=["main"]]
 script = ExtResource("1_bj1jb")

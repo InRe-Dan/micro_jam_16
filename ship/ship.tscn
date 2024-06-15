@@ -13,8 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dxp0jj1guepqj" path="res://assets/ship_frames/frame_0007.png" id="11_jnoa6"]
 [ext_resource type="Texture2D" uid="uid://c2s4cykfyfpac" path="res://assets/ship_frames/frame_0008.png" id="12_qg6g6"]
 [ext_resource type="Texture2D" uid="uid://cjd4htvxy0vtp" path="res://assets/ship_frames/frame_0009.png" id="13_3k23i"]
-[ext_resource type="Script" path="res://ship/matter_magnet.gd" id="14_ai1tn"]
-[ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
+[ext_resource type="PackedScene" path="res://ship/inventory.tscn" id="15_6vfc2"]
 [ext_resource type="Script" path="res://items/item_data.gd" id="16_yh6yx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqvmb"]
