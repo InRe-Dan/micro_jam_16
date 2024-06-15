@@ -4,3 +4,9 @@
 
 [node name="AsteroidManager" type="Node"]
 script = ExtResource("1_2jo3x")
+buffer_distance = 64
+velocity_scale = 80
+
+[node name="CleanupCycle" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true

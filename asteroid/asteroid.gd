@@ -1,12 +1,30 @@
 ## Asteroid class
 class_name Asteroid extends RigidBody2D
 
+@export_range(16, 256, 1) var despawn_distance: int = 32
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+signal cleanup
+
+var ship: Ship
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+## Called every clean-up cycle
+func _on_cleanup_check() -> void:
+	if not ship or not is_instance_valid(ship):
+		return
+	var viewport_rect: Rect2 = ship.get_view()
+	
+	# Asteroid is far away
+	if position.distance_squared_to(viewport_rect.position) > pow(viewport_rect.size.x + viewport_rect.size.y + despawn_distance, 2.0):
+		clean()
+
+
+## Subscribes this asteroid to the manager's clean-up cycle
+func subscribe_to_cleanup(timer: Timer) -> void:
+	timer.timeout.connect(_on_cleanup_check)
+
+
+## Removes this asteroid
+func clean() -> void:
+	cleanup.emit()
+	queue_free()

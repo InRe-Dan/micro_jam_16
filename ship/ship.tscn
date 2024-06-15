@@ -6,8 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ghoh"]
 size = Vector2(120, 120)
 
-[node name="Ship" type="CharacterBody2D"]
-motion_mode = 1
+[node name="Ship" type="RigidBody2D"]
+mass = 800.0
+gravity_scale = 0.0
 script = ExtResource("1_keua4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -15,3 +16,5 @@ shape = SubResource("RectangleShape2D_7ghoh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8ke6x")
+
+[node name="Camera2D" type="Camera2D" parent="."]

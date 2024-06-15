@@ -7,7 +7,7 @@
 size = Vector2(120, 120)
 
 [node name="Asteroid" type="RigidBody2D"]
-mass = 0.1
+mass = 2000.0
 gravity_scale = 0.0
 script = ExtResource("1_6gbgw")
 

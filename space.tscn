@@ -1,22 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=5 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
+[ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
 [ext_resource type="Texture2D" uid="uid://27jl7kbs8d31" path="res://assets/stars.png" id="2_0sivs"]
 [ext_resource type="PackedScene" uid="uid://15nw6rx5kmj4" path="res://asteroid/asteroid_manager.tscn" id="3_0l84n"]
 
 [node name="Space" type="Node"]
+script = ExtResource("1_bj1jb")
 
 [node name="Ship" parent="." instance=ExtResource("1_38olg")]
+acceleration = 50
+torque = 4.0
+terminal_velocity = 2.0
+terminal_rotational_velocity = 0.8
 
-[node name="Camera2D" type="Camera2D" parent="Ship"]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="StarfieldBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(0.8, 0.8)
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="StarfieldBackground"]
 motion_mirroring = Vector2(512, 512)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer"]
+texture = ExtResource("2_0sivs")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(512, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer2"]
+texture = ExtResource("2_0sivs")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(512, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer3"]
 texture = ExtResource("2_0sivs")
 centered = false
 
