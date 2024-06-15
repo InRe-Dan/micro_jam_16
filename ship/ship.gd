@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 			fuel_consumed_this_frame += rotation_burn * delta
 	
 	if Input.is_action_just_pressed("fire"):
-		$Gun.use()
+		$Inventory.use()
 	
 	linear_velocity.limit_length(terminal_velocity)
 	angular_velocity = clamp(angular_velocity, -terminal_rotational_velocity, terminal_rotational_velocity)

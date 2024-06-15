@@ -1,5 +1,5 @@
 ## Class for simple ship gun
-extends Node2D
+class_name DualGun extends Item
 
 @onready var bullet_scene: PackedScene = preload("res://ship/bullet.tscn")
 @export var fire_delay: float = 1 / 30.
@@ -21,7 +21,6 @@ func use() -> void:
 func _ready() -> void:
 	assert(firing_positions.size() > 0)
 	bullet_container = get_tree().get_first_node_in_group("main")
-	
 
 func next_position() -> Vector2:
 	gun_index += 1

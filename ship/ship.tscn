@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=18 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://Ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c2s4cykfyfpac" path="res://assets/ship_frames/frame_0008.png" id="12_qg6g6"]
 [ext_resource type="Texture2D" uid="uid://cjd4htvxy0vtp" path="res://assets/ship_frames/frame_0009.png" id="13_3k23i"]
 [ext_resource type="Script" path="res://ship/matter_magnet.gd" id="14_ai1tn"]
+[ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqvmb"]
 animations = [{
@@ -76,9 +77,6 @@ acceleration = 100
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -153, -65, 0, -31, 57, -54, 78, -1, 93, 46, 80, 21, 57, 62, 0)
 
-[node name="Gun" parent="." node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
-firing_positions = [NodePath("../FiringPositions/Marker2D"), NodePath("../FiringPositions/Marker2D2")]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pqvmb")
 animation = &"idle"
@@ -99,7 +97,11 @@ script = ExtResource("14_ai1tn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MatterMagnet"]
 shape = SubResource("CircleShape2D_ytji8")
 
-[node name="Inventory" type="Node2D" parent="."]
+[node name="Inventory" parent="." instance=ExtResource("15_6vfc2")]
+
+[node name="Gun" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+fire_delay = 0.0333333
+firing_positions = [NodePath("../../FiringPositions/Marker2D"), NodePath("../../FiringPositions/Marker2D2")]
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]
 [connection signal="matter_picked_up" from="MatterMagnet" to="." method="_on_matter_magnet_matter_picked_up"]
