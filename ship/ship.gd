@@ -91,8 +91,8 @@ func damage(dmg: int) -> void:
 		die()
 
 ## Ship collided with a body
-func _on_collision(body: PhysicsBody2D) -> void:
-	if not body is Asteroid:
+func _on_collision(body: Node2D) -> void:
+	if not body is Hazard:
 		return
 	damage(10)
 

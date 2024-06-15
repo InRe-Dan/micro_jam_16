@@ -13,7 +13,7 @@ extends Node2D
 func _ready() -> void:
 	player.died.connect(queue_free)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Orient arrows
 	var direction := player.global_position.direction_to(objective.global_position)
 	global_position = player.global_position + direction * player_distance

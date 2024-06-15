@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://be23rp1a0ly6h"]
 
-[ext_resource type="Script" path="res://asteroid/matter_fragment.gd" id="1_f2ec4"]
-[ext_resource type="Texture2D" uid="uid://dhsckmqtap38y" path="res://assets/asteroid_medium.png" id="1_jdwoa"]
+[ext_resource type="Script" path="res://collectable/matter_fragment.gd" id="1_fyu27"]
+[ext_resource type="Texture2D" uid="uid://dhsckmqtap38y" path="res://assets/asteroid_medium.png" id="2_hu0ut"]
 
 [node name="Matter Fragment" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_f2ec4")
+script = ExtResource("1_fyu27")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, 3)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_jdwoa")
+texture = ExtResource("2_hu0ut")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-1, 3)
