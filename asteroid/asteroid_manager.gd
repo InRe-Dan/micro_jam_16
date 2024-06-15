@@ -19,10 +19,15 @@ var asteroid_scene: PackedScene = preload("res://asteroid/asteroid.tscn")
 @onready var cleanup_timer: Timer = $CleanupCycle
 
 @onready var ship: Ship = get_tree().get_first_node_in_group("player")
+var stopped = false
+
+func stop() -> void:
+	stopped = true
 
 func _ready() -> void:
 	for i in range(active_count):
 		spawn_asteroid()
+	ship.died.connect(stop)
 
 
 
@@ -34,7 +39,8 @@ func _on_asteroid_cleanedup() -> void:
 
 ## Creates a new asteroid
 func spawn_asteroid() -> void:
-	
+	if stopped:
+		return
 	var distance : float = randf() * (max_dist - min_dist) + min_dist
 	var spawn_position: Vector2 = Vector2.from_angle(randf() * TAU) * distance + ship.global_position
 	

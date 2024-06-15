@@ -11,7 +11,7 @@ extends Node2D
 @onready var label : Label = $Label
 
 func _ready() -> void:
-	player.died.connect(queue_free)w
+	player.died.connect(queue_free)
 
 func _process(delta: float) -> void:
 	# Orient arrows
@@ -20,16 +20,21 @@ func _process(delta: float) -> void:
 	arrow.rotation = direction.angle() + PI / 2
 	
 	# Update label
-	var au : int = player.global_position.distance_to(objective.global_position) * 100 / au_to_pixels
-	var string : String = str(au / 100.)
+	var au : float = int(player.global_position.distance_to(objective.global_position) * 100 / au_to_pixels) / 100.
+	if au < 0.5:
+		visible = false
+		return
+	visible = true
+	var string : String = str(au)
+	var split : PackedStringArray = string.split(".")
 	# We need to pad zeroes to make sure that the width of this string is always 4
-	if string.length() == 1:
-		string += ".00"
-	elif string.length() == 2:
-		push_error("wtf")
-	elif string.length() == 3:
-		print(string)
-		string = string.insert(3, "0")
+	if split.size() == 1:
+		label.text = string + ".00 au"
+		return
+	if split[1].length() == 0:
+		split[1] = "00"
+	elif split[1].length() == 1:
+		split[1] = split[1].insert(0, "0")
 	
-	label.text = string + " au"
+	label.text = split[0] + "." + split[1] + " au"
 	
