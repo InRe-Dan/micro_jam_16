@@ -73,7 +73,7 @@ script = ExtResource("1_keua4")
 polygon = PackedVector2Array(0, -153, -65, 0, -31, 57, -54, 78, -1, 93, 46, 80, 21, 57, 62, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.25, 0.25)
 
 [node name="Gun" parent="." node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
 firing_positions = [NodePath("../FiringPositions/Marker2D"), NodePath("../FiringPositions/Marker2D2")]

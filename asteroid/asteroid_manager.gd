@@ -2,13 +2,15 @@
 extends Node
 
 ## Maximum amount of active asteroids
-@export_range(1, 128, 1) var active_count: int = 16
+@export_range(1, 128, 1) var active_count: int = 32
 
-## Buffered distance on asteroids spawning outside of view
-@export_range(0, 256, 1) var buffer_distance: int = 0
+## Minimum distance to spawn from the player
+@export_range(2500, 10000, 1) var min_dist: float = 0
+## Maximum distance to spawn from the player
+@export_range(3000, 10000, 1) var max_dist : float = 5000
 
 ## Spawn velocity scale
-@export_range(0, 1000, 10) var velocity_scale: int = 100
+@export_range(0, 5000, 10) var velocity_scale: int = 100
 
 ## Spawn angular velocity scale
 @export_range(0.0, 10.0, 0.1) var angular_velocity_scale: float = 2.0
@@ -16,14 +18,12 @@ extends Node
 var asteroid_scene: PackedScene = preload("res://asteroid/asteroid.tscn")
 @onready var cleanup_timer: Timer = $CleanupCycle
 
-var ship: Ship
+@onready var ship: Ship = get_tree().get_first_node_in_group("player")
 
-
-## Initializes this node
-func init(_ship: Ship) -> void:
-	self.ship = _ship
+func _ready() -> void:
 	for i in range(active_count):
 		spawn_asteroid()
+
 
 
 ## Called when an asteroid is freed
@@ -34,29 +34,12 @@ func _on_asteroid_cleanedup() -> void:
 
 ## Creates a new asteroid
 func spawn_asteroid() -> void:
-	if not ship or not is_instance_valid(ship):
-		return
-	var viewport_rect: Rect2 = ship.get_view()
 	
-	# Determine random spawn location
-	var side = randi() % 4
-	var spawn_position: Vector2 = Vector2.ZERO
-	match side:
-		0: # Top side
-			spawn_position.x = randf_range(-viewport_rect.size.x / 2, viewport_rect.size.x / 2)
-			spawn_position.y = (viewport_rect.position.y - viewport_rect.size.y / 2) - buffer_distance
-		1: # Bottom side
-			spawn_position.x = randf_range(-viewport_rect.size.x / 2, viewport_rect.size.x / 2)
-			spawn_position.y = (viewport_rect.position.y + viewport_rect.size.y / 2) + buffer_distance
-		2: # Left side
-			spawn_position.x = (viewport_rect.position.x - viewport_rect.size.x / 2) - buffer_distance
-			spawn_position.y = randf_range(-viewport_rect.size.y / 2, viewport_rect.size.y / 2)
-		_: # Right side
-			spawn_position.x = (viewport_rect.position.x + viewport_rect.size.x / 2) + buffer_distance
-			spawn_position.y = randf_range(-viewport_rect.size.y / 2, viewport_rect.size.y / 2)
+	var distance : float = randf() * (max_dist - min_dist) + min_dist
+	var spawn_position: Vector2 = Vector2.from_angle(randf() * TAU) * distance + ship.global_position
 	
-	# Determine random velocity
-	var spawn_velocity: Vector2 = Vector2(randf_range(-1, 1) * velocity_scale, randf_range(-1, 1) * velocity_scale)
+	# Determine random velocity. Speed will be 30-100% of speed scale.
+	var spawn_velocity: Vector2 = Vector2.from_angle(TAU * randf()) * velocity_scale * (randf() * 0.7 + 0.3)
 	
 	var asteroid: Asteroid = asteroid_scene.instantiate() as Asteroid
 	asteroid.position = spawn_position

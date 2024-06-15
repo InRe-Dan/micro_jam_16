@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://music_player.gd" id="3_i86ay"]
 [ext_resource type="PackedScene" uid="uid://dgxvroecovain" path="res://game_ui/game_ui.tscn" id="7_j5bfe"]
 
-[node name="Space" type="Node2D"]
+[node name="Space" type="Node2D" groups=["main"]]
 script = ExtResource("1_bj1jb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -17,21 +17,7 @@ volume_db = -10.0
 autoplay = true
 script = ExtResource("3_i86ay")
 
-[node name="BulletCollection" type="Node" parent="."]
-
 [node name="Ship" parent="." instance=ExtResource("1_38olg")]
-maximum_health = 100
-acceleration = 60
-torque = 1.2
-terminal_velocity = 4.0
-terminal_rotational_velocity = 4.0
-braking_strength = 0.5
-angle_braking_strength = 6.0
-max_fuel = 100.0
-passive_burn = 0.5
-thruster_burn = 3.0
-brake_burn = 0.5
-rotation_burn = 1.0
 
 [node name="StarfieldBackground" type="ParallaxBackground" parent="."]
 scroll_base_scale = Vector2(0.8, 0.8)

@@ -17,16 +17,11 @@ func use() -> void:
 		time_since_fired = 0;
 		fire()
 
-## Initializes this node
-func init(bullet_collection: Node) -> void:
-	bullet_container = bullet_collection
-	set_process(true)
-
-
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_process(false)
 	assert(firing_positions.size() > 0)
+	bullet_container = get_tree().get_first_node_in_group("main")
+	
 
 func next_position() -> Vector2:
 	gun_index += 1

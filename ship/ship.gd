@@ -88,12 +88,6 @@ func damage(dmg: int) -> void:
 	if health <= 0:
 		die()
 
-	
-## Returns the current viewport
-func get_view() -> Rect2:
-	return Rect2(position, camera.get_viewport().get_visible_rect().size)
-
-
 ## Ship collided with a body
 func _on_collision(body: PhysicsBody2D) -> void:
 	if not body is Asteroid:
