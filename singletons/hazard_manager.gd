@@ -54,7 +54,7 @@ func create_new_hazard() -> void:
 		hazard = asteroid_scene.instantiate() as Asteroid
 	
 	call_deferred("spawn_hazard", hazard)
-	hazard.cleanup.connect(_on_hazard_cleanedup)
+	hazard.cleaned.connect(_on_hazard_cleanedup)
 
 
 ## Spawns a new hazard by instance
@@ -74,3 +74,8 @@ func spawn_hazard(hazard: Hazard, spawn_position: Vector2 = Vector2.INF) -> void
 	hazard.linear_velocity = spawn_velocity
 	
 	add_child(hazard)
+
+
+## Clean up cycle
+func _on_timeout():
+	cleanup.emit()

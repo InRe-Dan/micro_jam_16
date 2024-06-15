@@ -6,3 +6,5 @@
 wait_time = 0.5
 autostart = true
 script = ExtResource("1_ucliy")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

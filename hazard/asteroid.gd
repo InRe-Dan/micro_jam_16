@@ -11,6 +11,7 @@ var matter_scene : PackedScene = preload("res://collectable/matter_fragment.tscn
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	if not matter_spawn_distribution: push_error("No spawn curve assigned")
 	self.angular_velocity = randf_range(-angular_velocity_scale, angular_velocity_scale)
 
