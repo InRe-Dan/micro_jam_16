@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://brq16xbmrua68"]
+
+[ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
+[ext_resource type="Texture2D" uid="uid://civrpfaivs8nm" path="res://assets/star.png" id="2_mtw3c"]
+
+[node name="Space" type="Node"]
+
+[node name="Ship" parent="." instance=ExtResource("1_38olg")]
+
+[node name="Camera2D" type="Camera2D" parent="Ship"]
+zoom = Vector2(2, 2)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(10, 10)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_mtw3c")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
