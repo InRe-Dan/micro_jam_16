@@ -79,4 +79,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("scroll_up"):
 		camera.zoom += Vector2.ONE * 0.1
 	elif event.is_action_pressed("scroll_down"):
-		camera.zoom += Vector2.ONE * 0.1
+		camera.zoom -= Vector2.ONE * 0.1

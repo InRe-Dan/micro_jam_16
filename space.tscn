@@ -25,27 +25,32 @@ scroll_base_scale = Vector2(0.8, 0.8)
 scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="StarfieldBackground"]
-motion_mirroring = Vector2(512, 512)
+motion_scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer"]
 texture = ExtResource("2_0sivs")
-centered = false
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="StarfieldBackground"]
-motion_scale = Vector2(0.8, 0.8)
-motion_mirroring = Vector2(512, 512)
+motion_scale = Vector2(0.17, 0.17)
+motion_offset = Vector2(164, 85)
 
 [node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer2"]
+texture_repeat = 2
 texture = ExtResource("2_0sivs")
-centered = false
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="StarfieldBackground"]
-motion_scale = Vector2(0.6, 0.6)
-motion_mirroring = Vector2(512, 512)
+motion_scale = Vector2(0.15, 0.15)
+motion_offset = Vector2(73, 356)
 
 [node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/ParallaxLayer3"]
+texture_repeat = 2
 texture = ExtResource("2_0sivs")
-centered = false
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
 [node name="AsteroidManager" parent="." instance=ExtResource("3_0l84n")]
 
