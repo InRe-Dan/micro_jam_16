@@ -23,20 +23,20 @@ func _process(_delta: float) -> void:
 	matter.text = "Matter: " + str(player.matter)
 
 func _on_fuel_bought() -> void:
-	if player.matter > 0:
+	if player.matter > 0 and player.fuel < player.max_fuel:
 		player.matter -= 1
 		player.fuel += player.max_fuel * 0.1
 
 
 func _on_repair_bought() -> void:
-	if player.matter > 0:
+	if player.matter > 0 and player.health < player.maximum_health:
 		player.matter -= 1
 		player.health += player.maximum_health * 0.05
 		player.health = clamp(player.health, 0, player.maximum_health)
 
 
 func _on_buy_ammo_pressed() -> void:
-	if player.matter > 0:
+	if player.matter > 0 and player.ammo < player.max_ammo:
 		player.matter -= 1
 		player.ammo += player.max_ammo * 0.05
 		player.ammo = clamp(player.ammo, 0, player.max_ammo)
