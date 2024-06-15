@@ -22,16 +22,20 @@ class_name Ship extends RigidBody2D
 
 @export_category("Fuel Consumption")
 @export var max_fuel : float = 100
-@export var passive_burn : float = 0.5
-@export var thruster_burn : float = 3.0
-@export var brake_burn : float = 0.5
-@export var rotation_burn : float = 1.0
+@export var passive_burn : float = 0.2
+@export var thruster_burn : float = 2.4
+@export var brake_burn : float = 0.4
+@export var rotation_burn : float = 0.8
 
 ## Current health of the ship
 @onready var health: float = maximum_health
+## Current fuel
 @onready var fuel : float = max_fuel
-@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var thrust_sprite: Sprite2D = sprite.get_node("Thrust")
 @onready var ammo : int = max_ammo
+@onready var iframe_timer: Timer = $Invincibility
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
@@ -51,12 +55,12 @@ func _physics_process(delta: float) -> void:
 		fuel_consumed_this_frame += brake_burn * delta
 
 	if Input.is_action_pressed("thrust") and fuel > 0:
-		sprite.play("thrust")
+		thrust_sprite.visible = true
 		var direction: Vector2 = -transform.y.normalized()
 		linear_velocity += (direction * acceleration) * delta
 		fuel_consumed_this_frame += thruster_burn * delta
 	else:
-		sprite.play("idle")
+		thrust_sprite.visible = false
 	
 	# Check for spin or angle brakes
 	if Input.is_action_pressed("angular_brake") and fuel > 0:
@@ -90,9 +94,12 @@ func get_inventory() -> Inventory:
 
 ## Makes the ship take damage
 func damage(dmg: int) -> void:
+	if not iframe_timer.is_stopped(): return
+	iframe_timer.start()
 	health -= dmg
 	if health <= 0:
 		die()
+
 
 ## Ship collided with a body
 func _on_collision(body: Node2D) -> void:

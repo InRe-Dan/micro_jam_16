@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7htls8lgsumu"]
 
 [ext_resource type="Script" path="res://hazard/asteroid.gd" id="1_8m04n"]
-[ext_resource type="Texture2D" uid="uid://dhsckmqtap38y" path="res://assets/asteroid_medium.png" id="2_kugcw"]
+[ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_prcix"]
 
 [sub_resource type="Curve" id="Curve_gwt70"]
 max_value = 10.0
@@ -18,7 +18,11 @@ matter_spawn_distribution = SubResource("Curve_gwt70")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.580392, 0.533333, 0.568627, 1)
-texture = ExtResource("2_kugcw")
+scale = Vector2(3, 3)
+texture = ExtResource("2_prcix")
+region_enabled = true
+region_rect = Rect2(1011, 6, 43, 42)
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(35, -182, -106, -69, -90, -35, -122, 66, -4, 178, 124, 6, 122, -82, 67, -128)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(3, 3)
+polygon = PackedVector2Array(-9, -19, -19, -5, -13, 14, 0, 18, 18, 6, 15, -17)

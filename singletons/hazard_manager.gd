@@ -4,10 +4,10 @@ extends Node
 signal cleanup
 
 ## Maximum amount of active hazards
-@export_range(1, 128, 1) var active_count: int = 32
+@export_range(1, 128, 1) var active_count: int = 48
 
 ## Minimum distance to spawn from the player
-@export_range(2500, 10000, 1) var min_dist: float = 2500
+@export_range(2000, 10000, 1) var min_dist: float = 2500
 ## Maximum distance to spawn from the player
 @export_range(3000, 10000, 1) var max_dist : float = 5000
 

@@ -19,6 +19,11 @@ func _ready() -> void:
 
 ## Destroys the asteroid
 func destroy() -> void:
+	# Spawn one asteroid worth of matter
+	var matter_asteroid: Asteroid = asteroid_scene.instantiate() as Asteroid
+	HazardManager.call_deferred("spawn_hazard", matter_asteroid as Hazard, position)
+	matter_asteroid.call_deferred("destroy")
+	
 	for i in range(round(asteroid_spawn_distribution.sample(randf()))):
 		var asteroid: Asteroid = asteroid_scene.instantiate()
 		HazardManager.call_deferred("spawn_hazard", asteroid as Hazard, position)
