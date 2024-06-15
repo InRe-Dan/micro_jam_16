@@ -34,7 +34,7 @@ func damage(dmg: int) -> void:
 func destroy() -> void:
 	for i in range(matter_spawn_distribution.sample(randf())):
 		var matter : MatterFragment = matter_scene.instantiate()
-		add_sibling(matter)
+		add_sibling.call_deferred(matter)
 		var direction = Vector2.from_angle(TAU * randf())
 		matter.global_position = global_position + direction * (30 + randf() * 60)
 		matter.rotation = randf() * TAU

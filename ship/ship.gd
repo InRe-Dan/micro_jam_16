@@ -29,7 +29,6 @@ class_name Ship extends RigidBody2D
 ## Current health of the ship
 @onready var health: float = maximum_health
 @onready var fuel : float = max_fuel
-@onready var camera: Camera2D = $Camera2D
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 ## Ship's current rotational velocity
