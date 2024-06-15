@@ -1,4 +1,4 @@
-extends Area2D
+class_name MatterMagnet extends Area2D
 
 ## How fast matter within the radius comes to the origin
 @export var acceleration : float = 100
@@ -10,7 +10,7 @@ signal matter_picked_up
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$CanvasLayer/Radius.assign_magnet_ref(self)
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.

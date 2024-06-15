@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=18 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c2s4cykfyfpac" path="res://assets/ship_frames/frame_0008.png" id="12_qg6g6"]
 [ext_resource type="Texture2D" uid="uid://cjd4htvxy0vtp" path="res://assets/ship_frames/frame_0009.png" id="13_3k23i"]
 [ext_resource type="Script" path="res://ship/matter_magnet.gd" id="14_ai1tn"]
+[ext_resource type="Script" path="res://ship/magnet_radius_drawer.gd" id="15_fkqup"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqvmb"]
 animations = [{
@@ -98,6 +99,15 @@ script = ExtResource("14_ai1tn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MatterMagnet"]
 shape = SubResource("CircleShape2D_ytji8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MatterMagnet"]
+
+[node name="Radius" type="Control" parent="MatterMagnet/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_fkqup")
 
 [node name="Inventory" type="Node2D" parent="."]
 
