@@ -37,6 +37,8 @@ class_name Ship extends RigidBody2D
 @onready var ammo : int = max_ammo
 @onready var iframe_timer: Timer = $Invincibility
 @onready var particles : CPUParticles2D = $CPUParticles2D
+@onready var forward_ray: RayCast2D = $RayCast2D
+@onready var crosshair: Sprite2D = $Crosshair
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
@@ -47,6 +49,16 @@ var matter : int = 0
 var thruster_power : float = 0.0
 
 signal died
+
+## Called every process frame
+func _process(_delta: float) -> void:
+	var laser_point: float = 0.0
+	if forward_ray.is_colliding():
+		laser_point = -forward_ray.get_collision_point().distance_to(global_position)
+	else:
+		laser_point = forward_ray.target_position.y
+	crosshair.position.y = laser_point
+
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
