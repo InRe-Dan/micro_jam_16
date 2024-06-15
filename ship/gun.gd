@@ -1,11 +1,15 @@
 ## Class for simple ship gun
 class_name DualGun extends Item
 
-@onready var bullet_scene: PackedScene = preload("res://ship/bullet.tscn")
+@export var damage : int = 1
 @export var fire_delay: float = 1 / 30.
-
+@export var starting_ammo : int = 50
+@export var ammo_per_purchase : int = 10
 ## Nodes representing where bullets should be spawned
 @export var firing_positions : Array[Node2D]
+
+@onready var bullet_scene: PackedScene = preload("res://ship/bullet.tscn")
+@onready var ammo : int = starting_ammo
 
 var bullet_container: Node
 ## Which gun should be fired next
@@ -16,6 +20,16 @@ func use() -> void:
 	if time_since_fired >= fire_delay:
 		time_since_fired = 0;
 		fire()
+
+func get_ammo_info() -> String:
+	push_error("Unimplemented Item Method!")
+	# Shut up, editor.
+	return "100%"
+	
+## Called by UI nodes when the "Buy" button is used.
+func buy_ammo() -> void:
+	push_error("Unimplemented Item Method!")
+
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +51,7 @@ func fire() -> void:
 	var pos : Vector2 = next_position()
 	if get_parent() is Ship:
 		bullet.velocity_offset = get_parent().linear_velocity
+	bullet.damage = damage
 	bullet.position = pos
 	bullet.rotation = global_rotation
 	bullet_container.add_child(bullet)

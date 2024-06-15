@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 			angular_velocity += (rotation_input * torque) * delta
 			fuel_consumed_this_frame += rotation_burn * delta
 	
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire"):
 		$Inventory.use()
 	
 	linear_velocity.limit_length(terminal_velocity)

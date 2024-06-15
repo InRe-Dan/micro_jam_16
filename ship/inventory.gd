@@ -14,8 +14,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("scroll_up"):
 		selected += 1
 	if Input.is_action_just_pressed("scroll_down"):
-		selected -= 0
-	selected = selected % get_child_count()
+		selected -= 1
+	
+	if selected < 0:
+		selected = get_child_count() - 1
+	if selected == get_child_count():
+		selected = 0
 
 func use() -> void:
 	get_children()[selected].use()

@@ -83,10 +83,13 @@ animation = &"idle"
 
 [node name="FiringPositions" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="FiringPositions"]
+[node name="Left" type="Marker2D" parent="FiringPositions"]
 position = Vector2(-50, -36)
 
-[node name="Marker2D2" type="Marker2D" parent="FiringPositions"]
+[node name="Center" type="Marker2D" parent="FiringPositions"]
+position = Vector2(0, -153)
+
+[node name="Right" type="Marker2D" parent="FiringPositions"]
 position = Vector2(55, -36)
 
 [node name="MatterMagnet" type="Area2D" parent="."]
@@ -99,9 +102,18 @@ shape = SubResource("CircleShape2D_ytji8")
 
 [node name="Inventory" parent="." instance=ExtResource("15_6vfc2")]
 
-[node name="Gun" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
-fire_delay = 0.0333333
-firing_positions = [NodePath("../../FiringPositions/Marker2D"), NodePath("../../FiringPositions/Marker2D2")]
+[node name="Alternating" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+damage = 3
+fire_delay = 0.333
+starting_ammo = 20
+ammo_per_purchase = 5
+firing_positions = [NodePath("../../FiringPositions/Left"), NodePath("../../FiringPositions/Right")]
+
+[node name="Laser" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+fire_delay = 0.01
+starting_ammo = 100
+ammo_per_purchase = 100
+firing_positions = [NodePath("../../FiringPositions/Center")]
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]
 [connection signal="matter_picked_up" from="MatterMagnet" to="." method="_on_matter_magnet_matter_picked_up"]
