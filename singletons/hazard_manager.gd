@@ -4,7 +4,7 @@ extends Node
 signal cleanup
 
 ## Maximum amount of active hazards
-@export_range(1, 128, 1) var active_count: int = 48
+@export_range(1, 128, 1) var active_count: int = 64
 
 ## Minimum distance to spawn from the player
 @export_range(2000, 10000, 1) var min_dist: float = 2500
@@ -17,8 +17,12 @@ signal cleanup
 ## Spawn chance for large asteroid
 @export_range(0.0, 1.0, 0.1) var large_spawn_chance: float = 0.2
 
+## Spawn chance for mine
+@export_range(0.0, 1.0, 0.1) var mine_spawn_chance: float = 0.05
+
 var asteroid_scene: PackedScene = preload("res://hazard/asteroid.tscn")
 var large_asteroid_scene: PackedScene = preload("res://hazard/large_asteroid.tscn")
+var mine_scene: PackedScene = preload("res://hazard/mine.tscn")
 
 @onready var ship: Ship = get_tree().get_first_node_in_group("player")
 var stopped = false
@@ -48,7 +52,10 @@ func create_new_hazard() -> void:
 
 	var spawn_choice = randf()
 	var hazard: Hazard
-	if spawn_choice <= large_spawn_chance:
+	spawn_choice = 0.00
+	if spawn_choice <= mine_spawn_chance:
+		hazard = mine_scene.instantiate() as Mine
+	elif spawn_choice <= large_spawn_chance + mine_spawn_chance:
 		hazard = large_asteroid_scene.instantiate() as LargeAsteroid
 	else:
 		hazard = asteroid_scene.instantiate() as Asteroid

@@ -2,7 +2,7 @@
 class_name Hazard extends Node2D
 
 ## Health of the hazard
-@export_range(1, 10, 1) var health: int = 3
+@export_range(1, 100, 1) var health: int = 3
 
 ## Distance at which the hazard cleans up
 var despawn_distance: float = 3e7
