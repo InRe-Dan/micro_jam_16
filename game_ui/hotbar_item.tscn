@@ -46,3 +46,14 @@ offset_right = 101.0
 offset_bottom = 83.0
 text = "Item Name"
 horizontal_alignment = 1
+
+[node name="Buy" type="Button" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 53.0
+offset_bottom = 49.0
+focus_mode = 0
+text = "Buy"
+
+[connection signal="pressed" from="Buy" to="." method="_on_buy_pressed"]

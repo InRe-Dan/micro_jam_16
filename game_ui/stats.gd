@@ -3,6 +3,7 @@ extends VBoxContainer
 @onready var player : Ship = get_tree().get_first_node_in_group("player")
 @onready var health : TextureProgressBar = $HBoxContainer2/HealthBar
 @onready var fuel : TextureProgressBar = $HBoxContainer/FuelBar
+@onready var ammo : TextureProgressBar = $Ammo/AmmoBar
 @onready var burn : Label = $Burn
 @onready var matter : Label = $Matter
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	health.value = player.health / player.maximum_health
 	fuel.value = player.fuel / player.max_fuel
+	ammo.value = float(player.ammo) / player.max_ammo
 	var c : float = player.fuel_consumption
 	var rounded : float = (round(c*pow(10,3))/pow(10,3))
 	burn.text = "Fuel consumption: " + str(rounded)
@@ -31,3 +33,10 @@ func _on_repair_bought() -> void:
 		player.matter -= 1
 		player.health += player.maximum_health * 0.05
 		player.health = clamp(player.health, 0, player.maximum_health)
+
+
+func _on_buy_ammo_pressed() -> void:
+	if player.matter > 0:
+		player.matter -= 1
+		player.ammo += player.max_ammo * 0.05
+		player.ammo = clamp(player.ammo, 0, player.max_ammo)

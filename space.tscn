@@ -67,10 +67,10 @@ position = Vector2(1611, -862)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("7_j5bfe")]
-offset_left = 4.0
-offset_top = 444.0
-offset_right = 304.0
-offset_bottom = 644.0
+offset_left = 3.0
+offset_top = 392.0
+offset_right = 303.0
+offset_bottom = 642.0
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource("11_auq1p")]
 offset_left = 2.0

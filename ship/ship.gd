@@ -4,6 +4,7 @@ class_name Ship extends RigidBody2D
 @export_category("Base stats")
 ## Maximum health of the ship
 @export_range(1, 1000, 100) var maximum_health: int = 100
+@export var max_ammo : int = 100
 
 @export_category("Movement")
 ## Rate at which the ship gains velocity while thrusting
@@ -30,6 +31,7 @@ class_name Ship extends RigidBody2D
 @onready var health: float = maximum_health
 @onready var fuel : float = max_fuel
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var ammo : int = max_ammo
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
@@ -60,9 +62,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("angular_brake") and fuel > 0:
 		angular_velocity = lerpf(angular_velocity, 0.0, angle_braking_strength * delta)
 		fuel_consumed_this_frame += brake_burn * delta
-	else:	
+	else:
 		var rotation_input = Input.get_axis("rotate_left", "rotate_right")
-		if rotation_input:
+		if rotation_input and fuel > 0:
 			angular_velocity += (rotation_input * torque) * delta
 			fuel_consumed_this_frame += rotation_burn * delta
 	
@@ -101,4 +103,3 @@ func _on_collision(body: PhysicsBody2D) -> void:
 
 func _on_matter_magnet_matter_picked_up() -> void:
 	matter += 1
-	print(matter)

@@ -1,5 +1,7 @@
 class_name Inventory extends Node2D
 
+@onready var player : Ship = get_parent()
+
 var selected : int = 0
 
 signal updated
@@ -37,4 +39,5 @@ func _process(delta: float) -> void:
 
 func use() -> void:
 	updated.emit()
-	get_children()[selected].use()
+	player.ammo -= get_children()[selected].use(player.ammo)
+	print(player.ammo)

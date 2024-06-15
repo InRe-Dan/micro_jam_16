@@ -3,29 +3,26 @@ class_name DualGun extends Item
 
 @export var damage : int = 1
 @export var fire_delay: float = 1 / 30.
-@export var starting_ammo : int = 50
-@export var ammo_per_purchase : int = 10
+@export var ammo_per_shot : int = 1
 ## Nodes representing where bullets should be spawned
 @export var firing_positions : Array[Node2D]
 
 @onready var bullet_scene: PackedScene = preload("res://ship/bullet.tscn")
-@onready var ammo : int = starting_ammo
 
 var bullet_container: Node
 ## Which gun should be fired next
 var gun_index : int = 0
 var time_since_fired : float = 0
 
-func use() -> void:
-	if time_since_fired >= fire_delay:
+func use(ammo_available : int) -> int:
+	if time_since_fired >= fire_delay and ammo_available > 0:
 		time_since_fired = 0;
 		fire()
+		return ammo_per_shot
+	return 0
 
 func get_ammo_info() -> String:
 	return "420/69"
-
-func buy_ammo() -> bool:
-	return true
 
 
 ## Called when the node enters the scene tree for the first time.
