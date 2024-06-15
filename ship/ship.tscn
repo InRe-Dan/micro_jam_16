@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=23 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_siafs"]
@@ -6,6 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
 [ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
 [ext_resource type="Script" path="res://items/item_data.gd" id="16_yh6yx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ll03w"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_iw3ru"]
+offsets = PackedFloat32Array(0, 0.62, 0.86, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0.368627, 0, 1, 0.824561, 0.303956, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_j5sr4"]
+colors = PackedColorArray(1, 0.556863, 0, 1, 1, 1, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_b5mpe"]
 noise_type = 3
@@ -98,6 +108,24 @@ max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_keua4")
 acceleration = 100
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_ll03w")
+position = Vector2(0, 27)
+amount = 120
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 101.01
+scale_amount_min = 4.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_iw3ru")
+color_initial_ramp = SubResource("Gradient_j5sr4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
