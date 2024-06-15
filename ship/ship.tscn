@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dr2kykiokepbr"]
 
-[ext_resource type="Script" path="res://Ship/ship.gd" id="1_keua4"]
+[ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://covtq2vek8jlj" path="res://assets/ship.png" id="2_stx34"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
 [ext_resource type="Texture2D" uid="uid://bm6ifeow38aad" path="res://assets/ship_frames/frame_0000.png" id="4_xwru5"]

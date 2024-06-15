@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coyxmoek1gpnh"]
+
+[ext_resource type="Script" path="res://singletons/matter_cleanup_timer.gd" id="1_bb1mr"]
+
+[node name="MatterCleanup" type="Timer"]
+script = ExtResource("1_bb1mr")

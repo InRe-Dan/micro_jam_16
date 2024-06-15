@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	health.value = player.health / player.maximum_health
 	fuel.value = player.fuel / player.max_fuel
 	var c : float = player.fuel_consumption

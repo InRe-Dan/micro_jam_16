@@ -4,7 +4,7 @@ class_name Asteroid extends RigidBody2D
 ## Health of the asteroid
 @export_range(1, 10, 1) var health: int = 3
 ## Distance at which the asteroid cleans up
-@export var despawn_distance: int = 6000
+@export var despawn_distance: float = 4e7
 @export var matter_spawn_distribution : Curve
 
 var ship: Ship
@@ -14,7 +14,7 @@ signal cleanup
 
 ## Called every clean-up cycle
 func _on_cleanup_check() -> void:
-	if get_viewport().get_camera_2d().global_position.distance_to(global_position) > despawn_distance:
+	if get_viewport().get_camera_2d().global_position.distance_squared_to(global_position) > despawn_distance:
 		clean()
 
 
