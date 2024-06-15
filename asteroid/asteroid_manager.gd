@@ -29,7 +29,7 @@ func init(_ship: Ship) -> void:
 ## Called when an asteroid is freed
 func _on_asteroid_cleanedup() -> void:
 	# Spawn a new asteroid in place of the old one
-	spawn_asteroid()
+	call_deferred("spawn_asteroid")
 
 
 ## Creates a new asteroid

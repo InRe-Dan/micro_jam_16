@@ -8,6 +8,8 @@
 [node name="Space" type="Node"]
 script = ExtResource("1_bj1jb")
 
+[node name="BulletCollection" type="Node" parent="."]
+
 [node name="Ship" parent="." instance=ExtResource("1_38olg")]
 
 [node name="StarfieldBackground" type="ParallaxBackground" parent="."]

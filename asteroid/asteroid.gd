@@ -24,6 +24,11 @@ func subscribe_to_cleanup(timer: Timer) -> void:
 	timer.timeout.connect(_on_cleanup_check)
 
 
+## Destroys the asteroid
+func destroy() -> void:
+	clean()
+
+
 ## Removes this asteroid
 func clean() -> void:
 	cleanup.emit()
