@@ -1,19 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7htls8lgsumu"]
+[gd_scene load_steps=3 format=3 uid="uid://c7htls8lgsumu"]
 
 [ext_resource type="Script" path="res://asteroid/asteroid.gd" id="1_6gbgw"]
-[ext_resource type="Texture2D" uid="uid://dqawsfg4wpyqw" path="res://icon.svg" id="1_rkmt2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw67j"]
-size = Vector2(120, 120)
+[ext_resource type="Texture2D" uid="uid://dhsckmqtap38y" path="res://assets/asteroid_medium.png" id="2_uctn1"]
 
 [node name="Asteroid" type="RigidBody2D"]
-mass = 2000.0
+collision_layer = 2
+mass = 10000.0
 gravity_scale = 0.0
 script = ExtResource("1_6gbgw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.580392, 0.533333, 0.568627, 1)
-texture = ExtResource("1_rkmt2")
+texture = ExtResource("2_uctn1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yw67j")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(35, -182, -106, -69, -90, -35, -122, 66, -4, 178, 124, 6, 122, -82, 67, -128)

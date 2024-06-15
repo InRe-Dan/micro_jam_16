@@ -9,10 +9,6 @@
 script = ExtResource("1_bj1jb")
 
 [node name="Ship" parent="." instance=ExtResource("1_38olg")]
-acceleration = 50
-torque = 4.0
-terminal_velocity = 2.0
-terminal_rotational_velocity = 0.8
 
 [node name="StarfieldBackground" type="ParallaxBackground" parent="."]
 scroll_base_scale = Vector2(0.8, 0.8)

@@ -11,7 +11,7 @@ extends Node
 @export_range(0, 1000, 10) var velocity_scale: int = 100
 
 ## Spawn angular velocity scale
-@export_range(0, 100, 1) var angular_velocity_scale: int = 10
+@export_range(0.0, 10.0, 0.1) var angular_velocity_scale: float = 2.0
 
 var asteroid_scene: PackedScene = preload("res://asteroid/asteroid.tscn")
 @onready var cleanup_timer: Timer = $CleanupCycle
