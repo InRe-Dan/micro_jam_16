@@ -19,3 +19,15 @@ func _process(delta: float) -> void:
 	var rounded : float = (round(c*pow(10,3))/pow(10,3))
 	burn.text = "Fuel consumption: " + str(rounded)
 	matter.text = "Matter: " + str(player.matter)
+
+func _on_fuel_bought() -> void:
+	if player.matter > 0:
+		player.matter -= 1
+		player.fuel += player.max_fuel * 0.1
+
+
+func _on_repair_bought() -> void:
+	if player.matter > 0:
+		player.matter -= 1
+		player.health += player.maximum_health * 0.05
+		player.health = clamp(player.health, 0, player.maximum_health)
