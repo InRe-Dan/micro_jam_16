@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgxvroecovain"]
+[gd_scene load_steps=12 format=3 uid="uid://dgxvroecovain"]
 
 [ext_resource type="Script" path="res://game_ui/game_ui.gd" id="1_e52c0"]
 [ext_resource type="Script" path="res://game_ui/stats.gd" id="2_j0vfl"]
+[ext_resource type="Script" path="res://game_ui/upgrades.gd" id="3_2wkmo"]
+[ext_resource type="Script" path="res://game_ui/shop.gd" id="4_frm2h"]
+[ext_resource type="Script" path="res://game_ui/debug.gd" id="5_h6o41"]
 
 [sub_resource type="Gradient" id="Gradient_nlddr"]
 offsets = PackedFloat32Array(0)
@@ -9,7 +12,7 @@ colors = PackedColorArray(1, 0.490196, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_we3ff"]
 gradient = SubResource("Gradient_nlddr")
-width = 180
+width = 170
 height = 32
 
 [sub_resource type="Gradient" id="Gradient_qckpf"]
@@ -18,8 +21,13 @@ colors = PackedColorArray(0.7, 0.063, 0.063, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ydbso"]
 gradient = SubResource("Gradient_qckpf")
-width = 180
+width = 170
 height = 32
+
+[sub_resource type="Gradient" id="Gradient_ry4xy"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18v2l"]
+gradient = SubResource("Gradient_ry4xy")
 
 [node name="GameUI" type="TabContainer"]
 custom_minimum_size = Vector2(300, 200)
@@ -30,25 +38,30 @@ script = ExtResource("1_e52c0")
 [node name="Stats" type="ScrollContainer" parent="."]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Stats"]
+[node name="Stats" type="MarginContainer" parent="Stats"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Stats" type="VBoxContainer" parent="Stats/MarginContainer"]
+[node name="Stats" type="VBoxContainer" parent="Stats/Stats"]
 layout_mode = 2
 script = ExtResource("2_j0vfl")
 
-[node name="FuelBar" type="TextureProgressBar" parent="Stats/MarginContainer/Stats"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Stats/Stats/Stats"]
+layout_mode = 2
+
+[node name="FuelBar" type="TextureProgressBar" parent="Stats/Stats/Stats/HBoxContainer"]
 layout_mode = 2
 max_value = 1.0
 step = 0.0
 value = 1.0
 texture_progress = SubResource("GradientTexture2D_we3ff")
 
-[node name="Label" type="Label" parent="Stats/MarginContainer/Stats/FuelBar"]
+[node name="Label" type="Label" parent="Stats/Stats/Stats/HBoxContainer/FuelBar"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
@@ -57,29 +70,141 @@ offset_bottom = 27.0
 text = "Fuel
 "
 
-[node name="HealthBar" type="TextureProgressBar" parent="Stats/MarginContainer/Stats"]
+[node name="Button" type="Button" parent="Stats/Stats/Stats/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy (10%)"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Stats/Stats/Stats"]
+layout_mode = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="Stats/Stats/Stats/HBoxContainer2"]
 layout_mode = 2
 max_value = 1.0
 step = 0.0
 value = 1.0
 texture_progress = SubResource("GradientTexture2D_ydbso")
 
-[node name="Label" type="Label" parent="Stats/MarginContainer/Stats/HealthBar"]
+[node name="Label" type="Label" parent="Stats/Stats/Stats/HBoxContainer2/HealthBar"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
 offset_right = 54.0
 offset_bottom = 27.0
-text = "Health
+text = "Hull Integrity
 "
 
-[node name="Burn" type="Label" parent="Stats/MarginContainer/Stats"]
+[node name="Button2" type="Button" parent="Stats/Stats/Stats/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Repair (5%)"
 
-[node name="Shop?" type="Control" parent="."]
+[node name="Burn" type="Label" parent="Stats/Stats/Stats"]
+layout_mode = 2
+text = "Fuel burn info"
+
+[node name="Matter" type="Label" parent="Stats/Stats/Stats"]
+layout_mode = 2
+text = "Matter info"
+
+[node name="Shop" type="MarginContainer" parent="."]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Debug" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop"]
+layout_mode = 2
+script = ExtResource("4_frm2h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Shop/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="TextureRect3" type="TextureRect" parent="Shop/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_18v2l")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Shop/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_18v2l")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Shop/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_18v2l")
+stretch_mode = 2
+
+[node name="Button2" type="Button" parent="Shop/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+
+[node name="Label" type="Label" parent="Shop/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Item Name - Matter Cost"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="Shop/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button3" type="Button" parent="Shop/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Buy"
+
+[node name="Upgrades" type="MarginContainer" parent="."]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Upgrades"]
+layout_mode = 2
+script = ExtResource("3_2wkmo")
+
+[node name="Label" type="Label" parent="Upgrades/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "This is where we let the player upgrade their base stats like speed, durability, damage and maneuverability"
+autowrap_mode = 2
+
+[node name="Debug" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug"]
+layout_mode = 2
+script = ExtResource("5_h6o41")
+
+[node name="Label" type="Label" parent="Debug/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Place your own debug info in this VBox"
+autowrap_mode = 3

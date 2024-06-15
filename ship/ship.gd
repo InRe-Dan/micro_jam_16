@@ -36,6 +36,7 @@ var rotational_velocity: float = 0.0
 var fuel_consumed_this_frame : float = 0
 ## Measured in units per second
 var fuel_consumption : float = 0
+var matter : int = 0
 
 signal died
 
@@ -43,11 +44,11 @@ signal died
 func _physics_process(delta: float) -> void:
 	fuel_consumed_this_frame += passive_burn * delta
 	# Check for thrust or brakes
-	if Input.is_action_pressed("brake"):
+	if Input.is_action_pressed("brake") and fuel > 0:
 		linear_velocity = linear_velocity.lerp(Vector2.ZERO, braking_strength * delta)
 		fuel_consumed_this_frame += brake_burn * delta
 
-	if Input.is_action_pressed("thrust"):
+	if Input.is_action_pressed("thrust") and fuel > 0:
 		sprite.play("thrust")
 		var direction: Vector2 = -transform.y.normalized()
 		linear_velocity += (direction * acceleration) * delta
@@ -56,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		sprite.play("idle")
 	
 	# Check for spin or angle brakes
-	if Input.is_action_pressed("angular_brake"):
+	if Input.is_action_pressed("angular_brake") and fuel > 0:
 		angular_velocity = lerpf(angular_velocity, 0.0, angle_braking_strength * delta)
 		fuel_consumed_this_frame += brake_burn * delta
 	else:	
@@ -93,5 +94,9 @@ func damage(dmg: int) -> void:
 func _on_collision(body: PhysicsBody2D) -> void:
 	if not body is Asteroid:
 		return
-		
 	damage(10)
+
+
+func _on_matter_magnet_matter_picked_up() -> void:
+	matter += 1
+	print(matter)

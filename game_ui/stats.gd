@@ -1,9 +1,10 @@
 extends VBoxContainer
 
 @onready var player : Ship = get_tree().get_first_node_in_group("player")
-@onready var health : TextureProgressBar = $HealthBar
-@onready var fuel : TextureProgressBar = $FuelBar
+@onready var health : TextureProgressBar = $HBoxContainer2/HealthBar
+@onready var fuel : TextureProgressBar = $HBoxContainer/FuelBar
 @onready var burn : Label = $Burn
+@onready var matter : Label = $Matter
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,3 +18,4 @@ func _process(delta: float) -> void:
 	var c : float = player.fuel_consumption
 	var rounded : float = (round(c*pow(10,3))/pow(10,3))
 	burn.text = "Fuel consumption: " + str(rounded)
+	matter.text = "Matter: " + str(player.matter)
