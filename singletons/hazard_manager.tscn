@@ -1,10 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjrkwwcupre8y"]
+[gd_scene load_steps=13 format=3 uid="uid://cjrkwwcupre8y"]
 
 [ext_resource type="Script" path="res://singletons/hazard_manager.gd" id="1_ucliy"]
+[ext_resource type="PackedScene" uid="uid://c7htls8lgsumu" path="res://hazard/asteroid.tscn" id="2_liwsa"]
+[ext_resource type="Script" path="res://hazard/spawn_weight/spawn_weight.gd" id="3_yinwi"]
+[ext_resource type="Script" path="res://hazard/spawn_weight/weight_curve.gd" id="4_8sl8x"]
+[ext_resource type="PackedScene" uid="uid://cpcwk68xjoy2p" path="res://hazard/large_asteroid.tscn" id="5_lku6y"]
+[ext_resource type="PackedScene" uid="uid://bf76jbrkee5kn" path="res://hazard/mine.tscn" id="6_82c7q"]
+
+[sub_resource type="Curve" id="Curve_yffim"]
+max_value = 1000.0
+_data = [Vector2(0, 600), 0.0, 0.0, 0, 0, Vector2(1, 600), 0.0, 0.0, 0, 0]
+point_count = 2
+script = ExtResource("4_8sl8x")
+
+[sub_resource type="Resource" id="Resource_k257e"]
+script = ExtResource("3_yinwi")
+hazard = ExtResource("2_liwsa")
+weight = SubResource("Curve_yffim")
+
+[sub_resource type="Curve" id="Curve_04eek"]
+max_value = 1000.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 400), 0.0, 0.0, 0, 0]
+point_count = 2
+script = ExtResource("4_8sl8x")
+
+[sub_resource type="Resource" id="Resource_pi14b"]
+script = ExtResource("3_yinwi")
+hazard = ExtResource("5_lku6y")
+weight = SubResource("Curve_04eek")
+
+[sub_resource type="Curve" id="Curve_fnw85"]
+max_value = 1000.0
+_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(1, 400), 0.0, 0.0, 0, 0]
+point_count = 2
+script = ExtResource("4_8sl8x")
+
+[sub_resource type="Resource" id="Resource_nvd00"]
+script = ExtResource("3_yinwi")
+hazard = ExtResource("6_82c7q")
+weight = SubResource("Curve_fnw85")
 
 [node name="AsteroidCleanup" type="Timer"]
 wait_time = 0.5
 autostart = true
 script = ExtResource("1_ucliy")
+spawn_weights = Array[ExtResource("3_yinwi")]([SubResource("Resource_k257e"), SubResource("Resource_pi14b"), SubResource("Resource_nvd00")])
 
 [connection signal="timeout" from="." to="." method="_on_timeout"]

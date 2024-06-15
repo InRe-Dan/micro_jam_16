@@ -7,7 +7,7 @@ extends VBoxContainer
 func _ready() -> void:
 	player.died.connect(queue_free)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	label.text = ""
 	label.text += "Velocity: " + str(player.linear_velocity) + "\n"
 
