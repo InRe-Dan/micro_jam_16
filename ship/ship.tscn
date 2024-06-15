@@ -41,7 +41,8 @@ polygon = PackedVector2Array(0, -153, -65, 0, -31, 57, -54, 78, -1, 93, 46, 80, 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
-[node name="Gun" parent="." instance=ExtResource("3_v0byf")]
+[node name="Gun" parent="." node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+firing_positions = [NodePath("../FiringPositions/Marker2D"), NodePath("../FiringPositions/Marker2D2")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
@@ -56,5 +57,13 @@ value = 0.5
 fill_mode = 3
 texture_over = SubResource("GradientTexture2D_w8jum")
 texture_progress = SubResource("GradientTexture2D_omyl5")
+
+[node name="FiringPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="FiringPositions"]
+position = Vector2(-50, -36)
+
+[node name="Marker2D2" type="Marker2D" parent="FiringPositions"]
+position = Vector2(55, -36)
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]

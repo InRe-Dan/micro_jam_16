@@ -40,6 +40,9 @@ func _physics_process(delta: float) -> void:
 		var rotation_input = Input.get_axis("rotate_left", "rotate_right")
 		angular_velocity += (rotation_input * torque) * delta
 	
+	if Input.is_action_just_pressed("fire"):
+		$Gun.use()
+	
 	linear_velocity.limit_length(terminal_velocity)
 	angular_velocity = clamp(angular_velocity, -terminal_rotational_velocity, terminal_rotational_velocity)
 

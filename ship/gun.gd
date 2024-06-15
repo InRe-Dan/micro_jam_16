@@ -2,10 +2,20 @@
 extends Node2D
 
 @onready var bullet_scene: PackedScene = preload("res://ship/bullet.tscn")
-@onready var fire_delay: Timer = $Timer
+@export var fire_delay: float = 1 / 30.
+
+## Nodes representing where bullets should be spawned
+@export var firing_positions : Array[Node2D]
 
 var bullet_container: Node
+## Which gun should be fired next
+var gun_index : int = 0
+var time_since_fired : float = 0
 
+func use() -> void:
+	if time_since_fired >= fire_delay:
+		time_since_fired = 0;
+		fire()
 
 ## Initializes this node
 func init(bullet_collection: Node) -> void:
@@ -16,19 +26,21 @@ func init(bullet_collection: Node) -> void:
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_process(false)
+	assert(firing_positions.size() > 0)
 
+func next_position() -> Vector2:
+	gun_index += 1
+	print(gun_index)
+	gun_index = gun_index % firing_positions.size()
+	return firing_positions[gun_index].global_position
 
-## Called every process frame
-func _process(_delta: float) -> void:
-	if Input.is_action_pressed("fire"):
-		if fire_delay.is_stopped():
-			fire_delay.start()
-			fire()
-
+func _process(delta: float) -> void:
+	time_since_fired += delta
 
 ## Fires the gun
 func fire() -> void:
 	var bullet: Bullet = bullet_scene.instantiate()
-	bullet.position = global_position
+	var pos : Vector2 = next_position()
+	bullet.position = pos
 	bullet.rotation = global_rotation
 	bullet_container.add_child(bullet)
