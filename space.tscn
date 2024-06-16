@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://27jl7kbs8d31" path="res://assets/stars.png" id="2_0sivs"]
 [ext_resource type="AudioStream" uid="uid://bgy6a006p04qw" path="res://assets/music/Ochre/Ochre.wav" id="2_ccvsx"]
 [ext_resource type="Script" path="res://music_player.gd" id="3_i86ay"]
+[ext_resource type="PackedScene" uid="uid://2cbvfmja7p72" path="res://game_ui/draggable_window.tscn" id="6_f8mwg"]
 [ext_resource type="Texture2D" uid="uid://bgpq8x6y4skop" path="res://assets/planets.png" id="6_tijwg"]
-[ext_resource type="PackedScene" uid="uid://dgxvroecovain" path="res://game_ui/game_ui.tscn" id="7_j5bfe"]
 [ext_resource type="PackedScene" uid="uid://dfpnr627xmogp" path="res://objective/pointer.tscn" id="9_1u8bp"]
 [ext_resource type="Script" path="res://camera.gd" id="10_pi56q"]
 [ext_resource type="AudioStream" uid="uid://da7femw6odh8s" path="res://assets/music/Ochre/Ochre Tension - 1.wav" id="11_58c0w"]
@@ -71,18 +71,18 @@ region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GameUI" parent="CanvasLayer" instance=ExtResource("7_j5bfe")]
-offset_left = 3.0
-offset_top = 392.0
-offset_right = 303.0
-offset_bottom = 642.0
-
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource("11_auq1p")]
 offset_left = 2.0
-offset_top = 22.0
-offset_right = 1153.0
-offset_bottom = 86.0
+offset_top = 66.0
+offset_right = 1919.0
+offset_bottom = 106.0
 alignment = 1
+
+[node name="DraggableWindow" parent="CanvasLayer" instance=ExtResource("6_f8mwg")]
+offset_left = 217.0
+offset_top = 720.0
+offset_right = -1343.0
+offset_bottom = -110.0
 
 [node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
 position = Vector2(300000, -160000)

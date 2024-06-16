@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var label : Label = $Description
+@onready var label : Label = $"../../Description"
 @onready var player : Ship = get_tree().get_first_node_in_group("player")
 
 # Called when the node enters the scene tree for the first time.
