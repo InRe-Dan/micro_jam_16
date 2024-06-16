@@ -44,7 +44,7 @@ func _on_hazard_cleanedup() -> void:
 
 ## Creates a new random hazard
 func create_new_hazard() -> void:
-	if stopped: return
+	if stopped or not ship or not is_instance_valid(ship): return
 	
 	# Cache spawn weights
 	var total_weight: float = 0.0
