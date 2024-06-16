@@ -8,6 +8,8 @@ var damage: int = 1
 ## Velocity of the thing that fired the bullet
 var velocity_offset : Vector2
 
+@onready var ricochet_scene = preload("res://items/ricochet.tscn")
+
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -19,7 +21,13 @@ func _physics_process(delta: float) -> void:
 func _on_collision(body: Node2D) -> void:
 	if not body is Hazard and not body is Ship:
 		return
-	
+
+	var exp : CPUParticles2D = ricochet_scene.instantiate()
+	exp.finished.connect(exp.queue_free)
+	add_sibling(exp)
+	exp.global_position = global_position
+	exp.global_rotation = global_rotation
+	exp.emitting = true
 	body.damage(damage)
 	queue_free()
 

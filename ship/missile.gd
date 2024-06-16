@@ -12,6 +12,7 @@ func _ready() -> void:
 	# super()
 	vel_v = velocity_offset - transform.y.normalized() * velocity * 100
 
+
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var targets : Array = tracker.get_overlapping_bodies()
@@ -20,6 +21,7 @@ func _physics_process(delta: float) -> void:
 
 	global_position += vel_v * delta
 	global_rotation = vel_v.angle() + PI / 2
+
 
 func _on_collision(body: Node2D) -> void:
 	if not body is Hazard and not body is Ship:
