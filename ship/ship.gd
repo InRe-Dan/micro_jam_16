@@ -5,6 +5,7 @@ class_name Ship extends RigidBody2D
 ## Maximum health of the ship
 @export_range(1, 1000, 100) var maximum_health: int = 100
 @export var max_ammo : int = 100
+@export var laser_sight_length : int = 500
 
 @export_category("Movement")
 ## Rate at which the ship gains velocity while thrusting
@@ -43,6 +44,7 @@ class_name Ship extends RigidBody2D
 @onready var afterburner_particles : CPUParticles2D = $Afterburner
 @onready var forward_ray: RayCast2D = $RayCast2D
 @onready var crosshair: Sprite2D = $Crosshair
+@onready var laser_sight : Line2D = $LaserSight
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
@@ -64,6 +66,7 @@ func _process(_delta: float) -> void:
 	else:
 		laser_point = forward_ray.target_position.y
 	crosshair.position.y = laser_point
+	laser_sight.points[1] = Vector2(0, -1) * laser_sight_length
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -115,7 +118,6 @@ func _physics_process(delta: float) -> void:
 	fuel = clamp(fuel, 0, max_fuel)
 	fuel_consumption = fuel_consumed_this_frame / delta
 	fuel_consumed_this_frame = 0
-
 
 ## Ship dies
 func die() -> void:

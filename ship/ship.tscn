@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=27 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_siafs"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://vuo8baspydb4" path="res://assets/crosshair/crosshair021.png" id="7_yf35y"]
 [ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
 [ext_resource type="Script" path="res://items/item_data.gd" id="16_yh6yx"]
+
+[sub_resource type="Gradient" id="Gradient_5sjpw"]
+offsets = PackedFloat32Array(0, 0.753488, 1)
+colors = PackedColorArray(1, 0, 0, 0.356863, 1, 0, 0, 0.320347, 1, 0, 0, 0)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ll03w"]
 blend_mode = 1
@@ -115,6 +119,14 @@ max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_keua4")
 acceleration = 100
+
+[node name="LaserSight" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, -365)
+width = 5.0
+default_color = Color(1, 0, 0, 0.768627)
+gradient = SubResource("Gradient_5sjpw")
+texture_mode = 1
+antialiased = true
 
 [node name="Thrust" type="CPUParticles2D" parent="."]
 z_index = -1
