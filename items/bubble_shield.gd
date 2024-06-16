@@ -1,9 +1,11 @@
 class_name BubbleShield extends Item
 
 @export var cost : int = 30
-@export var duration : float = 5.0
+@export var duration : float = 10.0
+@export var repel_acceleration : float = 500
 
 @onready var particles : CPUParticles2D = $Particles
+@onready var area : Area2D = $Area2D
 
 var time : float = 0
 
@@ -15,7 +17,11 @@ func _ready() -> void:
 		points.append(Vector2.from_angle(angle) * (30 * randf() + 970))
 	particles.set_emission_points(points)
 
-
+func _physics_process(delta: float) -> void:
+	if time < 0.1:
+		return
+	for body in area.get_overlapping_bodies():
+		body.linear_velocity += repel_acceleration * global_position.direction_to(body.global_position) * delta
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
