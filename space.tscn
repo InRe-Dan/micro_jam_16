@@ -22,6 +22,7 @@ boost_acceleration = 500
 torque = 2.0
 terminal_rotational_velocity = 6.0
 braking_strength = 1.0
+angle_braking_strength = 0.1
 
 [node name="StarfieldBackground" type="ParallaxBackground" parent="."]
 scroll_base_scale = Vector2(0.8, 0.8)

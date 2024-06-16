@@ -73,28 +73,20 @@ func _on_brake_purchased(level: int) -> void:
 	match level:
 		1:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		2:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		3:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		4:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		5:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		6:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		7:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		8:
 			player.braking_strength += 0.05
-			player.angle_braking_strength += 0.3
 		_:
 			push_error("Unimplemented upgrade bought.")
 
@@ -147,19 +139,71 @@ func _on_turn_purchased(level: int) -> void:
 	match level:
 		1:
 			player.torque += 0.4
+			player.angle_braking_strength += 0.1
 		2:
 			player.torque += 0.4
+			player.angle_braking_strength += 0.3
 		3:
 			player.torque += 0.4
+			player.angle_braking_strength += 0.3
 		4:
-			player.torque += 0.3
+			player.torque += 0.5
+			player.angle_braking_strength += 0.5
 		5:
-			player.torque += 0.3
+			player.torque += 0.5
+			player.angle_braking_strength += 1
 		6:
-			player.torque += 0.3
+			player.torque += 0.7
+			player.angle_braking_strength += 2
 		7:
-			player.torque += 0.2
+			player.torque += 0.7
+			player.angle_braking_strength += 2
 		8:
-			player.torque += 0.1
+			player.torque += 0.7
+			player.angle_braking_strength += 3
+		_:
+			push_error("Unimplemented upgrade bought.")
+
+
+func _on_fuel_purchased(level: int) -> void:
+	match level:
+		1:
+			player.max_fuel += 30
+		2:
+			player.max_fuel += 30
+		3:
+			player.max_fuel += 30
+		4:
+			player.max_fuel += 30
+		5:
+			player.max_fuel += 30
+		6:
+			player.max_fuel += 30
+		7:
+			player.max_fuel += 30
+		8:
+			player.max_fuel += 30
+		_:
+			push_error("Unimplemented upgrade bought.")
+
+
+func _on_regen_purchased(level: int) -> void:
+	match level:
+		1:
+			player.weapon_regen += 1
+		2:
+			player.weapon_regen += 1
+		3:
+			player.weapon_regen += 1
+		4:
+			player.weapon_regen += 1
+		5:
+			player.weapon_regen += 1
+		6:
+			player.weapon_regen += 1
+		7:
+			player.weapon_regen += 1
+		8:
+			player.weapon_regen += 1
 		_:
 			push_error("Unimplemented upgrade bought.")
