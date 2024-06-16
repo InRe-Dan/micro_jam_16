@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=26 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_siafs"]
@@ -11,12 +11,18 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ll03w"]
 blend_mode = 1
 
+[sub_resource type="Gradient" id="Gradient_ie8f2"]
+offsets = PackedFloat32Array(0, 0.82, 1)
+colors = PackedColorArray(1, 0.435294, 0, 1, 1, 0.803922, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_e3k55"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
 [sub_resource type="Gradient" id="Gradient_iw3ru"]
-offsets = PackedFloat32Array(0, 0.62, 0.86, 1)
-colors = PackedColorArray(1, 1, 0, 1, 1, 0.368627, 0, 1, 0.824561, 0.303956, 0, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0, 1, 1, 1, 0, 0, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_j5sr4"]
-colors = PackedColorArray(1, 0.556863, 0, 1, 1, 1, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_b5mpe"]
 noise_type = 3
@@ -110,11 +116,12 @@ contact_monitor = true
 script = ExtResource("1_keua4")
 acceleration = 100
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="Thrust" type="CPUParticles2D" parent="."]
 z_index = -1
 material = SubResource("CanvasItemMaterial_ll03w")
 position = Vector2(0, 27)
-amount = 120
+emitting = false
+amount = 200
 lifetime_randomness = 1.0
 emission_shape = 3
 emission_rect_extents = Vector2(10, 1)
@@ -122,7 +129,26 @@ direction = Vector2(0, 1)
 spread = 10.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 30.3
-initial_velocity_max = 101.01
+initial_velocity_max = 313.13
+scale_amount_min = 4.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_ie8f2")
+color_initial_ramp = SubResource("Gradient_e3k55")
+
+[node name="Afterburner" type="CPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_ll03w")
+position = Vector2(0, 27)
+emitting = false
+amount = 250
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 472.8
 scale_amount_min = 4.0
 scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_iw3ru")

@@ -1,7 +1,7 @@
 extends HBoxContainer
 
 @export var title : String
-@export var description : String
+@export_multiline var description : String
 @export var costs : Array[int] = [3, 5, 10, 15, 20, 25, 35, 50]
 
 @export var upgraded_texture : Texture2D
@@ -12,6 +12,7 @@ extends HBoxContainer
 @onready var label : Label = $Label
 
 signal hovered(info : String)
+signal purchased(level : int)
 var current : int = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +24,7 @@ func _ready() -> void:
 		button.cost = costs[i]
 		if button != buttons.get_children().back():
 			button.purchased.connect(buttons.get_children()[i + 1].enable)
-			button.purchased.connect(func x(): current += 1)
+		button.purchased.connect(successfuly_upgraded)
 		i += 1
 		button.textures = [upgraded_texture, buy_texture, hidden_texture]
 		button.init()
@@ -35,6 +36,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func successfuly_upgraded() -> void:
+	current += 1
+	purchased.emit(current)
 
 func _on_mouse_entered() -> void:
-	hovered.emit(description + "\nCost: " + str(costs[current]) + " Matter")
+	if current < 8:
+		hovered.emit(description + " (Cost: " + str(costs[current]) + " Matter)")
+	else:
+		hovered.emit("Fully upgraded!")
