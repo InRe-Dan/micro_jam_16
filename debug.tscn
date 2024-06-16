@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkqgjm8qpk3yu"]
+
+[ext_resource type="Script" path="res://game_ui/debug.gd" id="1_yikhn"]
+
+[node name="Debug" type="MarginContainer"]
+visible = false
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("1_yikhn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Give" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Give 10 Matter
+"
+
+[node name="Take" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Remove Matter"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Place your own debug info in this VBox"
+autowrap_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Give" to="VBoxContainer" method="_on_give_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Take" to="VBoxContainer" method="_on_take_pressed"]
