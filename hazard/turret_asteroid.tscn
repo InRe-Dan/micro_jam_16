@@ -201,6 +201,7 @@ shape = SubResource("CircleShape2D_wc637")
 [node name="Turret" parent="." instance=ExtResource("6_oc3nm")]
 acceleration = 0
 terminal_velocity = 0.0
+health = 1000
 
 [node name="TurretBase" type="Sprite2D" parent="."]
 visible = false
