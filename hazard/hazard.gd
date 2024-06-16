@@ -35,10 +35,11 @@ func _on_cleanup_check() -> void:
 
 ## Hazard took damage
 func damage(dmg: int) -> void:
-	modulate = Color(25500, 25500, 25500)
-	health -= dmg
-	if health <= 0:
-		destroy()
+	if health > 0:
+		modulate = Color(25500, 25500, 25500)
+		health -= dmg
+		if health <= 0:
+			destroy()
 
 
 ## Destroys the hazard

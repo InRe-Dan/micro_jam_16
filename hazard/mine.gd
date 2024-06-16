@@ -6,6 +6,10 @@ class_name Mine extends Hazard
 @onready var proximity: Area2D = $Proximity
 @onready var warning_particles: CPUParticles2D = proximity.get_node("CPUParticles2D")
 @onready var shape: CollisionShape2D = proximity.get_node("CollisionShape2D")
+@onready var explosion_audio: AudioStreamPlayer2D = explosion.get_node("AudioStreamPlayer2D")
+@onready var warning_audio: AudioStreamPlayer2D = $WarningAudio
+
+var destroyed: bool = false
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -22,11 +26,15 @@ func _ready() -> void:
 
 ## Destroys the asteroid
 func destroy() -> void:
+	if not destroyed:
+		warning_audio.play()
+	destroyed = true
 	explosion_animation.play("explosion")
 
 
 ## Explodes
 func explode() -> void:
+	explosion_audio.play()
 	for body: Node2D in explosion.get_overlapping_bodies():
 		if body.has_method("damage"): body.damage(20)
 

@@ -25,6 +25,7 @@ signal died
 
 @onready var explosion_animation = $AnimationPlayer
 @onready var explosion: Area2D = $Explosion
+@onready var explosion_audio: AudioStreamPlayer2D = explosion.get_node("AudioStreamPlayer2D")
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,6 +68,7 @@ func destroy() -> void:
 
 ## Explodes
 func explode() -> void:
+	explosion_audio.play()
 	for body: Node2D in explosion.get_overlapping_bodies():
 		if not body is Hazard and not body is Ship:
 			continue

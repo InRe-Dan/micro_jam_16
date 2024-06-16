@@ -1,6 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=40 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
+[ext_resource type="AudioStream" uid="uid://t4pm6qxjgtoa" path="res://assets/sounds/collect.wav" id="2_nbfpe"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_siafs"]
 [ext_resource type="Shader" path="res://shaders/thruster.gdshader" id="3_r6kkl"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
@@ -170,6 +171,9 @@ max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_keua4")
 acceleration = 100
+
+[node name="CollectAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nbfpe")
 
 [node name="LaserSight" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, -365)

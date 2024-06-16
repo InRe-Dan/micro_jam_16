@@ -46,6 +46,7 @@ class_name Ship extends RigidBody2D
 @onready var forward_ray: RayCast2D = $RayCast2D
 @onready var crosshair: Sprite2D = $Crosshair
 @onready var laser_sight : Line2D = $LaserSight
+@onready var collect_audio: AudioStreamPlayer2D = $CollectAudio
 
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
@@ -160,4 +161,5 @@ func give_matter(amount : int) -> void:
 
 
 func _on_matter_magnet_matter_picked_up() -> void:
+	collect_audio.play()
 	give_matter(1)
