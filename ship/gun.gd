@@ -32,7 +32,6 @@ func _ready() -> void:
 
 func next_position() -> Vector2:
 	gun_index += 1
-	print(gun_index)
 	gun_index = gun_index % firing_positions.size()
 	return firing_positions[gun_index].global_position
 
