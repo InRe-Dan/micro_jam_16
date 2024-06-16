@@ -1,10 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf76jbrkee5kn"]
+[gd_scene load_steps=15 format=3 uid="uid://bf76jbrkee5kn"]
 
 [ext_resource type="Script" path="res://hazard/mine.gd" id="1_52cec"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_pr2db"]
 [ext_resource type="Texture2D" uid="uid://c1iskmelgj7r4" path="res://assets/explosion/scorch_01.png" id="2_y0vp2"]
 [ext_resource type="Texture2D" uid="uid://ceafi7r7014y2" path="res://assets/explosion/scorch_02.png" id="3_dbhhj"]
 [ext_resource type="Texture2D" uid="uid://dwn6vtuujd61v" path="res://assets/explosion/scorch_03.png" id="4_e4smr"]
+
+[sub_resource type="Gradient" id="Gradient_ubp51"]
+offsets = PackedFloat32Array(0.431005, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_niaju"]
+gradient = SubResource("Gradient_ubp51")
+width = 84
+height = 84
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ykmjy"]
 animations = [{
@@ -170,7 +181,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.8, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(3, 3)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(4, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_txtdl"]
@@ -180,14 +191,25 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4d1cr"]
-radius = 300.0
+radius = 450.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_045bn"]
+radius = 450.0
 
 [node name="Mine" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 0
-mass = 10000.0
+mass = 400.0
 gravity_scale = 0.0
 script = ExtResource("1_52cec")
+health = 2
+
+[node name="Spikes" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_niaju")
+
+[node name="Spikes2" type="Sprite2D" parent="."]
+rotation = 0.785398
+texture = SubResource("GradientTexture2D_niaju")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(1, 0.616667, 0, 1)
@@ -208,7 +230,28 @@ libraries = {
 
 [node name="Explosion" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
 shape = SubResource("CircleShape2D_4d1cr")
+
+[node name="Proximity" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity"]
+shape = SubResource("CircleShape2D_045bn")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Proximity"]
+amount = 64
+emission_shape = 4
+emission_points = PackedVector2Array()
+emission_colors = PackedColorArray()
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.4
+orbit_velocity_max = 0.4
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(1, 0, 0, 1)
+
+[connection signal="body_entered" from="Proximity" to="." method="_on_proximity_body_entered"]

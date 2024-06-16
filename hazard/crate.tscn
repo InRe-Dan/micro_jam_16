@@ -20,7 +20,7 @@ gravity_scale = 0.0
 script = ExtResource("1_r81ov")
 angular_velocity_scale = 2.0
 matter_spawn_distribution = SubResource("Curve_gwt70")
-health = 12
+health = 24
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.571433, 0.7, 0.497, 1)

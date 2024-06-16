@@ -170,7 +170,7 @@ mass = 40000.0
 gravity_scale = 0.0
 script = ExtResource("1_mxif8")
 matter_spawn_distribution = SubResource("Curve_emopx")
-health = 18
+health = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
