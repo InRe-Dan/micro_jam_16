@@ -22,8 +22,7 @@ func use(ammo_available : int) -> int:
 	return 0
 
 func get_ammo_info() -> String:
-	return str(ammo_per_shot)
-
+	return str(int(ammo_per_shot / fire_delay)) + "/s"
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:

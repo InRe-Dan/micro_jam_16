@@ -6,6 +6,7 @@ class_name Ship extends RigidBody2D
 @export_range(1, 1000, 100) var maximum_health: int = 100
 @export var max_ammo : int = 100
 @export var laser_sight_length : int = 500
+@export var weapon_regen : float = 0
 
 @export_category("Movement")
 ## Rate at which the ship gains velocity while thrusting
@@ -54,15 +55,13 @@ var fuel_consumption : float = 0
 var matter : int = 10
 var thruster_power : float = 0.0
 var afterburner_enabled : bool = false
+var regen_timer : float = 0
 
 signal died
 
 
 ## Called every process frame
 func _process(delta: float) -> void:
-	if not sprite.modulate == Color.WHITE:
-		sprite.modulate = sprite.modulate.lerp(Color.WHITE, 50.0 * delta)
-		
 	var laser_point: float = 0.0
 	if forward_ray.is_colliding():
 		laser_point = -forward_ray.get_collision_point().distance_to(global_position)
@@ -70,6 +69,12 @@ func _process(delta: float) -> void:
 		laser_point = forward_ray.target_position.y
 	crosshair.position.y = laser_point
 	laser_sight.points[1] = Vector2(0, -1) * laser_sight_length
+	if weapon_regen > 0:
+		regen_timer += delta
+		if regen_timer > 1 / weapon_regen:
+			if ammo < max_ammo:
+				ammo += 1
+				regen_timer = 0
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -101,16 +106,13 @@ func _physics_process(delta: float) -> void:
 	thruster_power = clamp(thruster_power, 0., 1.)
 	thrust_sprite.modulate.a = thruster_power
 	
-	# Check for spin or angle brakes
-	if Input.is_action_pressed("angular_brake") and fuel > 0:
+	var rotation_input = Input.get_axis("rotate_left", "rotate_right")
+	if rotation_input and fuel > 0:
+		angular_velocity += (rotation_input * torque) * delta
+		fuel_consumed_this_frame += rotation_burn * delta
+	if rotation_input * angular_velocity <= 0:
 		angular_velocity = lerpf(angular_velocity, 0.0, angle_braking_strength * delta)
-		fuel_consumed_this_frame += brake_burn * delta
-	else:
-		var rotation_input = Input.get_axis("rotate_left", "rotate_right")
-		if rotation_input and fuel > 0:
-			angular_velocity += (rotation_input * torque) * delta
-			fuel_consumed_this_frame += rotation_burn * delta
-	
+
 	if Input.is_action_pressed("fire"):
 		$Inventory.use()
 	

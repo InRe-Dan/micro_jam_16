@@ -8,8 +8,9 @@ extends HBoxContainer
 @export var buy_texture : Texture2D
 @export var hidden_texture : Texture2D
 
-@onready var buttons : HBoxContainer = $HBoxContainer
+@onready var buttons : HBoxContainer = $MainHBox/HBoxContainer
 @onready var label : Label = $Label
+@onready var cost_label : Label = $MainHBox/Label2
 
 signal hovered(info : String)
 signal purchased(level : int)
@@ -31,6 +32,7 @@ func _ready() -> void:
 	buttons.get_children().front().enable()
 	
 	label.text = title
+	cost_label.text = "Cost: " + str(costs[current])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,6 +41,10 @@ func _process(delta: float) -> void:
 func successfuly_upgraded() -> void:
 	current += 1
 	purchased.emit(current)
+	if current != 8:
+		cost_label.text = "Cost: " + str(costs[current])
+	else:
+		cost_label.text = "MAX"
 
 func _on_mouse_entered() -> void:
 	if current < 8:
