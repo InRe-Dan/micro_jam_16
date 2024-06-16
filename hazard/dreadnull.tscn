@@ -10,6 +10,7 @@ mass = 10000.0
 acceleration = 100
 terminal_velocity = 0.03
 braking_strength = 6.0
+engagement_distance = 3e+06
 health = 250
 
 [node name="CPUParticles2D" parent="." index="0"]

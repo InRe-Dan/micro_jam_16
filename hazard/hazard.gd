@@ -15,6 +15,11 @@ func _ready() -> void:
 	HazardManager.cleanup.connect(_on_cleanup_check)
 
 
+func _process(delta: float) -> void:
+	if not modulate == Color.WHITE:
+		modulate = modulate.lerp(Color.WHITE, 50.0 * delta)
+
+
 ## Called every clean-up cycle
 func _on_cleanup_check() -> void:
 	if is_in_group("objective"):
@@ -30,8 +35,7 @@ func _on_cleanup_check() -> void:
 
 ## Hazard took damage
 func damage(dmg: int) -> void:
-	var hitflash = get_tree().create_tween()
-	hitflash.tween_property($Sprite2D, "modulate", Color.WHITE, 0.2)
+	modulate = Color(25500, 25500, 25500)
 	health -= dmg
 	if health <= 0:
 		destroy()

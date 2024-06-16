@@ -86,7 +86,6 @@ offset_bottom = -156.0
 
 [node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
 position = Vector2(300000, -160000)
-terminal_velocity = 0.03
 
 [node name="Pointer" parent="." instance=ExtResource("9_1u8bp")]
 position = Vector2(359, 72)
@@ -103,7 +102,7 @@ autoplay = true
 script = ExtResource("3_i86ay")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.35, 0.35)
 script = ExtResource("10_pi56q")
 
 [connection signal="finished" from="Pointer/AudioStreamPlayer" to="Pointer/AudioStreamPlayer" method="_on_finished"]

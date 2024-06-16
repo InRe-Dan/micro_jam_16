@@ -59,7 +59,10 @@ signal died
 
 
 ## Called every process frame
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if not sprite.modulate == Color.WHITE:
+		sprite.modulate = sprite.modulate.lerp(Color.WHITE, 50.0 * delta)
+		
 	var laser_point: float = 0.0
 	if forward_ray.is_colliding():
 		laser_point = -forward_ray.get_collision_point().distance_to(global_position)
@@ -119,18 +122,22 @@ func _physics_process(delta: float) -> void:
 	fuel_consumption = fuel_consumed_this_frame / delta
 	fuel_consumed_this_frame = 0
 
+
 ## Ship dies
 func die() -> void:
 	died.emit()
 	queue_free()
 
+
 func get_inventory() -> Inventory:
 	return $Inventory
+
 
 ## Makes the ship take damage
 func damage(dmg: int) -> void:
 	if not iframe_timer.is_stopped(): return
 	iframe_timer.start()
+	sprite.modulate = Color(25500, 25500, 25500)
 	health -= dmg
 	if health <= 0:
 		die()
