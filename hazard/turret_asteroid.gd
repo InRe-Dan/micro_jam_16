@@ -28,7 +28,7 @@ func destroy() -> void:
 
 ## Explodes
 func explode() -> void:
-	var turret: Hazard = get_node("Turret") as Hazard
+	var turret: Hazard = find_child("Turret") as Hazard
 	if turret and is_instance_valid(turret):
 		turret.destroy()
 		$TurretBase.visible = false
