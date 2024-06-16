@@ -16,7 +16,10 @@ func _ready() -> void:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var targets : Array = tracker.get_overlapping_bodies()
-	if targets:
+	var enemies : Array = targets.filter(func (x): x.is_in_group("ranged_enemy"))
+	if enemies:
+		vel_v += acceleration * global_position.direction_to(enemies.front().global_position) * delta
+	elif targets:
 		vel_v += acceleration * global_position.direction_to(targets.front().global_position) * delta
 
 	global_position += vel_v * delta
