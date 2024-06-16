@@ -119,3 +119,47 @@ func _on_boost_purchased(level: int) -> void:
 			player.boost_burn -= 0.2
 		_:
 			push_error("Unimplemented upgrade bought.")
+
+
+func _on_fuel_e_purchased(level: int) -> void:
+	match level:
+		1:
+			player.passive_burn -= 0.2
+		2:
+			player.thruster_burn -= 0.2
+		3:
+			player.thruster_burn -= 0.2
+		4:
+			player.thruster_burn -= 0.2
+		5:
+			player.thruster_burn -= 0.2
+		6:
+			player.brake_burn -= 0.2
+		7:
+			player.thruster_burn -= 0.2
+		8:
+			player.thruster_burn -= 0.2
+		_:
+			push_error("Unimplemented upgrade bought.")
+
+
+func _on_turn_purchased(level: int) -> void:
+	match level:
+		1:
+			player.torque += 0.4
+		2:
+			player.torque += 0.4
+		3:
+			player.torque += 0.4
+		4:
+			player.torque += 0.3
+		5:
+			player.torque += 0.3
+		6:
+			player.torque += 0.3
+		7:
+			player.torque += 0.2
+		8:
+			player.torque += 0.1
+		_:
+			push_error("Unimplemented upgrade bought.")
