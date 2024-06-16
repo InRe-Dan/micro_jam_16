@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=31 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_siafs"]
 [ext_resource type="Shader" path="res://shaders/thruster.gdshader" id="3_r6kkl"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
 [ext_resource type="Texture2D" uid="uid://vuo8baspydb4" path="res://assets/crosshair/crosshair021.png" id="7_yf35y"]
+[ext_resource type="PackedScene" uid="uid://htkt2p4tj5n3" path="res://ship/missile.tscn" id="7_ykmtq"]
 [ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
 [ext_resource type="Script" path="res://items/item_data.gd" id="16_yh6yx"]
 
@@ -95,21 +96,37 @@ description = "Ol' reliable"
 initial_price = 1
 icon = SubResource("GradientTexture2D_s5m8h")
 
-[sub_resource type="Gradient" id="Gradient_68t5l"]
-offsets = PackedFloat32Array(0, 0.258772, 0.473684, 0.587719, 0.70614)
-colors = PackedColorArray(1, 1, 0, 1, 0.903409, 0.903409, 0, 0.903409, 0.795309, 0.795309, 0, 0.795309, 0.526307, 0.526307, 0, 0.526307, 0, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_f3bgv"]
+offsets = PackedFloat32Array(0, 0.473934, 0.70614)
+colors = PackedColorArray(1, 1, 0, 1, 0.919461, 0.919461, 0, 0.919461, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gon4l"]
-gradient = SubResource("Gradient_68t5l")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bclpv"]
+gradient = SubResource("Gradient_f3bgv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Resource" id="Resource_7333d"]
+script = ExtResource("16_yh6yx")
+name = "Chain Gun"
+description = "Chain gun"
+initial_price = 20
+icon = SubResource("GradientTexture2D_bclpv")
+
+[sub_resource type="Gradient" id="Gradient_njx5s"]
+offsets = PackedFloat32Array(0, 0.530806, 0.70614)
+colors = PackedColorArray(0, 1, 0, 1, 0, 0.657708, 0, 0.657708, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8j7pg"]
+gradient = SubResource("Gradient_njx5s")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Resource" id="Resource_ekcse"]
 script = ExtResource("16_yh6yx")
-name = "Chain Blaster"
-description = "RapidWeaker rapid-fire laser shots"
+name = "Missiles"
+description = "Homing Rockets!"
 initial_price = 20
-icon = SubResource("GradientTexture2D_gon4l")
+icon = SubResource("GradientTexture2D_8j7pg")
 
 [node name="Ship" type="RigidBody2D" groups=["player"]]
 collision_mask = 10
@@ -218,7 +235,15 @@ damage = 2
 fire_delay = 0.1
 ammo_per_shot = 2
 firing_positions = [NodePath("../../FiringPositions/Center")]
+data = SubResource("Resource_7333d")
+
+[node name="Missile" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+damage = 5
+fire_delay = 0.1
+firing_positions = [NodePath("../../FiringPositions/Center")]
+bullet_scene = ExtResource("7_ykmtq")
 data = SubResource("Resource_ekcse")
+unlocked = true
 
 [node name="Invincibility" type="Timer" parent="."]
 wait_time = 0.2

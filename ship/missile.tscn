@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://htkt2p4tj5n3"]
+
+[ext_resource type="Script" path="res://ship/missile.gd" id="1_hx1ns"]
+[ext_resource type="Texture2D" uid="uid://d1r78k04jncsu" path="res://assets/sheet2.svg" id="2_50bqm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1u7k"]
+atlas = ExtResource("2_50bqm")
+region = Rect2(1251.26, 945.57, 67.76, 158.51)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b3k2w"]
+radius = 15.0
+height = 132.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb78r"]
+size = Vector2(1185, 764.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_le36m"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_oqhpt"]
+offsets = PackedFloat32Array(0, 0.82, 1)
+colors = PackedColorArray(1, 0.435294, 0, 1, 1, 0.803922, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_4dbtf"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="Missile" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_hx1ns")
+velocity = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_m1u7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_b3k2w")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Tracker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tracker"]
+position = Vector2(0, -387)
+shape = SubResource("RectangleShape2D_pb78r")
+
+[node name="Thrust" type="CPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_le36m")
+position = Vector2(1, 65)
+amount = 50
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 313.13
+scale_amount_min = 4.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_oqhpt")
+color_initial_ramp = SubResource("Gradient_4dbtf")
+
+[connection signal="body_entered" from="." to="." method="_on_collision"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
