@@ -4,15 +4,15 @@ extends Node
 signal cleanup
 
 ## Maximum amount of active hazards
-@export_range(1, 128, 1) var active_count: int = 64
+@export_range(1, 128, 1) var active_count: int = 48
 
 ## Spawn weights of hazards
 @export var spawn_weights: Array[SpawnWeight] = []
 
 ## Minimum distance to spawn from the player
-@export_range(2000, 10000, 1) var min_dist: float = 2500
+@export_range(2000, 10000, 1) var min_dist: float = 3000
 ## Maximum distance to spawn from the player
-@export_range(3000, 10000, 1) var max_dist : float = 5000
+@export_range(3000, 10000, 1) var max_dist : float = 6000
 
 ## Spawn velocity scale
 @export_range(0, 5000, 10) var velocity_scale: int = 100

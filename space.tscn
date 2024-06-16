@@ -1,25 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=13 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
 [ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
 [ext_resource type="Texture2D" uid="uid://27jl7kbs8d31" path="res://assets/stars.png" id="2_0sivs"]
-[ext_resource type="AudioStream" uid="uid://c0osdp1v3v6lq" path="res://assets/music/Oceana/Oceana - 1.wav" id="2_eo38j"]
+[ext_resource type="AudioStream" uid="uid://bgy6a006p04qw" path="res://assets/music/Ochre/Ochre.wav" id="2_ccvsx"]
 [ext_resource type="Script" path="res://music_player.gd" id="3_i86ay"]
 [ext_resource type="Texture2D" uid="uid://bgpq8x6y4skop" path="res://assets/planets.png" id="6_tijwg"]
 [ext_resource type="PackedScene" uid="uid://dgxvroecovain" path="res://game_ui/game_ui.tscn" id="7_j5bfe"]
-[ext_resource type="PackedScene" uid="uid://qx5pray01i62" path="res://objective/objective.tscn" id="7_mivk0"]
 [ext_resource type="PackedScene" uid="uid://dfpnr627xmogp" path="res://objective/pointer.tscn" id="9_1u8bp"]
 [ext_resource type="Script" path="res://camera.gd" id="10_pi56q"]
+[ext_resource type="AudioStream" uid="uid://da7femw6odh8s" path="res://assets/music/Ochre/Ochre Tension - 1.wav" id="11_58c0w"]
 [ext_resource type="PackedScene" uid="uid://bnbmyoai8l0qd" path="res://game_ui/hotbar.tscn" id="11_auq1p"]
+[ext_resource type="PackedScene" uid="uid://cn1qbwqulctyb" path="res://hazard/dreadnull.tscn" id="12_ut61t"]
 
 [node name="Space" type="Node2D" groups=["main"]]
 script = ExtResource("1_bj1jb")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_eo38j")
-volume_db = -10.0
-autoplay = true
-script = ExtResource("3_i86ay")
 
 [node name="Ship" parent="." instance=ExtResource("1_38olg")]
 acceleration = 300
@@ -73,9 +68,6 @@ texture = ExtResource("6_tijwg")
 region_enabled = true
 region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
 
-[node name="Objective" parent="." instance=ExtResource("7_mivk0")]
-position = Vector2(1611, -862)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("7_j5bfe")]
@@ -91,11 +83,28 @@ offset_right = 1153.0
 offset_bottom = 86.0
 alignment = 1
 
+[node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
+position = Vector2(300000, -160000)
+acceleration = 100
+terminal_velocity = 0.03
+
 [node name="Pointer" parent="." instance=ExtResource("9_1u8bp")]
 position = Vector2(359, 72)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Pointer"]
+stream = ExtResource("2_ccvsx")
+autoplay = true
+script = ExtResource("3_i86ay")
+
+[node name="Tension" type="AudioStreamPlayer" parent="Pointer/AudioStreamPlayer"]
+stream = ExtResource("11_58c0w")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("3_i86ay")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.25, 0.25)
 script = ExtResource("10_pi56q")
 
-[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
+[connection signal="finished" from="Pointer/AudioStreamPlayer" to="Pointer/AudioStreamPlayer" method="_on_finished"]
+[connection signal="finished" from="Pointer/AudioStreamPlayer/Tension" to="Pointer/AudioStreamPlayer/Tension" method="_on_finished"]

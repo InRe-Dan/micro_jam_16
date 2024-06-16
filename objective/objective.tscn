@@ -1,8 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://qx5pray01i62"]
 
-[ext_resource type="Texture2D" uid="uid://dqawsfg4wpyqw" path="res://icon.svg" id="1_l0dyc"]
+[ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="1_uos5r"]
 
 [node name="Objective" type="Node2D" groups=["objective"]]
 
 [node name="Graphic" type="Sprite2D" parent="."]
-texture = ExtResource("1_l0dyc")
+scale = Vector2(3, 3)
+texture = ExtResource("1_uos5r")
+region_enabled = true
+region_rect = Rect2(653, 47, 31, 30)

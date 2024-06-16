@@ -168,7 +168,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.0705882)
 [node name="Inventory" parent="." instance=ExtResource("15_6vfc2")]
 
 [node name="Alternating" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
-damage = 3
+damage = 4
 fire_delay = 0.333
 ammo_per_shot = 5
 firing_positions = [NodePath("../../FiringPositions/Left"), NodePath("../../FiringPositions/Right")]
@@ -176,6 +176,7 @@ data = SubResource("Resource_a51pt")
 unlocked = true
 
 [node name="Laser" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
+damage = 2
 fire_delay = 0.1
 ammo_per_shot = 2
 firing_positions = [NodePath("../../FiringPositions/Center")]

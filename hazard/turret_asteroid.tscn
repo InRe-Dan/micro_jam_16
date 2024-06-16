@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dj3dv0s1cldrw"]
+[gd_scene load_steps=14 format=3 uid="uid://dj3dv0s1cldrw"]
 
 [ext_resource type="Script" path="res://hazard/turret_asteroid.gd" id="1_mxif8"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_jiplw"]
 [ext_resource type="Texture2D" uid="uid://c1iskmelgj7r4" path="res://assets/explosion/scorch_01.png" id="3_5fny2"]
 [ext_resource type="Texture2D" uid="uid://ceafi7r7014y2" path="res://assets/explosion/scorch_02.png" id="4_px32m"]
 [ext_resource type="Texture2D" uid="uid://dwn6vtuujd61v" path="res://assets/explosion/scorch_03.png" id="5_euh3k"]
+[ext_resource type="PackedScene" uid="uid://mwodya63nyq" path="res://hazard/turret.tscn" id="6_oc3nm"]
+[ext_resource type="Texture2D" uid="uid://d1r78k04jncsu" path="res://assets/sheet2.svg" id="7_5hj05"]
 
 [sub_resource type="Curve" id="Curve_emopx"]
 min_value = 8.0
@@ -195,3 +197,14 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
 shape = SubResource("CircleShape2D_wc637")
+
+[node name="Turret" parent="." instance=ExtResource("6_oc3nm")]
+acceleration = 0
+terminal_velocity = 0.0
+
+[node name="TurretBase" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("7_5hj05")
+region_enabled = true
+region_rect = Rect2(341, 677, 42, 42)

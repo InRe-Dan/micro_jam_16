@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://mwodya63nyq"]
+
+[ext_resource type="PackedScene" uid="uid://8rc5fa14ck3a" path="res://hazard/abstract_enemy.tscn" id="1_dtduf"]
+[ext_resource type="Script" path="res://hazard/turret.gd" id="2_kjci4"]
+[ext_resource type="Texture2D" uid="uid://d1r78k04jncsu" path="res://assets/sheet2.svg" id="2_lvspq"]
+[ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="2_vxu2n"]
+
+[node name="Turret" instance=ExtResource("1_dtduf")]
+visible = false
+collision_mask = 1
+script = ExtResource("2_kjci4")
+
+[node name="CPUParticles2D" parent="." index="0"]
+visible = false
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
+
+[node name="Sprite2D" parent="." index="2"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_lvspq")
+region_enabled = true
+region_rect = Rect2(413, 749, 27, 41)
+
+[node name="Thrust" parent="Sprite2D" index="0"]
+visible = false
+
+[node name="Weapon" parent="." index="6" node_paths=PackedStringArray("firing_positions") instance=ExtResource("2_vxu2n")]
+damage = 3
+fire_delay = 1.2
+firing_positions = [NodePath("../Left"), NodePath("../Right")]
+
+[node name="Left" type="Marker2D" parent="." index="7"]
+position = Vector2(-11, -38)
+
+[node name="Right" type="Marker2D" parent="." index="8"]
+position = Vector2(11, -38)

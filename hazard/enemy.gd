@@ -3,11 +3,11 @@ class_name Enemy extends Hazard
 
 @export_category("Movement")
 ## Rate at which the ship gains velocity while thrusting
-@export_range(1, 500, 1) var acceleration: int = 180
+@export_range(0, 500, 1) var acceleration: int = 180
 ## Rate at which the ship turns
 @export_range(0.1, 10.0, 0.1) var turn_speed: float = 4.0
 ## Maximum velocity the ship is able to reach
-@export_range(0.01, 0.1, 0.01) var terminal_velocity: float = 0.06
+@export_range(0.00, 0.1, 0.01) var terminal_velocity: float = 0.06
 ## Braking strength
 @export_range(0.0, 10.0, 0.1) var braking_strength: float = 5.0
 ## Engage distance

@@ -17,6 +17,9 @@ func _ready() -> void:
 
 ## Called every clean-up cycle
 func _on_cleanup_check() -> void:
+	if is_in_group("objective"):
+		return
+
 	var ship: Ship = get_tree().get_first_node_in_group("player") as Ship
 	if not ship or not is_instance_valid(ship):
 		return

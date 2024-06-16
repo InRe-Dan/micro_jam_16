@@ -45,7 +45,7 @@ var rotational_velocity: float = 0.0
 var fuel_consumed_this_frame : float = 0
 ## Measured in units per second
 var fuel_consumption : float = 0
-var matter : int = 0
+var matter : int = 10
 var thruster_power : float = 0.0
 
 signal died

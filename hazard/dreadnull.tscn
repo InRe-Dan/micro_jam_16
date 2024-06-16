@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn1qbwqulctyb"]
+
+[ext_resource type="PackedScene" uid="uid://8rc5fa14ck3a" path="res://hazard/abstract_enemy.tscn" id="1_00216"]
+[ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_rwj7j"]
+[ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_kwib5"]
+
+[node name="Dreadnull" instance=ExtResource("1_00216")]
+mass = 10000.0
+acceleration = 100
+terminal_velocity = 0.04
+braking_strength = 6.0
+health = 100
+
+[node name="CPUParticles2D" parent="." index="0"]
+position = Vector2(0, 300)
+scale = Vector2(8, 8)
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(-60, -320, -180, -320, -400, 60, -400, 120, -260, 120, -140, 220, -140, 260, 0, 320, 140, 260, 140, 220, 260, 120, 400, 120, 400, 60, 180, -320, 60, -320, 60, -200, -60, -200)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" parent="." index="2"]
+rotation = 3.14159
+scale = Vector2(8, 8)
+texture = ExtResource("2_rwj7j")
+region_enabled = true
+region_rect = Rect2(121, 1147, 104, 84)
+
+[node name="Thrust" parent="Sprite2D" index="0"]
+show_behind_parent = true
+position = Vector2(-0.323, -20)
+
+[node name="Weapon" parent="." index="6" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_kwib5")]
+fire_delay = 0.08
+firing_positions = [NodePath("..")]
