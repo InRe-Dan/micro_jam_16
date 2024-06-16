@@ -13,7 +13,7 @@ acceleration = 100
 terminal_velocity = 0.04
 braking_strength = 6.0
 engagement_distance = 3e+06
-health = 300
+health = 500
 
 [node name="CPUParticles2D" parent="." index="0"]
 position = Vector2(0, 300)
@@ -36,11 +36,22 @@ region_rect = Rect2(605, 5737, 520, 416)
 show_behind_parent = true
 position = Vector2(-0.323, -20)
 
-[node name="Weapon" parent="." index="6" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_kwib5")]
-damage = 5
-fire_delay = 0.5
+[node name="Missiles" parent="." index="6" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_kwib5")]
+damage = 10
+fire_delay = 1.0
 firing_positions = [NodePath("../Marker2D")]
 bullet_scene = ExtResource("3_n6pn4")
 
-[node name="Marker2D" type="Marker2D" parent="." index="7"]
+[node name="Weapon" parent="." index="7" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_kwib5")]
+damage = 2
+fire_delay = 0.2
+firing_positions = [NodePath("../Left"), NodePath("../Right")]
+
+[node name="Marker2D" type="Marker2D" parent="." index="8"]
 position = Vector2(0, -300)
+
+[node name="Left" type="Marker2D" parent="." index="9"]
+position = Vector2(-120, -340)
+
+[node name="Right" type="Marker2D" parent="." index="10"]
+position = Vector2(120, -340)

@@ -1,4 +1,11 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://cf65b0ktfsw22"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://cf65b0ktfsw22"]
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_sr600"]
+resource_name = "Distortion"
+mode = 3
+drive = 0.5
 
 [resource]
 bus/0/volume_db = -12.4553
+bus/0/effect/0/effect = SubResource("AudioEffectDistortion_sr600")
+bus/0/effect/0/enabled = true

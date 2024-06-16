@@ -2,6 +2,8 @@ class_name Dreadnull extends Enemy
 
 var fighting: bool = false
 
+@onready var missiles = $Missiles
+
 
 func _physics_process(delta) -> void:
 	if not fighting:
@@ -13,3 +15,4 @@ func _physics_process(delta) -> void:
 			fighting = true
 	else:
 		super(delta)
+		missiles.use(missiles.ammo_per_shot)

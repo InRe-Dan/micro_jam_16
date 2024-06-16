@@ -154,11 +154,10 @@ label_settings = SubResource("LabelSettings_jt0jv")
 script = ExtResource("8_h342o")
 
 [node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
-position = Vector2(300000, -160000)
+position = Vector2(0, -400000)
 acceleration = 120
 terminal_velocity = 0.05
-engagement_distance = 4e+06
-health = 500
+engagement_distance = 5e+06
 
 [node name="Pointer" parent="." instance=ExtResource("9_1u8bp")]
 position = Vector2(359, 72)
