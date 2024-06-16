@@ -32,7 +32,7 @@ fill_to = Vector2(0, 1)
 [sub_resource type="Gradient" id="Gradient_b3s44"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0, 0, 0)
+colors = PackedColorArray(1, 1, 1, 0.278431)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_x3vv6"]
 gradient = SubResource("Gradient_b3s44")
@@ -70,17 +70,21 @@ buy_texture = SubResource("GradientTexture2D_mp0ul")
 hidden_texture = SubResource("GradientTexture2D_x3vv6")
 
 [node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 2
 text = "Health"
-horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MainHBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainHBox"]
+layout_mode = 2
+size_flags_horizontal = 0
 alignment = 2
 
-[node name="Button1" type="Button" parent="HBoxContainer"]
+[node name="Button1" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -88,7 +92,7 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="Button2" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -96,7 +100,7 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="Button3" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -104,7 +108,7 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="Button4" type="Button" parent="HBoxContainer"]
+[node name="Button4" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -112,7 +116,7 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="Button5" type="Button" parent="HBoxContainer"]
+[node name="Button5" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -120,7 +124,7 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="Button6" type="Button" parent="HBoxContainer"]
+[node name="Button6" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -128,7 +132,7 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="Button7" type="Button" parent="HBoxContainer"]
+[node name="Button7" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -136,7 +140,7 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="Button8" type="Button" parent="HBoxContainer"]
+[node name="Button8" type="Button" parent="MainHBox/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -144,7 +148,11 @@ icon = SubResource("GradientTexture2D_k8cv3")
 icon_alignment = 1
 script = ExtResource("2_r00mx")
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="Label2" type="Label" parent="MainHBox"]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Wtf"
+horizontal_alignment = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

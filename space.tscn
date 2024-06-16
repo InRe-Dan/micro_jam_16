@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=21 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
 [ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
@@ -7,11 +7,40 @@
 [ext_resource type="Script" path="res://music_player.gd" id="3_i86ay"]
 [ext_resource type="PackedScene" uid="uid://2cbvfmja7p72" path="res://game_ui/draggable_window.tscn" id="6_f8mwg"]
 [ext_resource type="Texture2D" uid="uid://bgpq8x6y4skop" path="res://assets/planets.png" id="6_tijwg"]
+[ext_resource type="Script" path="res://game_ui/warnings.gd" id="7_hx0f1"]
+[ext_resource type="Script" path="res://game_ui/warning_label.gd" id="8_h342o"]
 [ext_resource type="PackedScene" uid="uid://dfpnr627xmogp" path="res://objective/pointer.tscn" id="9_1u8bp"]
 [ext_resource type="Script" path="res://camera.gd" id="10_pi56q"]
 [ext_resource type="AudioStream" uid="uid://da7femw6odh8s" path="res://assets/music/Ochre/Ochre Tension - 1.wav" id="11_58c0w"]
 [ext_resource type="PackedScene" uid="uid://bnbmyoai8l0qd" path="res://game_ui/hotbar.tscn" id="11_auq1p"]
 [ext_resource type="PackedScene" uid="uid://cn1qbwqulctyb" path="res://hazard/dreadnull.tscn" id="12_ut61t"]
+
+[sub_resource type="SystemFont" id="SystemFont_gpxq7"]
+font_names = PackedStringArray("Courier New")
+font_weight = 999
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxfmu"]
+font = SubResource("SystemFont_gpxq7")
+font_size = 36
+font_color = Color(0, 0.713726, 1, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_y76ep"]
+font_names = PackedStringArray("Courier New")
+font_weight = 999
+
+[sub_resource type="LabelSettings" id="LabelSettings_62k4p"]
+font = SubResource("SystemFont_y76ep")
+font_size = 36
+font_color = Color(1, 0.635294, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_cu0cx"]
+font_names = PackedStringArray("Courier New")
+font_weight = 999
+
+[sub_resource type="LabelSettings" id="LabelSettings_jt0jv"]
+font = SubResource("SystemFont_cu0cx")
+font_size = 36
+font_color = Color(1, 0.478431, 1, 1)
 
 [node name="Space" type="Node2D" groups=["main"]]
 script = ExtResource("1_bj1jb")
@@ -84,6 +113,45 @@ offset_left = 172.0
 offset_top = 674.0
 offset_right = -1388.0
 offset_bottom = -156.0
+
+[node name="Warnings" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 164.0
+offset_top = 38.0
+offset_right = 204.0
+offset_bottom = 78.0
+script = ExtResource("7_hx0f1")
+
+[node name="Health" type="Label" parent="CanvasLayer/Warnings"]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 437.0
+offset_right = 1341.0
+offset_bottom = 561.0
+text = "LOW INTEGRITY!"
+label_settings = SubResource("LabelSettings_sxfmu")
+script = ExtResource("8_h342o")
+
+[node name="Fuel" type="Label" parent="CanvasLayer/Warnings"]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 480.0
+offset_right = 1341.0
+offset_bottom = 604.0
+text = "LOW FUEL!"
+label_settings = SubResource("LabelSettings_62k4p")
+script = ExtResource("8_h342o")
+
+[node name="Ammo" type="Label" parent="CanvasLayer/Warnings"]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 525.0
+offset_right = 1341.0
+offset_bottom = 649.0
+text = "LOW AMMO!"
+label_settings = SubResource("LabelSettings_jt0jv")
+script = ExtResource("8_h342o")
 
 [node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
 position = Vector2(300000, -160000)
