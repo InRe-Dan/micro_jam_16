@@ -7,6 +7,10 @@ extends VBoxContainer
 @onready var burn : Label = $Burn
 @onready var matter : Label = $Matter
 
+@onready var hull_text : Label = $HBoxContainer2/HealthBar/HBoxContainer/Label2
+@onready var fuel_text : Label = $HBoxContainer/FuelBar/HBoxContainer/Label2
+@onready var weapons_text : Label = $Ammo/AmmoBar/HBoxContainer/Label2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.died.connect(queue_free)
@@ -21,6 +25,10 @@ func _process(_delta: float) -> void:
 	var rounded : float = (round(c*pow(10,3))/pow(10,3))
 	burn.text = "Fuel consumption: " + str(rounded)
 	matter.text = "Matter: " + str(player.matter)
+
+	hull_text.text = str(player.health) + "/" + str(player.maximum_health) + " "
+	fuel_text.text = str(int(player.fuel)) + "/" + str(int(player.max_fuel)) + " "
+	weapons_text.text = str(player.ammo) + "/" + str(player.max_ammo) + " "
 
 func _on_fuel_bought() -> void:
 	if player.matter > 0 and player.fuel < player.max_fuel:
@@ -38,5 +46,5 @@ func _on_repair_bought() -> void:
 func _on_buy_ammo_pressed() -> void:
 	if player.matter > 0 and player.ammo < player.max_ammo:
 		player.matter -= 1
-		player.ammo += player.max_ammo * 0.05
+		player.ammo += player.max_ammo * 0.1
 		player.ammo = clamp(player.ammo, 0, player.max_ammo)

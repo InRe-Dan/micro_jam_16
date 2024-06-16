@@ -40,3 +40,4 @@ func _process(_delta: float) -> void:
 func use() -> void:
 	updated.emit()
 	player.ammo -= get_children()[selected].use(player.ammo)
+	player.ammo = max(player.ammo, 0)

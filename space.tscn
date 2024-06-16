@@ -79,10 +79,10 @@ offset_bottom = 106.0
 alignment = 1
 
 [node name="DraggableWindow" parent="CanvasLayer" instance=ExtResource("6_f8mwg")]
-offset_left = 217.0
-offset_top = 720.0
-offset_right = -1343.0
-offset_bottom = -110.0
+offset_left = 172.0
+offset_top = 674.0
+offset_right = -1388.0
+offset_bottom = -156.0
 
 [node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
 position = Vector2(300000, -160000)

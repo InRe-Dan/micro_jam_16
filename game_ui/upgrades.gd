@@ -69,7 +69,7 @@ func _on_speed_purchased(level: int) -> void:
 			push_error("Unimplemented upgrade bought.")
 
 
-func _on_turn_purchased(level: int) -> void:
+func _on_brake_purchased(level: int) -> void:
 	match level:
 		1:
 			player.braking_strength += 0.05

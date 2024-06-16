@@ -24,7 +24,6 @@ focus_mode = 0
 text = "||"
 
 [node name="GameUI" parent="." instance=ExtResource("1_1sg7h")]
-custom_minimum_size = Vector2(330, 250)
 layout_mode = 2
 
 [connection signal="button_down" from="VBoxContainer/Button" to="." method="_on_button_button_down"]
