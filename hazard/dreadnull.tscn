@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn1qbwqulctyb"]
+[gd_scene load_steps=7 format=3 uid="uid://cn1qbwqulctyb"]
 
 [ext_resource type="PackedScene" uid="uid://8rc5fa14ck3a" path="res://hazard/abstract_enemy.tscn" id="1_00216"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_rwj7j"]
 [ext_resource type="Script" path="res://hazard/dreadnull.gd" id="2_wulku"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_kwib5"]
 [ext_resource type="PackedScene" uid="uid://htkt2p4tj5n3" path="res://ship/missile.tscn" id="3_n6pn4"]
+[ext_resource type="AudioStream" uid="uid://esteyv2x0k36" path="res://assets/sounds/notify.mp3" id="6_20hr4"]
 
 [node name="Dreadnull" instance=ExtResource("1_00216")]
 mass = 40000.0
@@ -58,3 +59,8 @@ position = Vector2(-120, -340)
 
 [node name="Right" type="Marker2D" parent="." index="11"]
 position = Vector2(120, -340)
+
+[node name="FightStart" type="AudioStreamPlayer" parent="." index="12"]
+stream = ExtResource("6_20hr4")
+volume_db = -10.0
+pitch_scale = 0.5

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfynuy11tald8"]
+[gd_scene load_steps=12 format=3 uid="uid://bfynuy11tald8"]
 
 [ext_resource type="Script" path="res://game_ui/upgradebar.gd" id="1_yrgsq"]
 [ext_resource type="Script" path="res://game_ui/hell_button.gd" id="2_r00mx"]
+[ext_resource type="AudioStream" uid="uid://dmfln8f6qfcb" path="res://assets/sounds/ui.mp3" id="3_h1d24"]
 
 [sub_resource type="Gradient" id="Gradient_2xycw"]
 interpolation_mode = 1
@@ -154,5 +155,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Wtf"
 horizontal_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_h1d24")
+volume_db = -12.0
+pitch_scale = 0.5
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

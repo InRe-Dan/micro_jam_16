@@ -11,6 +11,9 @@ extends VBoxContainer
 @onready var fuel_text : Label = $HBoxContainer/FuelBar/HBoxContainer/Label2
 @onready var weapons_text : Label = $Ammo/AmmoBar/HBoxContainer/Label2
 
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.died.connect(queue_free)
@@ -32,12 +35,14 @@ func _process(_delta: float) -> void:
 
 func _on_fuel_bought() -> void:
 	if player.matter > 0 and player.fuel < player.max_fuel:
+		audio.play()
 		player.matter -= 1
 		player.fuel += player.max_fuel * 0.1
 
 
 func _on_repair_bought() -> void:
 	if player.matter > 0 and player.health < player.maximum_health:
+		audio.play()
 		player.matter -= 1
 		player.health += player.maximum_health * 0.05
 		player.health = clamp(player.health, 0, player.maximum_health)
@@ -45,6 +50,7 @@ func _on_repair_bought() -> void:
 
 func _on_buy_ammo_pressed() -> void:
 	if player.matter > 0 and player.ammo < player.max_ammo:
+		audio.play()
 		player.matter -= 1
 		player.ammo += player.max_ammo * 0.1
 		player.ammo = clamp(player.ammo, 0, player.max_ammo)

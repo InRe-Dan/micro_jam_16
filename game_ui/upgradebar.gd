@@ -11,6 +11,7 @@ extends HBoxContainer
 @onready var buttons : HBoxContainer = $MainHBox/HBoxContainer
 @onready var label : Label = $Label
 @onready var cost_label : Label = $MainHBox/Label2
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 
 signal hovered(info : String)
 signal purchased(level : int)
@@ -41,6 +42,7 @@ func _process(delta: float) -> void:
 func successfuly_upgraded() -> void:
 	current += 1
 	purchased.emit(current)
+	audio.play()
 	if current != 8:
 		cost_label.text = "Cost: " + str(costs[current])
 	else:

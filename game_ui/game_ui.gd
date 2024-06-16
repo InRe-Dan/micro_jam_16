@@ -6,7 +6,12 @@ func _ready() -> void:
 	var queue : Array[Control] = [self]
 	while queue:
 		var control : Control = queue.pop_front()
-		queue.append_array(control.get_children())
+		var children = control.get_children()
+		var appendable = []
+		for child in children:
+			if child is Control:
+				appendable.append(child)
+		queue.append_array(appendable)
 		control.focus_mode = control.FOCUS_NONE
 	get_tree().get_first_node_in_group("player").died.connect(queue_free)
 

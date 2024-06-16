@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=22 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
 [ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgpq8x6y4skop" path="res://assets/planets.png" id="6_tijwg"]
 [ext_resource type="Script" path="res://game_ui/warnings.gd" id="7_hx0f1"]
 [ext_resource type="Script" path="res://game_ui/warning_label.gd" id="8_h342o"]
+[ext_resource type="AudioStream" uid="uid://b3lxhhpw7yuno" path="res://assets/sounds/alert.mp3" id="9_0gy5h"]
 [ext_resource type="PackedScene" uid="uid://dfpnr627xmogp" path="res://objective/pointer.tscn" id="9_1u8bp"]
 [ext_resource type="Script" path="res://camera.gd" id="10_pi56q"]
 [ext_resource type="AudioStream" uid="uid://da7femw6odh8s" path="res://assets/music/Ochre/Ochre Tension - 1.wav" id="11_58c0w"]
@@ -153,8 +154,13 @@ text = "LOW AMMO!"
 label_settings = SubResource("LabelSettings_jt0jv")
 script = ExtResource("8_h342o")
 
+[node name="Alert" type="AudioStreamPlayer" parent="CanvasLayer/Warnings"]
+stream = ExtResource("9_0gy5h")
+volume_db = -20.0
+pitch_scale = 0.6
+
 [node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
-position = Vector2(0, -400000)
+position = Vector2(0, -10000)
 acceleration = 120
 terminal_velocity = 0.05
 engagement_distance = 5e+06
