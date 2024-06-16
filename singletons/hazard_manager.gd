@@ -32,9 +32,13 @@ func stop() -> void:
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	ship.died.connect(stop)
+
+
+## Sets up the scene
+func setup() -> void:
 	for i in range(active_count):
 		create_new_hazard()
-	ship.died.connect(stop)
 
 
 ## Called when an hazard is freed

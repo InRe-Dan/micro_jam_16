@@ -8,3 +8,4 @@ func _on_pressed() -> void:
 	$"../../../../Pointer".visible = true
 	$"../../../Warnings".visible = true
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
+	HazardManager.setup()

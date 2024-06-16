@@ -48,6 +48,8 @@ class_name Ship extends RigidBody2D
 @onready var laser_sight : Line2D = $LaserSight
 @onready var collect_audio: AudioStreamPlayer2D = $CollectAudio
 
+var game_over: PanelContainer
+
 ## Ship's current rotational velocity
 var rotational_velocity: float = 0.0
 var fuel_consumed_this_frame : float = 0
@@ -58,11 +60,15 @@ var thruster_power : float = 0.0
 var afterburner_enabled : bool = false
 var regen_timer : float = 0
 
+var stopwatch_time: float = 0.0
+var total_matter_collected: int = 0
+
 signal died
 
 
 ## Called every process frame
 func _process(delta: float) -> void:
+	stopwatch_time += delta
 	var laser_point: float = 0.0
 	if forward_ray.is_colliding():
 		laser_point = -forward_ray.get_collision_point().distance_to(global_position)
@@ -132,6 +138,9 @@ func _physics_process(delta: float) -> void:
 ## Ship dies
 func die() -> void:
 	died.emit()
+	if game_over and is_instance_valid(game_over):
+		game_over.game_over(stopwatch_time, total_matter_collected)
+
 	queue_free()
 
 
@@ -158,6 +167,7 @@ func _on_collision(body: Node2D) -> void:
 
 func give_matter(amount : int) -> void:
 	matter += amount
+	total_matter_collected += amount
 
 
 func _on_matter_magnet_matter_picked_up() -> void:

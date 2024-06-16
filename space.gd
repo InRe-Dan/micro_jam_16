@@ -4,7 +4,14 @@ extends Node2D
 @onready var ship: Ship = $Ship
 
 func _ready() -> void:
-	pass
+	var game_over_screen = $CanvasLayer/GameOver
+	if not game_over_screen or not is_instance_valid(game_over_screen):
+		return
+	
+	if not ship or not is_instance_valid(ship):
+		return
+	
+	ship.game_over = game_over_screen
 	
 	
 ## Input

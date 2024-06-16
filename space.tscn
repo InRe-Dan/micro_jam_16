@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://brq16xbmrua68"]
+[gd_scene load_steps=40 format=3 uid="uid://brq16xbmrua68"]
 
 [ext_resource type="PackedScene" uid="uid://dr2kykiokepbr" path="res://ship/ship.tscn" id="1_38olg"]
 [ext_resource type="Script" path="res://space.gd" id="1_bj1jb"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" path="res://back_button.gd" id="11_82pnr"]
 [ext_resource type="PackedScene" uid="uid://bnbmyoai8l0qd" path="res://game_ui/hotbar.tscn" id="11_auq1p"]
 [ext_resource type="PackedScene" uid="uid://cn1qbwqulctyb" path="res://hazard/dreadnull.tscn" id="12_ut61t"]
+[ext_resource type="Script" path="res://game_ui/game_over.gd" id="14_0p56n"]
+[ext_resource type="Script" path="res://game_ui/restart.gd" id="14_1a0i7"]
 
 [sub_resource type="SystemFont" id="SystemFont_gpxq7"]
 font_names = PackedStringArray("Courier New")
@@ -67,12 +69,12 @@ shadow_offset = Vector2(-20, 20)
 VBoxContainer/constants/separation = 4
 VBoxContainer/styles/Style = SubResource("StyleBoxFlat_jcyjx")
 
-[sub_resource type="SystemFont" id="SystemFont_0yd6r"]
+[sub_resource type="SystemFont" id="SystemFont_w1yhi"]
 font_names = PackedStringArray("Courier New")
 font_weight = 999
 
 [sub_resource type="LabelSettings" id="LabelSettings_iqxik"]
-font = SubResource("SystemFont_0yd6r")
+font = SubResource("SystemFont_w1yhi")
 font_size = 164
 shadow_size = 5
 shadow_color = Color(0.0433333, 0, 0.13, 1)
@@ -109,6 +111,13 @@ font_weight = 999
 [sub_resource type="LabelSettings" id="LabelSettings_mtjgq"]
 font = SubResource("SystemFont_rly0a")
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_qg8df"]
+font = SubResource("SystemFont_w1yhi")
+font_size = 80
+shadow_size = 5
+shadow_color = Color(0.0433333, 0, 0.13, 1)
+shadow_offset = Vector2(-3, 3)
 
 [node name="Space" type="Node2D" groups=["main"]]
 process_mode = 4
@@ -344,8 +353,63 @@ theme_override_font_sizes/font_size = 30
 text = "Back"
 script = ExtResource("11_82pnr")
 
+[node name="GameOver" type="PanelContainer" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+offset_left = 499.0
+offset_top = 242.0
+offset_right = 1479.0
+offset_bottom = 821.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cb3b8")
+script = ExtResource("14_0p56n")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/GameOver"]
+layout_mode = 2
+theme = SubResource("Theme_hfwuf")
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOver/VBox"]
+layout_mode = 2
+text = "Deep Space"
+label_settings = SubResource("LabelSettings_iqxik")
+
+[node name="Control" type="Control" parent="CanvasLayer/GameOver/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Restart" type="Button" parent="CanvasLayer/GameOver/VBox"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_gseqx")
+theme_override_font_sizes/font_size = 64
+text = "Restart"
+script = ExtResource("14_1a0i7")
+
+[node name="Control2" type="Control" parent="CanvasLayer/GameOver/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/GameOver/VBox"]
+layout_mode = 2
+text = "Time: 0:00"
+label_settings = SubResource("LabelSettings_qg8df")
+horizontal_alignment = 1
+
+[node name="Control3" type="Control" parent="CanvasLayer/GameOver/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MatterLabel" type="Label" parent="CanvasLayer/GameOver/VBox"]
+layout_mode = 2
+text = "Matter: 0"
+label_settings = SubResource("LabelSettings_qg8df")
+horizontal_alignment = 1
+
 [node name="Dreadnull" parent="." groups=["objective"] instance=ExtResource("12_ut61t")]
-position = Vector2(0, -10000)
+position = Vector2(0, -400000)
 acceleration = 120
 terminal_velocity = 0.05
 engagement_distance = 5e+06
@@ -374,5 +438,6 @@ script = ExtResource("10_pi56q")
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBox/Button2" to="CanvasLayer/MainMenu/VBox/Button2" method="_on_pressed"]
 [connection signal="value_changed" from="CanvasLayer/MainMenu/VBox/HSlider" to="CanvasLayer/MainMenu/VBox/HSlider" method="_on_value_changed"]
 [connection signal="pressed" from="CanvasLayer/HowToPlay/VBox/Button" to="CanvasLayer/HowToPlay/VBox/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOver/VBox/Restart" to="CanvasLayer/GameOver/VBox/Restart" method="_on_pressed"]
 [connection signal="finished" from="Pointer/AudioStreamPlayer" to="Pointer/AudioStreamPlayer" method="_on_finished"]
 [connection signal="finished" from="Pointer/AudioStreamPlayer/Tension" to="Pointer/AudioStreamPlayer/Tension" method="_on_finished"]
