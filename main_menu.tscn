@@ -1,0 +1,161 @@
+[gd_scene load_steps=13 format=3 uid="uid://bdsieywhayse7"]
+
+[ext_resource type="Texture2D" uid="uid://27jl7kbs8d31" path="res://assets/stars.png" id="1_qoa47"]
+[ext_resource type="Texture2D" uid="uid://bgpq8x6y4skop" path="res://assets/planets.png" id="2_83ra0"]
+[ext_resource type="Script" path="res://volume.gd" id="5_0medv"]
+[ext_resource type="Script" path="res://play_button.gd" id="5_sagkk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvpnx"]
+bg_color = Color(1, 1, 1, 0.121569)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 100.0
+expand_margin_top = 100.0
+expand_margin_right = 100.0
+expand_margin_bottom = 100.0
+shadow_color = Color(0, 0, 0, 0.611765)
+shadow_size = 50
+shadow_offset = Vector2(-20, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioaim"]
+
+[sub_resource type="Theme" id="Theme_qcygw"]
+VBoxContainer/constants/separation = 4
+VBoxContainer/styles/Style = SubResource("StyleBoxFlat_ioaim")
+
+[sub_resource type="SystemFont" id="SystemFont_py80h"]
+font_names = PackedStringArray("Courier New")
+font_weight = 999
+
+[sub_resource type="LabelSettings" id="LabelSettings_4urbi"]
+font = SubResource("SystemFont_py80h")
+font_size = 164
+shadow_size = 5
+shadow_color = Color(0.0433333, 0, 0.13, 1)
+shadow_offset = Vector2(-3, 3)
+
+[sub_resource type="SystemFont" id="SystemFont_wvpai"]
+font_names = PackedStringArray("Courier New")
+
+[sub_resource type="SystemFont" id="SystemFont_k1swy"]
+font_names = PackedStringArray("Courier New")
+
+[sub_resource type="LabelSettings" id="LabelSettings_oe2gh"]
+font = SubResource("SystemFont_k1swy")
+font_size = 24
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StarfieldBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(0.8, 0.8)
+scroll_ignore_camera_zoom = true
+
+[node name="Stars" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Stars"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_qoa47")
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
+
+[node name="Stars2" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.17, 0.17)
+motion_offset = Vector2(164, 85)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Stars2"]
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_qoa47")
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
+
+[node name="Stars3" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.15, 0.15)
+motion_offset = Vector2(73, 356)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Stars3"]
+texture_repeat = 2
+texture = ExtResource("1_qoa47")
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
+
+[node name="Planets" type="ParallaxLayer" parent="StarfieldBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_offset = Vector2(73, 356)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarfieldBackground/Planets"]
+modulate = Color(0.681896, 0.681896, 0.681896, 1)
+texture_repeat = 2
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_83ra0")
+region_enabled = true
+region_rect = Rect2(-1e+06, -1e+06, 2e+06, 2e+06)
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 499.0
+offset_top = 242.0
+offset_right = 1479.0
+offset_bottom = 761.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bvpnx")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme = SubResource("Theme_qcygw")
+
+[node name="Label" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "Deep Space"
+label_settings = SubResource("LabelSettings_4urbi")
+
+[node name="Control" type="Control" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_wvpai")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+script = ExtResource("5_sagkk")
+
+[node name="Control3" type="Control" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button2" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_wvpai")
+theme_override_font_sizes/font_size = 64
+text = "How to Play"
+
+[node name="Control2" type="Control" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label2" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_oe2gh")
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Panel/VBox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.0
+value = 0.3
+script = ExtResource("5_0medv")
+
+[connection signal="pressed" from="Panel/VBox/Button" to="Panel/VBox/Button" method="_on_pressed"]
+[connection signal="value_changed" from="Panel/VBox/HSlider" to="Panel/VBox/HSlider" method="_on_value_changed"]

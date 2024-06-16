@@ -10,12 +10,12 @@ func _process(delta: float) -> void:
 	else:
 		self_modulate.a = 0.0
 	if target > 0.5:
-		modulate.a = lerpf(modulate.a, 1.0, 0.1 * delta)
-		if modulate.a > 0.9:
+		modulate.a = lerpf(modulate.a, 1.0, 10 * delta)
+		if modulate.a > 0.8:
 			target = 0.0
 	
 	if target < 0.5:
-		modulate.a = lerpf(modulate.a, 0.0, 0.1 * delta)
-		if modulate.a < 0.1:
+		modulate.a = lerpf(modulate.a, 0.0, 10 * delta)
+		if modulate.a < 0.5:
 			target = 1.0
 	

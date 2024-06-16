@@ -24,6 +24,7 @@ var mine_scene: PackedScene = preload("res://hazard/mine.tscn")
 @onready var ship: Ship = get_tree().get_first_node_in_group("player")
 var stopped = false
 
+signal start
 
 func stop() -> void:
 	stopped = true
