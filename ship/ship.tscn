@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=35 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_siafs"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_v0byf"]
 [ext_resource type="Texture2D" uid="uid://vuo8baspydb4" path="res://assets/crosshair/crosshair021.png" id="7_yf35y"]
 [ext_resource type="PackedScene" uid="uid://htkt2p4tj5n3" path="res://ship/missile.tscn" id="7_ykmtq"]
+[ext_resource type="PackedScene" uid="uid://b224sraljsr2m" path="res://items/tractor.tscn" id="8_w8m4y"]
 [ext_resource type="PackedScene" uid="uid://bbcpjdexfgfng" path="res://ship/inventory.tscn" id="15_6vfc2"]
 [ext_resource type="Script" path="res://items/item_data.gd" id="16_yh6yx"]
 
@@ -128,6 +129,22 @@ description = "Homing Rockets!"
 initial_price = 20
 icon = SubResource("GradientTexture2D_8j7pg")
 
+[sub_resource type="Gradient" id="Gradient_qtpnu"]
+offsets = PackedFloat32Array(0, 0.478673, 0.70614)
+colors = PackedColorArray(0, 1, 1, 1, 0, 0.838921, 0.838921, 0.838921, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_102ca"]
+gradient = SubResource("Gradient_qtpnu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Resource" id="Resource_k0qmi"]
+script = ExtResource("16_yh6yx")
+name = "Matter Vacuum"
+description = ""
+initial_price = 20
+icon = SubResource("GradientTexture2D_102ca")
+
 [node name="Ship" type="RigidBody2D" groups=["player"]]
 collision_mask = 10
 mass = 1000.0
@@ -236,13 +253,19 @@ fire_delay = 0.1
 ammo_per_shot = 2
 firing_positions = [NodePath("../../FiringPositions/Center")]
 data = SubResource("Resource_7333d")
+unlocked = true
 
 [node name="Missile" parent="Inventory" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_v0byf")]
 damage = 5
-fire_delay = 0.1
+fire_delay = 0.5
+ammo_per_shot = 10
 firing_positions = [NodePath("../../FiringPositions/Center")]
 bullet_scene = ExtResource("7_ykmtq")
 data = SubResource("Resource_ekcse")
+unlocked = true
+
+[node name="Tractor" parent="Inventory" instance=ExtResource("8_w8m4y")]
+data = SubResource("Resource_k0qmi")
 unlocked = true
 
 [node name="Invincibility" type="Timer" parent="."]

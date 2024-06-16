@@ -13,6 +13,7 @@ config_version=5
 config/name="Micro16"
 run/main_scene="res://space.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=240
 config/icon="res://icon.svg"
 
 [autoload]
@@ -27,7 +28,7 @@ window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="keep_width"
 window/vsync/vsync_mode=0
 
 [file_customization]

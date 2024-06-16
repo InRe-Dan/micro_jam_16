@@ -11,7 +11,7 @@ class_name Ship extends RigidBody2D
 ## Rate at which the ship gains velocity while thrusting
 @export_range(1, 500, 1) var acceleration: int = 60
 ## Additive rate at which the ship gains velocity while boosting
-@export_range(1, 500, 1) var boost_acceleration: int = 60
+@export_range(1, 500, 1) var boost_acceleration: int = 120
 ## Rate at which the ship gains rotational velocity while turning
 @export_range(0.1, 10.0, 0.1) var torque: float = 1.2
 ## Maximum velocity the ship is able to reach
@@ -27,7 +27,7 @@ class_name Ship extends RigidBody2D
 @export var max_fuel : float = 100
 @export var passive_burn : float = 0.2
 @export var thruster_burn : float = 2.4
-@export var boost_burn : float = 2.4
+@export var boost_burn : float = 4.8
 @export var brake_burn : float = 0.4
 @export var rotation_burn : float = 0.8
 
