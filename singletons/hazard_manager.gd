@@ -30,13 +30,13 @@ func stop() -> void:
 	stopped = true
 
 
-## Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	ship.died.connect(stop)
-
-
 ## Sets up the scene
-func setup() -> void:
+func setup(newship: Ship) -> void:
+	ship = newship
+	stopped = false
+	for child in get_children():
+		child.queue_free()
+	if ship and is_instance_valid(ship) and not ship.died.is_connected(stop): ship.died.connect(stop)
 	for i in range(active_count):
 		create_new_hazard()
 

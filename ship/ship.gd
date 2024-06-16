@@ -68,6 +68,9 @@ signal died
 
 ## Called every process frame
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("die"):
+		die()
+	
 	stopwatch_time += delta
 	var laser_point: float = 0.0
 	if forward_ray.is_colliding():
@@ -139,7 +142,7 @@ func _physics_process(delta: float) -> void:
 func die() -> void:
 	died.emit()
 	if game_over and is_instance_valid(game_over):
-		game_over.game_over(stopwatch_time, total_matter_collected)
+		game_over.game_over(stopwatch_time, total_matter_collected, false)
 
 	queue_free()
 

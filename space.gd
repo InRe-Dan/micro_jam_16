@@ -2,6 +2,7 @@
 extends Node2D
 
 @onready var ship: Ship = $Ship
+@onready var boss = $Dreadnull
 
 func _ready() -> void:
 	var game_over_screen = $CanvasLayer/GameOver
@@ -12,6 +13,7 @@ func _ready() -> void:
 		return
 	
 	ship.game_over = game_over_screen
+	boss.game_over = game_over_screen
 	
 	
 ## Input

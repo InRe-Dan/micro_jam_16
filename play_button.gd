@@ -1,5 +1,7 @@
 extends Button
 
+@onready var ship = $"../../../../Ship"
+
 
 func _on_pressed() -> void:
 	$"../..".visible = false
@@ -8,4 +10,4 @@ func _on_pressed() -> void:
 	$"../../../../Pointer".visible = true
 	$"../../../Warnings".visible = true
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
-	HazardManager.setup()
+	HazardManager.setup(ship)

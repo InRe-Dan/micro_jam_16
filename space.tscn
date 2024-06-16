@@ -367,9 +367,9 @@ script = ExtResource("14_0p56n")
 layout_mode = 2
 theme = SubResource("Theme_hfwuf")
 
-[node name="Label" type="Label" parent="CanvasLayer/GameOver/VBox"]
+[node name="MainLabel" type="Label" parent="CanvasLayer/GameOver/VBox"]
 layout_mode = 2
-text = "Deep Space"
+text = "Game Over"
 label_settings = SubResource("LabelSettings_iqxik")
 
 [node name="Control" type="Control" parent="CanvasLayer/GameOver/VBox"]
