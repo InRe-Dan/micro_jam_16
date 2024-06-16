@@ -44,14 +44,17 @@ bullet_scene = ExtResource("3_n6pn4")
 
 [node name="Weapon" parent="." index="7" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_kwib5")]
 damage = 2
-fire_delay = 0.2
-firing_positions = [NodePath("../Left"), NodePath("../Right")]
+fire_delay = 0.1
+firing_positions = [NodePath("../Left"), NodePath("../Right"), NodePath("../Center")]
 
 [node name="Marker2D" type="Marker2D" parent="." index="8"]
 position = Vector2(0, -300)
 
-[node name="Left" type="Marker2D" parent="." index="9"]
+[node name="Center" type="Marker2D" parent="." index="9"]
+position = Vector2(0, -220)
+
+[node name="Left" type="Marker2D" parent="." index="10"]
 position = Vector2(-120, -340)
 
-[node name="Right" type="Marker2D" parent="." index="10"]
+[node name="Right" type="Marker2D" parent="." index="11"]
 position = Vector2(120, -340)

@@ -49,8 +49,13 @@ func create_new_hazard() -> void:
 	# Cache spawn weights
 	var total_weight: float = 0.0
 	var weights_sampled: Array[Dictionary] = []
+	var difficulty = 0.0
+	var objective = get_tree().get_first_node_in_group("objective")
+	if is_instance_valid(objective):
+		difficulty = min(1, abs(1.0 - (ship.position.distance_squared_to(objective.position) / 1.6e11)))
+
 	for spawn_weight: SpawnWeight in spawn_weights:
-		var weight: float = spawn_weight.weight.sample(0)
+		var weight: float = spawn_weight.weight.sample(difficulty)
 		total_weight += weight
 		weights_sampled.append({
 			"scene": spawn_weight.hazard,

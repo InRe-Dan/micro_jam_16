@@ -31,7 +31,7 @@ weight = SubResource("Curve_bq6gv")
 
 [sub_resource type="Curve" id="Curve_sl62k"]
 max_value = 1000.0
-_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(1, 400), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(1, 300), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_nvd00"]
@@ -41,7 +41,7 @@ weight = SubResource("Curve_sl62k")
 
 [sub_resource type="Curve" id="Curve_pl3ev"]
 max_value = 1000.0
-_data = [Vector2(0, 40), 0.0, 0.0, 0, 0, Vector2(1, 150), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 40), 0.0, 0.0, 0, 0, Vector2(1, 80), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_3hqjk"]
@@ -51,7 +51,7 @@ weight = SubResource("Curve_pl3ev")
 
 [sub_resource type="Curve" id="Curve_uex8u"]
 max_value = 1000.0
-_data = [Vector2(0, 40), 0.0, 0.0, 0, 0, Vector2(1, 300), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 40), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_jdtm1"]
@@ -61,7 +61,7 @@ weight = SubResource("Curve_uex8u")
 
 [sub_resource type="Curve" id="Curve_7srpp"]
 max_value = 1000.0
-_data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(1, 120), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_m035g"]
