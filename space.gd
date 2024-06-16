@@ -14,8 +14,8 @@ func _ready() -> void:
 	
 	ship.game_over = game_over_screen
 	boss.game_over = game_over_screen
-	
-	
+
+
 ## Input
 func _input(event):
 	if event.is_action_pressed("fullscreen"):

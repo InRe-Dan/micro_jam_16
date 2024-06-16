@@ -27,3 +27,4 @@ func destroy() -> void:
 	if not ship or not is_instance_valid(ship):
 		return
 	game_over.game_over(ship.stopwatch_time, ship.total_matter_collected, true)
+	super()

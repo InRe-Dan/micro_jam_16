@@ -7,7 +7,7 @@ extends PanelContainer
 
 func game_over(time: float, matter: int, victory: bool) -> void:
 	var minutes: int = floor(time/60)
-	var seconds: int = time - minutes
+	var seconds: int = time - (minutes * 60)
 	var sec_string: String = ""
 	if seconds > 9:
 		sec_string = str(seconds)
