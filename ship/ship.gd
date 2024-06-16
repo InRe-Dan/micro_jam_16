@@ -76,6 +76,9 @@ func _process(delta: float) -> void:
 				ammo += 1
 				regen_timer = 0
 
+	if not sprite.modulate == Color.WHITE:
+		sprite.modulate = sprite.modulate.lerp(Color.WHITE, 50.0 * delta)
+
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
