@@ -49,8 +49,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			# Begin shooting
 			weapon.use(weapon.ammo_per_shot)
-	else:
-		particles.emitting = false
+			particles.emitting = false
 	
 	linear_velocity.limit_length(terminal_velocity)
 	

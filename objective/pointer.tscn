@@ -5,6 +5,7 @@
 [sub_resource type="SystemFont" id="SystemFont_we2d5"]
 font_names = PackedStringArray("Courier New")
 font_weight = 900
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_jyaqf"]
 font = SubResource("SystemFont_we2d5")

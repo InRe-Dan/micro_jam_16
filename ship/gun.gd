@@ -7,7 +7,7 @@ class_name DualGun extends Item
 ## Nodes representing where bullets should be spawned
 @export var firing_positions : Array[Node2D]
 
-@onready var bullet_scene: PackedScene = preload("res://ship/bullet.tscn")
+@export var bullet_scene: PackedScene = preload("res://ship/bullet.tscn")
 
 var bullet_container: Node
 ## Which gun should be fired next
@@ -22,8 +22,7 @@ func use(ammo_available : int) -> int:
 	return 0
 
 func get_ammo_info() -> String:
-	return "420/69"
-
+	return str(int(ammo_per_shot / fire_delay)) + "/s"
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +31,6 @@ func _ready() -> void:
 
 func next_position() -> Vector2:
 	gun_index += 1
-	print(gun_index)
 	gun_index = gun_index % firing_positions.size()
 	return firing_positions[gun_index].global_position
 

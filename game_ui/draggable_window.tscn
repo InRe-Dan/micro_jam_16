@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://2cbvfmja7p72"]
+
+[ext_resource type="PackedScene" uid="uid://dgxvroecovain" path="res://game_ui/game_ui.tscn" id="1_1sg7h"]
+[ext_resource type="Script" path="res://game_ui/draggable_window.gd" id="1_aa80h"]
+
+[node name="DraggableWindow" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1560.0
+offset_bottom = -830.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aa80h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+text = "||"
+
+[node name="GameUI" parent="." instance=ExtResource("1_1sg7h")]
+layout_mode = 2
+
+[connection signal="button_down" from="VBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="VBoxContainer/Button" to="." method="_on_button_button_up"]

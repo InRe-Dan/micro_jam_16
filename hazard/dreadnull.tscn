@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn1qbwqulctyb"]
+[gd_scene load_steps=5 format=3 uid="uid://cn1qbwqulctyb"]
 
 [ext_resource type="PackedScene" uid="uid://8rc5fa14ck3a" path="res://hazard/abstract_enemy.tscn" id="1_00216"]
 [ext_resource type="Texture2D" uid="uid://bavub0d6b2mls" path="res://assets/sheet.svg" id="2_rwj7j"]
 [ext_resource type="PackedScene" uid="uid://cgm0621ljiu6x" path="res://ship/gun.tscn" id="3_kwib5"]
+[ext_resource type="PackedScene" uid="uid://htkt2p4tj5n3" path="res://ship/missile.tscn" id="3_n6pn4"]
 
 [node name="Dreadnull" instance=ExtResource("1_00216")]
 mass = 10000.0
 acceleration = 100
-terminal_velocity = 0.04
+terminal_velocity = 0.03
 braking_strength = 6.0
-health = 100
+engagement_distance = 3e+06
+health = 250
 
 [node name="CPUParticles2D" parent="." index="0"]
 position = Vector2(0, 300)
@@ -33,5 +35,10 @@ show_behind_parent = true
 position = Vector2(-0.323, -20)
 
 [node name="Weapon" parent="." index="6" node_paths=PackedStringArray("firing_positions") instance=ExtResource("3_kwib5")]
-fire_delay = 0.08
-firing_positions = [NodePath("..")]
+damage = 5
+fire_delay = 0.5
+firing_positions = [NodePath("../Marker2D")]
+bullet_scene = ExtResource("3_n6pn4")
+
+[node name="Marker2D" type="Marker2D" parent="." index="7"]
+position = Vector2(0, -300)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl7vvch7jrhdt"]
+
+[sub_resource type="Gradient" id="Gradient_23814"]
+offsets = PackedFloat32Array(0.172093, 0.455814, 0.623256)
+colors = PackedColorArray(1, 0.698039, 0, 1, 1, 0.188235, 0, 1, 1, 0.188235, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_lwnng"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="MissileExplosion" type="CPUParticles2D"]
+z_index = -1
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+damping_max = 2.29
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 4.0
+scale_amount_max = 16.0
+color_ramp = SubResource("Gradient_23814")
+color_initial_ramp = SubResource("Gradient_lwnng")

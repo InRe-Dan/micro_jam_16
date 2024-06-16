@@ -10,9 +10,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	label.text = ""
 	label.text += "Velocity: " + str(player.linear_velocity) + "\n"
-
+	label.text += "FPS: " + str(Engine.get_frames_per_second()) + "\n"
+ 
 func _on_give_pressed() -> void:
-	player.give_matter(10)
+	player.give_matter(100)
 
 
 func _on_take_pressed() -> void:

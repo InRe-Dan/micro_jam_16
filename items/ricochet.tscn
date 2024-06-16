@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuvuu6nv3y1g"]
+
+[sub_resource type="Gradient" id="Gradient_psmpx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="RicochetEffect" type="CPUParticles2D"]
+z_index = -1
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+damping_max = 2.29
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+color_ramp = SubResource("Gradient_psmpx")

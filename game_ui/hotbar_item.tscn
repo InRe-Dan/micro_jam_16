@@ -32,19 +32,18 @@ texture = SubResource("GradientTexture2D_ghi4h")
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
 offset_left = -36.0
-offset_top = -22.0
+offset_top = -24.0
 offset_right = 101.0
-offset_bottom = 1.0
+offset_bottom = -1.0
 text = "Item Name"
 horizontal_alignment = 1
 
 [node name="Durability" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_left = -36.0
-offset_top = 60.0
-offset_right = 101.0
-offset_bottom = 83.0
+offset_left = -74.0
+offset_top = 64.0
+offset_right = 142.0
+offset_bottom = 87.0
 text = "Item Name"
 horizontal_alignment = 1
 

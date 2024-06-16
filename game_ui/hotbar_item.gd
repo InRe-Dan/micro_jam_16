@@ -12,10 +12,9 @@ func _ready() -> void:
 func update(init_item : Item = null) -> void:
 	if not item:
 		item = init_item
-
+	durability.text = "Cost: " + item.get_ammo_info()
 	icon.texture = item.data.icon
 	item_name.text = item.data.name
-	durability.text = item.get_ammo_info()
 
 	if not item.unlocked:
 		icon.modulate.a = 0.4
