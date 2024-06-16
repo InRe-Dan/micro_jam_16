@@ -18,10 +18,10 @@ matter_spawn_distribution = SubResource("Curve_gwt70")
 health = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_prcix")
 region_enabled = true
-region_rect = Rect2(1011, 6, 43, 42)
+region_rect = Rect2(5055, 30, 215, 210)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(3, 3)

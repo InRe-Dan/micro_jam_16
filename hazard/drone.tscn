@@ -12,9 +12,10 @@ polygon = PackedVector2Array(-10, -40, -26, -32, -46, 40, -32, 40, -14, 28, 14, 
 
 [node name="Sprite2D" parent="." index="2"]
 rotation = 3.14159
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_1si0l")
 region_enabled = true
-region_rect = Rect2(522, 787, 97, 84)
+region_rect = Rect2(2609, 3935, 485, 420)
 
 [node name="Thrust" parent="Sprite2D" index="0"]
 show_behind_parent = true

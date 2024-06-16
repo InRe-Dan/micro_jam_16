@@ -216,9 +216,10 @@ self_modulate = Color(1, 0.616667, 0, 1)
 sprite_frames = SubResource("SpriteFrames_ykmjy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_pr2db")
 region_enabled = true
-region_rect = Rect2(549, 215, 91, 92)
+region_rect = Rect2(2744, 1079, 456, 456)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yb1b7")

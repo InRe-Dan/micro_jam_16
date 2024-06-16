@@ -25,10 +25,10 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" parent="." index="2"]
 rotation = 3.14159
-scale = Vector2(8, 8)
+scale = Vector2(1.6, 1.6)
 texture = ExtResource("2_rwj7j")
 region_enabled = true
-region_rect = Rect2(121, 1147, 104, 84)
+region_rect = Rect2(605, 5737, 520, 416)
 
 [node name="Thrust" parent="Sprite2D" index="0"]
 show_behind_parent = true
