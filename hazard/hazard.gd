@@ -1,5 +1,5 @@
 ## Hazard class
-class_name Hazard extends Node2D
+class_name Hazard extends RigidBody2D
 
 ## Health of the hazard
 @export_range(1, 100, 1) var health: int = 3

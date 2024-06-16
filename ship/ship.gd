@@ -50,6 +50,7 @@ var thruster_power : float = 0.0
 
 signal died
 
+
 ## Called every process frame
 func _process(_delta: float) -> void:
 	var laser_point: float = 0.0
@@ -122,12 +123,14 @@ func damage(dmg: int) -> void:
 
 ## Ship collided with a body
 func _on_collision(body: Node2D) -> void:
-	if not body is Hazard:
+	if not body is Hazard or body.is_in_group("ranged_enemy"):
 		return
 	damage(10)
 
+
 func give_matter(amount : int) -> void:
 	matter += amount
+
 
 func _on_matter_magnet_matter_picked_up() -> void:
 	give_matter(1)

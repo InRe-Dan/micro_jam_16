@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 
 ## Bullet collided with an asteroid
 func _on_collision(body: Node2D) -> void:
-	if not body is Hazard:
+	if not body is Hazard and not body is Ship:
 		return
 	
 	body.damage(damage)

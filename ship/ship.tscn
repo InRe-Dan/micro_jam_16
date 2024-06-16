@@ -22,7 +22,7 @@ colors = PackedColorArray(1, 0.556863, 0, 1, 1, 1, 0, 1)
 noise_type = 3
 frequency = 0.0396
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fwmy5"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1mwkd"]
 width = 100
 height = 400
 seamless = true
@@ -31,13 +31,13 @@ noise = SubResource("FastNoiseLite_b5mpe")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a7pdm"]
 shader = ExtResource("3_r6kkl")
-shader_parameter/noise = SubResource("NoiseTexture2D_fwmy5")
+shader_parameter/noise = SubResource("NoiseTexture2D_1mwkd")
 
-[sub_resource type="Gradient" id="Gradient_ydrpb"]
+[sub_resource type="Gradient" id="Gradient_avgco"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ccts1"]
-gradient = SubResource("Gradient_ydrpb")
+gradient = SubResource("Gradient_avgco")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="GDScript" id="GDScript_bv84j"]
@@ -102,7 +102,7 @@ initial_price = 20
 icon = SubResource("GradientTexture2D_gon4l")
 
 [node name="Ship" type="RigidBody2D" groups=["player"]]
-collision_mask = 2
+collision_mask = 10
 mass = 1000.0
 gravity_scale = 0.0
 max_contacts_reported = 1
@@ -136,6 +136,7 @@ region_enabled = true
 region_rect = Rect2(0, 903, 93, 93)
 
 [node name="Thrust" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
 material = SubResource("ShaderMaterial_a7pdm")
 position = Vector2(-0.323454, -11.4182)
 scale = Vector2(0.297569, 1)

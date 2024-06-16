@@ -41,10 +41,15 @@ func _process(delta: float) -> void:
 
 ## Fires the gun
 func fire() -> void:
-	var bullet: Bullet = bullet_scene.instantiate()
+	var bullet: Bullet = bullet_scene.instantiate() as Bullet
 	var pos : Vector2 = next_position()
 	if get_parent().get_parent() is Ship:
-		bullet.velocity_offset = get_parent().get_parent().linear_velocity
+		var ship = get_parent().get_parent()
+		bullet.velocity_offset = ship.linear_velocity
+		bullet.collision_mask = ship.collision_mask
+	elif get_parent() is Enemy:
+		bullet.collision_mask = get_parent().collision_mask
+	
 	bullet.damage = damage
 	bullet.position = pos
 	bullet.rotation = global_rotation

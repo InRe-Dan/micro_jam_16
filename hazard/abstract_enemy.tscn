@@ -1,0 +1,239 @@
+[gd_scene load_steps=19 format=3 uid="uid://8rc5fa14ck3a"]
+
+[ext_resource type="Shader" path="res://shaders/thruster.gdshader" id="1_4ynx6"]
+[ext_resource type="Script" path="res://hazard/enemy.gd" id="1_elqha"]
+[ext_resource type="Texture2D" uid="uid://c1iskmelgj7r4" path="res://assets/explosion/scorch_01.png" id="3_hgomx"]
+[ext_resource type="Texture2D" uid="uid://ceafi7r7014y2" path="res://assets/explosion/scorch_02.png" id="4_dhkaq"]
+[ext_resource type="Texture2D" uid="uid://dwn6vtuujd61v" path="res://assets/explosion/scorch_03.png" id="5_tq2ig"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f60u6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_m15m3"]
+offsets = PackedFloat32Array(0, 0.62, 0.86, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0.368627, 0, 1, 0.824561, 0.303956, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_myk7s"]
+colors = PackedColorArray(1, 0.556863, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i3da6"]
+noise_type = 3
+frequency = 0.0396
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fwmy5"]
+width = 100
+height = 400
+seamless = true
+seamless_blend_skirt = 0.112
+noise = SubResource("FastNoiseLite_i3da6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kfqe"]
+shader = ExtResource("1_4ynx6")
+shader_parameter/noise = SubResource("NoiseTexture2D_fwmy5")
+
+[sub_resource type="Gradient" id="Gradient_ydrpb"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2iya4"]
+gradient = SubResource("Gradient_ydrpb")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfv2e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hgomx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dhkaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tq2ig")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_kx0uv"]
+resource_name = "explosion"
+length = 0.6
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"explode"
+}, {
+"args": [],
+"method": &"clean"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.616667, 0, 1), Color(1, 0.615686, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_kfv8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.616667, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgo20"]
+_data = {
+"RESET": SubResource("Animation_kfv8s"),
+"explosion": SubResource("Animation_kx0uv")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8o8hb"]
+radius = 300.0
+
+[node name="Enemy" type="RigidBody2D" groups=["ranged_enemy"]]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_elqha")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_f60u6")
+position = Vector2(0, 27)
+amount = 120
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 101.01
+scale_amount_min = 4.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_m15m3")
+color_initial_ramp = SubResource("Gradient_myk7s")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Thrust" type="Sprite2D" parent="Sprite2D"]
+material = SubResource("ShaderMaterial_8kfqe")
+position = Vector2(-0.323454, -11.4182)
+scale = Vector2(0.297569, 1)
+texture = SubResource("GradientTexture2D_2iya4")
+offset = Vector2(0, -45)
+region_rect = Rect2(911, 1074.35, 16, 41.6495)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 0.616667, 0, 1)
+sprite_frames = SubResource("SpriteFrames_lfv2e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rgo20")
+}
+
+[node name="Explosion" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("CircleShape2D_8o8hb")
