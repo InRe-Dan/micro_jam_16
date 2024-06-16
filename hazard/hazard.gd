@@ -2,7 +2,7 @@
 class_name Hazard extends RigidBody2D
 
 ## Health of the hazard
-@export_range(1, 100, 1) var health: int = 3
+@export_range(1, 1000, 1) var health: int = 3
 
 ## Distance at which the hazard cleans up
 var despawn_distance: float = 3e7
@@ -30,6 +30,8 @@ func _on_cleanup_check() -> void:
 
 ## Hazard took damage
 func damage(dmg: int) -> void:
+	var hitflash = get_tree().create_tween()
+	hitflash.tween_property($Sprite2D, "modulate", Color.WHITE, 0.2)
 	health -= dmg
 	if health <= 0:
 		destroy()
