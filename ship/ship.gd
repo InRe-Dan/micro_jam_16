@@ -47,6 +47,7 @@ class_name Ship extends RigidBody2D
 @onready var crosshair: Sprite2D = $Crosshair
 @onready var laser_sight : Line2D = $LaserSight
 @onready var collect_audio: AudioStreamPlayer2D = $CollectAudio
+@onready var matter_label: Label = $CanvasLayer/MatterCount
 
 var game_over: PanelContainer
 
@@ -88,6 +89,9 @@ func _process(delta: float) -> void:
 
 	if not sprite.modulate == Color.WHITE:
 		sprite.modulate = sprite.modulate.lerp(Color.WHITE, 50.0 * delta)
+		
+	matter_label.text = str(matter)
+	matter_label.position = get_viewport_rect().size/2 + Vector2(80, -24)
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.

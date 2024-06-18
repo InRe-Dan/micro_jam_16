@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dr2kykiokepbr"]
+[gd_scene load_steps=38 format=3 uid="uid://dr2kykiokepbr"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_keua4"]
 [ext_resource type="AudioStream" uid="uid://t4pm6qxjgtoa" path="res://assets/sounds/collect.wav" id="2_nbfpe"]
@@ -142,6 +142,11 @@ description = "Repels threats."
 initial_price = 30
 icon = SubResource("AtlasTexture_4mwib")
 
+[sub_resource type="LabelSettings" id="LabelSettings_npxix"]
+font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Ship" type="RigidBody2D" groups=["player"]]
 collision_mask = 10
 mass = 1000.0
@@ -284,6 +289,15 @@ collision_mask = 2
 [node name="Crosshair" type="Sprite2D" parent="."]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("7_yf35y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MatterCount" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_npxix")
 
 [connection signal="body_entered" from="." to="." method="_on_collision"]
 [connection signal="matter_picked_up" from="MatterMagnet" to="." method="_on_matter_magnet_matter_picked_up"]
