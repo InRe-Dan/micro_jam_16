@@ -138,29 +138,29 @@ func _on_fuel_e_purchased(level: int) -> void:
 func _on_turn_purchased(level: int) -> void:
 	match level:
 		1:
-			player.torque += 0.4
-			player.angle_braking_strength += 0.1
+			player.torque += 0.2
+			player.angle_braking_strength += 0.5
 		2:
-			player.torque += 0.4
-			player.angle_braking_strength += 0.3
+			player.torque += 0.2
+			player.angle_braking_strength += 0.5
 		3:
-			player.torque += 0.4
-			player.angle_braking_strength += 0.3
+			player.torque += 0.3
+			player.angle_braking_strength += 0.5
 		4:
-			player.torque += 0.5
+			player.torque += 0.4
 			player.angle_braking_strength += 0.5
 		5:
 			player.torque += 0.5
-			player.angle_braking_strength += 1
+			player.angle_braking_strength += 0.5
 		6:
-			player.torque += 0.7
-			player.angle_braking_strength += 2
+			player.torque += 0.6
+			player.angle_braking_strength += 0.8
 		7:
-			player.torque += 0.7
-			player.angle_braking_strength += 2
+			player.torque += 0.8
+			player.angle_braking_strength += 1
 		8:
-			player.torque += 0.7
-			player.angle_braking_strength += 3
+			player.torque += 1.0
+			player.angle_braking_strength += 2
 		_:
 			push_error("Unimplemented upgrade bought.")
 

@@ -126,10 +126,10 @@ script = ExtResource("1_bj1jb")
 [node name="Ship" parent="." instance=ExtResource("1_38olg")]
 acceleration = 300
 boost_acceleration = 500
-torque = 2.0
+torque = 4.0
 terminal_rotational_velocity = 6.0
 braking_strength = 1.0
-angle_braking_strength = 0.1
+angle_braking_strength = 0.5
 
 [node name="StarfieldBackground" type="ParallaxBackground" parent="."]
 scroll_base_scale = Vector2(0.8, 0.8)
